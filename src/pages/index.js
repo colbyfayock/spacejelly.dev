@@ -85,7 +85,7 @@ export default function Home() {
             <li>
               <h3>Where can I ship to?</h3>
               <p>
-                Wherever a USPS Global Stamp lets me!
+                Wherever a <a href="https://www.usps.com/international/first-class-mail-international.htm">USPS Global Stamp</a> lets me!
               </p>
             </li>
           </ul>
