@@ -44,6 +44,7 @@ export default function Home() {
 
       <Section>
         <Container>
+          <h2 className="sr-only">Available Products</h2>
           <ul className={styles.products}>
             {products.map(product => {
               const { id, title, images, price } = product;
@@ -73,6 +74,20 @@ export default function Home() {
                 </li>
               )
             })}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <h2>Notes</h2>
+          <ul>
+            <li>
+              <h3>Where can I ship to?</h3>
+              <p>
+                Wherever a USPS Global Stamp lets me!
+              </p>
+            </li>
           </ul>
         </Container>
       </Section>
