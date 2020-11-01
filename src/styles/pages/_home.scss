@@ -1,3 +1,78 @@
+@import "styles/util/__util";
+
 .homeTitle {
-  color: red;
+  font-size: 4em;
+  text-align: center;
+  margin: 0;
+}
+
+.homeDescription {
+
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 0;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    margin-right: .5em;
+  }
+
+}
+
+.homeDescriptionShipping {
+  display: block;
+  font-size: .6em;
+  margin-top: .5em;
+}
+
+
+.products {
+
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.product {
+
+  @include gtSmall() {
+    width: 100%;
+  }
+
+  @include gtMedium() {
+    width: 50%;
+  }
+
+  @include gtXlarge() {
+    width: 25%;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+}
+
+.productTitle {
+  font-size: 1.4em;
+  margin-bottom: .5em;
+}
+
+.productPrice {
+  font-size: 1.2em;
+  margin: 0 0 1em;
+}
+
+.productButton {
+  font-size: 1em;
 }

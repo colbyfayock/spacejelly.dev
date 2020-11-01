@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Cosmo Sticker - 3-Pack",
+    "id": "sticker_cosmo_diecut_3pack",
+    "description": "Show off your Cosmo support with a logo sticker!",
+    "price": "5.00",
+    "images": [
+      "/images/sticker-cosmo-3in-3pack.png"
+    ]
+  },
+  {
+    "title": "Cosmo Sticker - Standard",
+    "id": "sticker_cosmo_diecut_standard",
+    "description": "Show off your Cosmo support with a logo sticker!",
+    "price": "2.00",
+    "images": [
+      "/images/sticker-cosmo-3in-standard.png"
+    ]
+  },
+  {
+    "title": "Cosmo Sticker - Clear",
+    "id": "sticker_cosmo_diecut_clear",
+    "description": "Show off your Cosmo support with a logo sticker!",
+    "price": "2.00",
+    "images": [
+      "/images/sticker-cosmo-3in-clear.png"
+    ]
+  },
+  {
+    "title": "Cosmo Sticker - Holographic",
+    "id": "sticker_cosmo_diecut_holographic",
+    "description": "Show off your Cosmo support with a logo sticker!",
+    "price": "3.00",
+    "images": [
+      "/images/sticker-cosmo-3in-holographic.png"
+    ]
+  }
+]

@@ -18,7 +18,6 @@ class ClassName {
   }
 
   addIf(className, condition) {
-    console.log('condition', condition)
     if ( !!condition ) this.add(className);
     return this;
   }
