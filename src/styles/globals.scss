@@ -1,0 +1,26 @@
+@import "settings/__settings";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $font-family-default;
+}
+
+a {
+  color: inherit;
+}
+
+.sr-only {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 0;
+  height: 0;
+}

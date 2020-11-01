@@ -1,0 +1,14 @@
+@import "styles/settings/__settings";
+
+.section {
+
+  padding: 2rem 0;
+  margin: 3rem 0;
+
+  &[data-background-color="primary"] {
+    color: white;
+    background-color: $color-primary;
+  }
+
+}
+

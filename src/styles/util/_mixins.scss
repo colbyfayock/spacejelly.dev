@@ -1,0 +1,42 @@
+$breakpoint-tiny: 320px;
+$breakpoint-small: 480px;
+$breakpoint-medium: 640px;
+$breakpoint-large: 800px;
+$breakpoint-xlarge: 960px;
+$breakpoint-huge: 1024px;
+
+@mixin gtTiny() {
+  @media (min-width: $breakpoint-tiny) {
+    @content;
+  }
+}
+
+@mixin gtSmall() {
+  @media (min-width: $breakpoint-small) {
+    @content;
+  }
+}
+
+@mixin gtMedium() {
+  @media (min-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+@mixin gtLarge() {
+  @media (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin gtXlarge() {
+  @media (min-width: $breakpoint-xlarge) {
+    @content;
+  }
+}
+
+@mixin gtHuge() {
+  @media (min-width: $breakpoint-huge) {
+    @content;
+  }
+}

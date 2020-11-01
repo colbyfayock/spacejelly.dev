@@ -1,0 +1,151 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+$footer-background-color: $color-purple-900;
+
+.footer {
+  color: rgba(255, 255, 255, .8);
+  background-color: $footer-background-color;
+}
+
+.footerSection {
+
+  text-align: center;
+  padding: .5rem 0;
+  margin: 0;
+
+  &:first-child {
+    border: none;
+  }
+
+  &,
+  p {
+    color: inherit;
+  }
+
+  p {
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+  a {
+
+    @media (hover: hover) {
+
+      &:hover {
+        color: $color-gray-50;
+      }
+
+    }
+
+  }
+
+}
+
+.footerContentContainer {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  @include gtMedium {
+    text-align: left;
+    flex-direction: row;
+  }
+
+  div {
+
+    min-width: 0;
+    margin: .5em 0;
+
+    @include gtMedium {
+      margin: 0 1em;
+    }
+
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  h3,
+  p,
+  ul {
+    margin: 0;
+  }
+
+  h3 {
+    color: $color-purple-400;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: .4em;
+  }
+
+}
+
+.footerLegal {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+  padding-top: 1em;
+
+  @include gtXlarge {
+    justify-content: flex-end;
+    width: auto;
+    margin-top: 0;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-top: .6em;
+  }
+
+  li {
+    margin-right: .8em;
+  }
+
+  a {
+
+    svg {
+      font-size: 1.4em;
+    }
+
+  }
+
+}
+
+.footerCosmo {
+
+  order: -1;
+  font-size: .6em;
+  margin-right: 1em;
+
+  @include gtXlarge {
+    order: 0;
+    transform: scaleX(-1);
+    margin-right: 0;
+  }
+
+}
+
+.footerCosmoStroke {
+  fill: $footer-background-color;
+}
