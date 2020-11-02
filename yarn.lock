@@ -1033,11 +1033,6 @@
   resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-9.5.1.tgz#fe257fafe1a7f1c0c6e818017fa65b5ee45c5eca"
   integrity sha512-A19z/E6f08RXfBRc2STQ+5qo7iSPif7mNcww9dZAVli3Idu4umGP5dbpL71Hz1vyRs1eMUEylXTpXsY2WzY07g==
 
-"@stripe/stripe-js@^1.9.0":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.9.0.tgz#a4a166b5de88903573c9a7fd04f39610648f4769"
-  integrity sha512-/8+zfeRHlsEsxj0qmq9qbrnyF3fx+r97sDxfv7kqOyZFUFzC7DBwQwZlmss6XiV3ez5vz1G1QIjEW29PmLmsAw==
-
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
