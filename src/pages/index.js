@@ -36,7 +36,7 @@ export default function Home() {
               <FaShoppingCart aria-label="Shopping Cart" /> <span className="snipcart-total-price">$0.00</span>
             </a>
             <span className={styles.homeDescriptionShipping}>
-              + $2 Flat Rate Shipping via USPS Standard Mail
+              + $2 Flat Rate Shipping via USPS Standard / Global Mail
             </span>
           </p>
         </Container>
