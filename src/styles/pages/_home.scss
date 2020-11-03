@@ -30,6 +30,56 @@
   margin-top: .5em;
 }
 
+.poweredBy {
+
+  text-align: center;
+  font-size: 1.4em;
+  margin: 2em 0 0;
+
+  a {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+
+    @include gtMedium() {
+      flex-direction: row;
+    }
+
+  }
+
+  svg {
+
+    width: auto;
+    height: 1.8em;
+    margin-top: .5em;
+
+    @include gtMedium() {
+      margin-left: .8em;
+      margin-top: 0;
+    }
+
+  }
+
+}
+
+.homeNotes {
+
+  text-align: center;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+}
 
 .products {
 
