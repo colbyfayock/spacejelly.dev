@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Cosmo - Premium Tshirt",
+    "id": "cb_cosmo_shirt",
+    "description": "Available at Cotton Bureau",
+    "price": "29.00",
+    "images": [
+      "/images/cb-cosmo-shirt.jpg"
+    ],
+    "link": "https://cottonbureau.com/products/cosmo-the-space-jellyfish"
+  },
+  {
+    "title": "Keep Dev Weird - Tshirt",
+    "id": "cb_keep_dev_weird_shirt",
+    "description": "Available at Cotton Bureau",
+    "price": "29.00",
+    "images": [
+      "/images/cb-keep-dev-weird-shirt.jpg"
+    ],
+    "link": "https://cottonbureau.com/products/keep-dev-weird"
+  },
+  {
+    "title": "Cosmo - Tshirt",
+    "id": "rb_cosmo_shirt",
+    "description": "Available at Red Bubble",
+    "price": "19.00",
+    "images": [
+      "/images/rb-cosmo-shirt.jpg"
+    ],
+    "link": "https://www.redbubble.com/i/t-shirt/Cosmo-the-Space-Jellyfish-by-colbyfayock/58649803.UIIS2"
+  }
+]

@@ -10,6 +10,7 @@ import Container from 'components/Container';
 import Button from 'components/Button';
 
 import products from '../../data/products.json';
+import externalProducts from '../../data/external-products.json';
 
 export default function Home() {
   const { metadata } = useSite();
@@ -71,6 +72,38 @@ export default function Home() {
                   >
                     Add to Cart
                   </Button>
+                </li>
+              )
+            })}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section className={styles.sectionOther}>
+        <Container>
+          <h2>Other Stores</h2>
+          <ul className={styles.products}>
+            {externalProducts.map(product => {
+              const { id, title, images, price, link, description } = product;
+              return (
+                <li className={styles.product} key={id}>
+                  <a href={link}>
+                    <ul>
+                      { images.map((image, index) => {
+                        return (
+                          <li key={image}>
+                            <img src={image} alt={`Preview ${index + 1} of ${title}`} />
+                          </li>
+                        )
+                      }) }
+                    </ul>
+                    <h3 className={styles.productTitle}>{ title }</h3>
+                    <p className={styles.productPrice}>{ description }</p>
+                    <p className={styles.productPrice}>${ price }</p>
+                    <Button className={styles.productButton}>
+                      Check It Out
+                    </Button>
+                  </a>
                 </li>
               )
             })}

@@ -1,3 +1,4 @@
+@import "styles/settings/__settings";
 @import "styles/util/__util";
 
 .homeTitle {
@@ -93,6 +94,8 @@
 
 .product {
 
+  padding: .5em;
+
   @include gtSmall() {
     width: 100%;
   }
@@ -125,4 +128,22 @@
 
 .productButton {
   font-size: 1em;
+}
+
+
+.sectionOther {
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 2em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    background-color: $color-secondary;
+  }
+
 }
