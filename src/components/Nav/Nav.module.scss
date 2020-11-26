@@ -1,1 +1,101 @@
-.nav {}
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.nav {
+
+
+
+}
+
+.navSection {
+  margin: 0;
+}
+
+.navContainer {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @include gtMedium() {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  h1 {
+    font-size: 1em;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+}
+
+.navLogo {
+
+  font-size: 2.5em;
+  margin-bottom: .2em;
+
+  @include gtMedium() {
+    margin-bottom: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+}
+
+.navCart {
+
+  font-size: 1.5em;
+  text-align: center;
+
+  @include gtMedium() {
+    text-align: right;
+  }
+
+}
+
+.navCartLink {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: .2em;
+
+  @include gtMedium() {
+    justify-content: flex-end;
+  }
+
+  svg {
+    margin-right: .5em;
+  }
+
+}
+
+.navCheckOut {
+  display: inline-block;
+  color: white;
+  font-size: .5em;
+  font-weight: bold;
+  background-color: $color-primary;
+  padding: .4em .6em;
+  border-radius: .2em;
+  margin-left: 1em;
+}
+
+.navCartShipping {
+
+  display: block;
+  font-size: .6em;
+  line-height: 1;
+
+  a {
+    font-size: .8em;
+  }
+
+}

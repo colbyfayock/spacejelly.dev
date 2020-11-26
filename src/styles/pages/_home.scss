@@ -147,3 +147,61 @@
   }
 
 }
+
+.homeInTheWildHeader {
+
+  @include gtLarge() {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+}
+
+.cosmoWild {
+  display: flex;
+  max-width: calc(100vw - 4rem);
+  overflow: hidden;
+  overflow-x: scroll;
+  list-style: none;
+  padding: 0 0 12px;
+  margin: 0;
+}
+
+.cosmoWildItem {
+
+  flex-shrink: 0;
+  width: 12em;
+  height: 12em;
+  background-size: cover;
+  background-position: center center;
+  margin-right: .5em;
+
+  a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+}
+
+.cosmoWildCountry {
+
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: .8em;
+  color: white;
+  background-color: $color-secondary;
+  padding: .4em .8em .45em;
+
+  svg {
+    font-size: .8em;
+    margin-right: .4em;
+  }
+
+}

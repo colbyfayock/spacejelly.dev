@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
+import { FaMapMarker } from 'react-icons/fa';
 import styles from 'styles/App.module.scss';
-import { FaShoppingCart } from 'react-icons/fa';
 
 import useSite from 'hooks/use-site';
 
@@ -11,13 +11,14 @@ import Button from 'components/Button';
 
 import products from '../../data/products.json';
 import externalProducts from '../../data/external-products.json';
+import cosmoInTheWild from '../../data/cosmo-in-the-wild.json';
 
 export default function Home() {
   const { metadata } = useSite();
   const { siteName } = metadata;
 
   return (
-    <Layout displayNav={false}>
+    <Layout>
 
       <Helmet>
         <title>{ siteName }</title>
@@ -26,22 +27,6 @@ export default function Home() {
         <link rel="preconnect" href="https://cdn.snipcart.com" />
         <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.css" />
       </Helmet>
-
-      <Section>
-        <Container>
-          <h1 className={styles.homeTitle}>
-            { siteName }
-          </h1>
-          <p className={styles.homeDescription}>
-            <a className="snipcart-checkout snipcart-summary" href="#" style={{textDecoration: "none"}}>
-              <FaShoppingCart aria-label="Shopping Cart" /> <span className="snipcart-total-price">$0.00</span>
-            </a>
-            <span className={styles.homeDescriptionShipping}>
-              + $2 Flat Rate Shipping via USPS Standard / Global Mail
-            </span>
-          </p>
-        </Container>
-      </Section>
 
       <Section>
         <Container>
@@ -79,9 +64,36 @@ export default function Home() {
         </Container>
       </Section>
 
+      <Section className={styles.homeInTheWild}>
+        <Container>
+          <div className={styles.homeInTheWildHeader}>
+            <h2>Cosmo in the Wild</h2>
+            <p>
+              Share yours with <a href="https://twitter.com/hashtag/cosmointhewild">#cosmointhewild</a> and tag <a href="https://twitter.com/colbyfayock">@colbyfayock</a>!
+            </p>
+          </div>
+          <ul className={styles.cosmoWild}>
+            {cosmoInTheWild.map(({ id, username, image, country }) => {
+              return (
+                <li key={id} className={styles.cosmoWildItem} style={{
+                  backgroundImage: `url(${image})`
+                }}>
+                  <a href={`https://twitter.com/${username}/status/${id}`} target="_blank" rel="noopener">
+                    <span className="sr-only">Cosmo in {country}</span>
+                    <span className={styles.cosmoWildCountry}>
+                      <FaMapMarker /> { country }
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </Container>
+      </Section>
+
       <Section className={styles.sectionOther}>
         <Container>
-          <h2>Other Stores</h2>
+          <h2>More stuff with Cosmo!</h2>
           <ul className={styles.products}>
             {externalProducts.map(product => {
               const { id, title, images, price, link, description } = product;
@@ -129,6 +141,12 @@ export default function Home() {
         <Container>
           <h2>Notes</h2>
           <ul>
+            <li>
+              <h3>How much is shipping?</h3>
+              <p>
+                Flat rate of $2.00 USD.
+              </p>
+            </li>
             <li>
               <h3>Where can I ship to?</h3>
               <p>
