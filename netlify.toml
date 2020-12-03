@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/discord"
+  to = "https://discord.gg/FYQX5Vs"
+  status = 302
+  force = true
