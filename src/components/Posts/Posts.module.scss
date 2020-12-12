@@ -1,0 +1,18 @@
+@import "styles/settings/__settings";
+
+.posts {
+  list-style: none;
+  padding-left: 0;
+
+  & > li {
+    margin: 4em 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

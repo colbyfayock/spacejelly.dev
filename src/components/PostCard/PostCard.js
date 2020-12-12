@@ -4,12 +4,14 @@ import ClassName from 'models/classname';
 import { postPathBySlug, sanitizeExcerpt } from 'lib/posts';
 
 import Metadata from 'components/Metadata';
+import FeaturedImage from 'components/FeaturedImage';
 
 import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
 
 const PostCard = ({ post, options = {} }) => {
-  const { id, title, excerpt, slug, date, author, categories, isSticky = false } = post;
+  const { id, title, excerpt, slug, date, author, categories, featuredImage, isSticky = false } = post;
+  const { sourceUrl } = featuredImage;
   const { excludeMetadata = [] } = options;
 
   const metadata = {};
@@ -34,9 +36,19 @@ const PostCard = ({ post, options = {} }) => {
 
   return (
     <div className={postCardStyle}>
+      {featuredImage && (
+        <Link href={postPathBySlug(slug)}>
+          <a className={styles.postCardImage}>
+            <span style={{
+              backgroundImage: `url(${sourceUrl})`
+            }} />
+          </a>
+        </Link>
+      )}
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
       <Link href={postPathBySlug(slug)}>
         <a>
+
           <h3
             className={styles.postCardTitle}
             dangerouslySetInnerHTML={{

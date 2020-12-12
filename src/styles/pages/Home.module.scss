@@ -1,18 +1,39 @@
 @import "styles/settings/__settings";
+@import "styles/util/__util";
 
-.description {
-  text-align: center;
-  line-height: 1.5;
-  font-size: 1.5rem;
+.postsSection {
+  margin: 1rem 0;
 }
 
-.posts {
-  list-style: none;
-  padding-left: 0;
-  margin: -1rem 0;
+.postsContainer {
+  display: flex;
+}
 
-  & > li {
-    margin: 4em 0;
+.sidebar {
+  flex-shrink: 0;
+  width: 20rem;
+  margin-left: 3rem;
+}
+
+.sidebarSection {
+  background-color: white;
+  @include boxShadow();
+}
+
+.sidebarSectionHeader {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: $color-brand-aqua;
+  padding: .6em .8em;
+  margin: 0;
+}
+
+.sidebarSectionBody {
+
+  padding: .8em;
+
+  p {
 
     &:first-child {
       margin-top: 0;
@@ -21,5 +42,7 @@
     &:last-child {
       margin-bottom: 0;
     }
+
   }
+
 }

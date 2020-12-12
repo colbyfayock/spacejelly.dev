@@ -24,9 +24,15 @@ $color-primary: $color-blue-500;
 
 $color-brand-aqua: #25BEBC;
 $color-brand-blue-shadow: #397DFF;
+$color-brand-deep-blue: #0b0535;
 $color-brand-purple: #9C5BC3;
+
 // $color
 
-$color-site-background-dark: #0B032A;
+$color-site-background-dark: $color-brand-deep-blue;
 $color-site-background-light: #0B106B;
 $color-site-background: $color-site-background-light;
+
+$component-shadow-box-color: #2E2FE2;
+$component-shadow-box-color-high: #2712A5;
+$component-shadow-box-color-low: #212EE4;

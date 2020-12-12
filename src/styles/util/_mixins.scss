@@ -1,0 +1,5 @@
+@mixin boxShadow() {
+  box-shadow: 5px 5px 0 $component-shadow-box-color;
+              // 5px 5px 25px $component-shadow-box-color,
+              // 5px 5px 30px rgba($component-shadow-box-color, .3);
+}
