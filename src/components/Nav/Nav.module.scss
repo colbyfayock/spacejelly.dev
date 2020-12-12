@@ -21,7 +21,8 @@
 }
 
 .navMasthead {
-  padding: 1em 9em 1em 0;
+  position: relative;
+  padding: 1em 10.2em 1em 0;
 }
 
 .navName {
@@ -116,7 +117,7 @@
   font-size: 1.1em;
   background-color: $color-brand-aqua;
   padding: 0 4em 0 .6em;
-  margin-right: 5em;
+  margin-right: 6em;
 }
 
 .navBarSection {

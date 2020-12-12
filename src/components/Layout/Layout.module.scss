@@ -1,5 +1,9 @@
+@import "styles/settings/__settings";
+
 .layoutContainer {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  max-width: $display-page-width-max;
   min-height: 100vh;
+  margin: 0 auto;
 }
