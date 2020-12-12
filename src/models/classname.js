@@ -2,13 +2,13 @@ class ClassName {
   constructor(className) {
     this.base = className;
 
-    if ( !Array.isArray(className) ) {
+    if (!Array.isArray(className)) {
       this.base = [this.base];
     }
   }
 
   add(className) {
-    if ( !Array.isArray(className) ) {
+    if (!Array.isArray(className)) {
       className = [className];
     }
 
@@ -18,7 +18,7 @@ class ClassName {
   }
 
   addIf(className, condition) {
-    if ( !!condition ) this.add(className);
+    if (!!condition) this.add(className);
     return this;
   }
 

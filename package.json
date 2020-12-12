@@ -1,41 +1,55 @@
 {
-  "name": "next-product-starter",
-  "title": "Next.js Product Starter",
-  "description": "Create a new product!",
+  "name": "next-wordpress-starter",
+  "homepage": "https://next-wordpress-starter.netlify.app",
   "version": "0.1.0",
-  "author": {
-    "name": "Colby Fayock",
-    "email": "hello@colbyfayock.com",
-    "url": "https://twitter.com/colbyfayock"
+  "license": "MIT",
+  "author": "Colby Fayock <hello@colbyfayock.com>",
+  "scripts": {
+    "build": "next build && next export",
+    "dev": "next dev",
+    "format": "yarn prettier --config ./config/prettier.config.js --write .",
+    "format:nopath": "yarn prettier --config ./config/prettier.config.js --write",
+    "lint": "yarn prettier --config ./config/prettier.config.js --check .",
+    "start": "next start"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*": "yarn format:nopath"
   },
   "dependencies": {
-    "next": "9.5.1",
-    "next-compose-plugins": "^2.2.0",
-    "next-images": "^1.4.1",
+    "@apollo/client": "^3.2.7",
+    "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
+    "fuse.js": "^6.4.3",
+    "graphql": "^15.4.0",
+    "he": "^1.2.0",
+    "loader-utils": "^2.0.0",
+    "next": "9.5.5",
+    "next-compose-plugins": "^2.2.1",
+    "parameterize": "^1.0.0",
+    "path": "^0.12.7",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^3.11.0",
-    "sass": "^1.26.10"
+    "rss": "^1.2.2",
+    "sass": "^1.30.0",
+    "style.css": "^1.0.0"
   },
-  "keywords": [
-    "nextjs",
-    "next js",
-    "sass",
-    "css"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start"
+  "devDependencies": {
+    "husky": ">=4",
+    "lint-staged": ">=10",
+    "prettier": "2.1.2"
   },
-  "homepage": "https://next-product-starter.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/colbyfayock/next-product-starter"
+    "url": "https://github.com/colbyfayock/next-wordpress-starter"
   },
   "bugs": {
-    "url": "https://github.com/colbyfayock/next-product-starter/issues"
+    "url": "https://github.com/colbyfayock/next-wordpress-starter/issues"
   }
 }

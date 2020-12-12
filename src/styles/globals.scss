@@ -1,4 +1,5 @@
-@import "settings/__settings";
+@import "styles/settings/__settings";
+@import "style.css";
 
 * {
   box-sizing: border-box;
@@ -6,13 +7,60 @@
 
 html,
 body {
+  color: white;
+  background-color: $color-site-background;
   padding: 0;
   margin: 0;
   font-family: $font-family-default;
 }
 
+body {
+
+  position: relative;
+
+  &:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    content: '';
+    width: 100%;
+    height: 10rem;
+    background: linear-gradient($color-site-background-dark, $color-site-background-light);
+  }
+
+}
+
+#__next {
+  position: relative;
+  z-index: 1;
+}
+
+p {
+  line-height: 1.6;
+  margin: 1.2em 0;
+}
+
+ul {
+  padding-left: 1.2em;
+}
+
 a {
-  color: inherit;
+  color: $color-primary;
+}
+
+img {
+  max-width: 100%;
+}
+
+input {
+  &[type="text"],
+  &[type="search"],
+  &[type="email"] {
+    outline-offset: 0;
+    padding: 0.5em 0.8em;
+  }
 }
 
 .sr-only {
@@ -23,8 +71,4 @@ a {
   left: -9999px;
   width: 0;
   height: 0;
-}
-
-img {
-  max-width: 100%;
 }

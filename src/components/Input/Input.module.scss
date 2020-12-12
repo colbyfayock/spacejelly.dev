@@ -1,0 +1,12 @@
+@import "styles/settings/__settings";
+
+.input {
+
+  border: none;
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 5px 2px $color-brand-blue-shadow;
+  }
+
+}
