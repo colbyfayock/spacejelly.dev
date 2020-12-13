@@ -17,8 +17,6 @@ export default function Home({ posts }) {
   const { metadata = {} } = useSite();
   const { title } = metadata;
 
-  console.log('posts', posts)
-
   return (
     <Layout>
       <WebsiteJsonLd siteTitle={title} />
