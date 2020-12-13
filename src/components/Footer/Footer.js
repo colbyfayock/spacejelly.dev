@@ -73,7 +73,7 @@ const Footer = () => {
       <Section className={styles.footerLegal}>
         <Container>
           <p>
-            &copy; {new Date().getFullYear()} {title}
+            &copy; {new Date().getFullYear()} {title}, <a href="https://twitter.com/colbyfayock">Colby Fayock</a>
           </p>
         </Container>
       </Section>

@@ -62,7 +62,7 @@ export default function TemplateArchive({
 
       <Section>
         <Container>
-          <SectionTitle>Posts</SectionTitle>
+          <h2 className="sr-only">Posts</h2>
           <ul className={styles.posts}>
             {posts.map((post) => {
               return (

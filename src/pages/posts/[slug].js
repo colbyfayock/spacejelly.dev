@@ -40,14 +40,8 @@ export default function Post({ post }) {
 
       <ArticleJsonLd post={post} siteTitle={siteTitle} />
 
-      <Header>
-        {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
-          />
-        )}
+      <Header className={styles.postHeader}>
+
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{
@@ -65,10 +59,17 @@ export default function Post({ post }) {
       </Header>
 
       <Content>
-        <Section>
+        <Section className={styles.postSection}>
           <Container>
+            {featuredImage && (
+              <FeaturedImage
+                {...featuredImage}
+                src={featuredImage.sourceUrl}
+                dangerouslySetInnerHTML={featuredImage.caption}
+              />
+            )}
             <div
-              className={styles.content}
+              className={styles.postContent}
               dangerouslySetInnerHTML={{
                 __html: content,
               }}

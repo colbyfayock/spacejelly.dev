@@ -205,7 +205,7 @@ const Nav = () => {
               </li>
             </ul>
           </div>
-          <div className={styles.navBarSection}>
+          <div className={styles.navBarSection} data-navbar-breakpoint="min-1024">
             <ul className={styles.navBarLinks}>
               <li>
                 <Link href="#">

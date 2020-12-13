@@ -1,6 +1,46 @@
 @import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.postHeader {
+
+  h1 {
+    color: white;
+  }
+
+}
+
+.postSection {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.postContent {
+
+  display: grid; // Hack to restrict width for code block overflow
+  background-color: white;
+  padding: 2.5em;
+  @include boxShadow();
+
+  h2 {
+    font-size: 2em;
+    margin-top: 2.6rem;
+  }
+
+  figure {
+
+    margin: 4rem 0;
+
+    iframe {
+      display: block;
+      margin: 0 auto;
+    }
+
+  }
+
+}
 
 .postMetadata {
+  color: $color-gray-100;
   text-align: center;
   justify-content: center;
 }
