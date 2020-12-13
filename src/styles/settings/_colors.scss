@@ -23,9 +23,11 @@ $color-blue-900: #001227;
 $color-primary: $color-blue-500;
 
 $color-brand-aqua: #25BEBC;
-$color-brand-blue-shadow: #397DFF;
+$color-brand-blue-light: #397DFF;
+$color-brand-blue-medium: #397DFF;
 $color-brand-deep-blue: #0b0535;
 $color-brand-purple: #9C5BC3;
+$color-brand-blue-shadow: $color-brand-blue-medium;
 
 // $color
 
