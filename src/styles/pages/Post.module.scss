@@ -16,7 +16,6 @@
 
 .postContent {
 
-  display: grid; // Hack to restrict width for code block overflow
   background-color: white;
   padding: 2.5em;
   @include boxShadow();

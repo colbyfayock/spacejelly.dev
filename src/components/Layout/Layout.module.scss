@@ -3,6 +3,7 @@
 .layoutContainer {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  width: 100vw;
   max-width: $display-page-width-max;
   min-height: 100vh;
   margin: 0 auto;

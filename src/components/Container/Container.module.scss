@@ -1,6 +1,7 @@
 @import "styles/settings/__settings";
 
 .container {
+  width: 100vw;
   max-width: $display-page-width-max;
   padding: 0 1rem;
   margin: 0 auto;
