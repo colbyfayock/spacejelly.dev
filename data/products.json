@@ -34,5 +34,14 @@
     "images": [
       "/images/sticker-cosmo-3in-holographic.png"
     ]
+  },
+  {
+    "title": "Keep Dev Weird - Holographic",
+    "id": "sticker_keepdevweird_diecut_holographic",
+    "description": "Development was meant to be fun. Keep it weird!",
+    "price": "1.50",
+    "images": [
+      "/images/sticker-keepdevweird-2.5in-holographic.png"
+    ]
   }
 ]

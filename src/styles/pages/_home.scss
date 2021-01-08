@@ -95,6 +95,7 @@
 .product {
 
   padding: .5em;
+  margin-bottom: 2em;
 
   @include gtSmall() {
     width: 100%;
