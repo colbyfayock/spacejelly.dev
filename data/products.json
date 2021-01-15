@@ -18,6 +18,24 @@
     ]
   },
   {
+    "title": "Cosmo Laptop Sticker - Holographic",
+    "id": "sticker_cosmolaptop_diecut_holographic",
+    "description": "Cosmo's heads down working hard (or gaming).",
+    "price": "1.50",
+    "images": [
+      "/images/sticker-cosmolaptop-2.5in-holographic.png"
+    ]
+  },
+  {
+    "title": "Keep Dev Weird - Holographic",
+    "id": "sticker_keepdevweird_diecut_holographic",
+    "description": "Development was meant to be fun. Keep it weird!",
+    "price": "1.50",
+    "images": [
+      "/images/sticker-keepdevweird-2.5in-holographic.png"
+    ]
+  },
+  {
     "title": "Cosmo Sticker - Clear",
     "id": "sticker_cosmo_diecut_clear",
     "description": "Show off your Cosmo support with a logo sticker!",
@@ -33,15 +51,6 @@
     "price": "1.50",
     "images": [
       "/images/sticker-cosmo-3in-holographic.png"
-    ]
-  },
-  {
-    "title": "Keep Dev Weird - Holographic",
-    "id": "sticker_keepdevweird_diecut_holographic",
-    "description": "Development was meant to be fun. Keep it weird!",
-    "price": "1.50",
-    "images": [
-      "/images/sticker-keepdevweird-2.5in-holographic.png"
     ]
   }
 ]
