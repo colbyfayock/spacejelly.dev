@@ -13,7 +13,7 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import FeaturedImage from 'components/FeaturedImage';
 
-import styles from 'styles/pages/Post.module.scss';
+import styles from 'styles/pages/Page.module.scss';
 
 export default function Page({ page }) {
   const { metadata = {} } = useSite();
@@ -37,7 +37,7 @@ export default function Page({ page }) {
 
       <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
 
-      <Header>
+      <Header className={styles.pageHeader}>
         {featuredImage && (
           <FeaturedImage
             {...featuredImage}
@@ -49,10 +49,10 @@ export default function Page({ page }) {
       </Header>
 
       <Content>
-        <Section>
+        <Section className={styles.pageSection}>
           <Container>
             <div
-              className={styles.content}
+              className={styles.pageContent}
               dangerouslySetInnerHTML={{
                 __html: content,
               }}

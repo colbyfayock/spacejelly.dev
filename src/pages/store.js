@@ -18,8 +18,6 @@ export default function Store({ products }) {
   const title = 'Space Jelly Store';
   const metaDescription = 'Buy the latest Cosmo gear';
 
-  console.log('products', products);
-
   return (
     <Layout>
       <Helmet>

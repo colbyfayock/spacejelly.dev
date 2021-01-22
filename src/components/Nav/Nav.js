@@ -6,6 +6,7 @@ import useSite from 'hooks/use-site';
 import useSearch from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
 import { pagePathBySlug } from 'lib/pages';
+import { getRouteByName } from 'lib/routes';
 
 import Section from 'components/Section';
 import Input from 'components/Input';
@@ -14,14 +15,8 @@ import CosmoWave from 'components/CosmoWave';
 
 import styles from './Nav.module.scss';
 
-const SEARCH_VISIBLE = 'visible';
-const SEARCH_HIDDEN = 'hidden';
-
 const Nav = () => {
   const formRef = useRef();
-
-  const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
-  const searchIsVisible = searchVisibility === SEARCH_VISIBLE;
 
   const { metadata = {} } = useSite();
   const { title } = metadata;
@@ -30,19 +25,13 @@ const Nav = () => {
     maxResults: 5,
   });
 
-  // When the search visibility changes, we want to add an event listener that allows us to
+  const hasResults = results.length > 0;
+
+  // When we have results, we want to add an event listener that allows us to
   // detect when someone clicks outside of the search box, allowing us to close the results
   // when focus is drawn away from search
 
   useEffect(() => {
-    // If we don't have a query, don't need to bother adding an event listener
-    // but run the cleanup in case the previous state instance exists
-
-    if (searchVisibility === SEARCH_HIDDEN) {
-      removeDocumentOnClick();
-      return;
-    }
-
     addDocumentOnClick();
     addResultsRoving();
 
@@ -57,7 +46,7 @@ const Nav = () => {
       removeResultsRoving();
       removeDocumentOnClick();
     };
-  }, [searchVisibility]);
+  }, [hasResults]);
 
   /**
    * addDocumentOnClick
@@ -81,7 +70,6 @@ const Nav = () => {
 
   function handleOnDocumentClick(e) {
     if (!e.composedPath().includes(formRef.current)) {
-      setSearchVisibility(SEARCH_HIDDEN);
       clearSearch();
     }
   }
@@ -94,14 +82,6 @@ const Nav = () => {
     search({
       query: currentTarget.value,
     });
-  }
-
-  /**
-   * handleOnToggleSearch
-   */
-
-  function handleOnToggleSearch() {
-    setSearchVisibility(SEARCH_VISIBLE);
   }
 
   /**
@@ -126,24 +106,27 @@ const Nav = () => {
 
   function handleResultsRoving(e) {
     const focusElement = document.activeElement;
+    const { nodeName, nextSibling, parentElement } = focusElement || {};
+
+    if (!hasResults) return;
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      if (focusElement.nodeName === 'INPUT' && focusElement.nextSibling.children[0].nodeName !== 'P') {
-        focusElement.nextSibling.children[0].firstChild.firstChild.focus();
-      } else if (focusElement.parentElement.nextSibling) {
-        focusElement.parentElement.nextSibling.firstChild.focus();
+      if (nodeName === 'INPUT' && nextSibling?.children[0].nodeName !== 'P') {
+        nextSibling.children[0].firstChild.firstChild.focus();
+      } else if (parentElement.nextSibling) {
+        parentElement.nextSibling.firstChild.focus();
       } else {
-        focusElement.parentElement.parentElement.firstChild.firstChild.focus();
+        parentElement.parentElement.firstChild.firstChild.focus();
       }
     }
 
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      if (focusElement.nodeName === 'A' && focusElement.parentElement.previousSibling) {
-        focusElement.parentElement.previousSibling.firstChild.focus();
+      if (nodeName === 'A' && parentElement.previousSibling) {
+        parentElement.previousSibling.firstChild.focus();
       } else {
-        focusElement.parentElement.parentElement.lastChild.firstChild.focus();
+        parentElement.parentElement.lastChild.firstChild.focus();
       }
     }
   }
@@ -157,7 +140,6 @@ const Nav = () => {
   const escFunction = useCallback((event) => {
     if (event.keyCode === 27) {
       clearSearch();
-      setSearchVisibility(SEARCH_HIDDEN);
     }
   }, []);
 
@@ -173,7 +155,7 @@ const Nav = () => {
     <nav className={styles.nav}>
       <Section className={`${styles.navSection} ${styles.navMasthead}`}>
         <p className={styles.navName}>
-          <Link href="/">
+          <Link href={getRouteByName('home')?.path}>
             <a>
               <SpaceJelly />
             </a>
@@ -187,7 +169,11 @@ const Nav = () => {
           </a>
         </p>
         <div className={styles.navCosmo}>
-          <CosmoWave />
+          <Link href={getRouteByName('about')?.path}>
+            <a>
+              <CosmoWave />
+            </a>
+          </Link>
         </div>
       </Section>
 
@@ -196,12 +182,12 @@ const Nav = () => {
           <div className={styles.navBarSection}>
             <ul className={styles.navBarLinks}>
               <li>
-                <Link href="#">
+                <Link href={getRouteByName('home')?.path}>
                   <a>Articles</a>
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="https://www.youtube.com/colbyfayock">
                   <a>Videos</a>
                 </Link>
               </li>
@@ -210,18 +196,18 @@ const Nav = () => {
           <div className={styles.navBarSection} data-navbar-breakpoint="min-1024">
             <ul className={styles.navBarLinks}>
               <li>
-                <Link href="#">
-                  <a>Web Dev</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
+                <Link href={getRouteByName('categoryNextjs')?.path}>
                   <a>Next.js</a>
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href={getRouteByName('categoryReact')?.path}>
                   <a>React</a>
+                </Link>
+              </li>
+              <li>
+                <Link href={getRouteByName('categoryJamstack')?.path}>
+                  <a>Jamstack</a>
                 </Link>
               </li>
             </ul>
@@ -237,41 +223,37 @@ const Nav = () => {
                 placeholder="Search..."
                 required
               />
-              {searchIsVisible && (
-                <>
-                  <div className={styles.navSearchResults}>
-                    {results.length > 0 && (
-                      <ul>
-                        {results.map(({ slug, title }, index) => {
-                          return (
-                            <li key={slug}>
-                              <Link tabIndex={index} href={postPathBySlug(slug)}>
-                                <a>{title}</a>
-                              </Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                    {results.length === 0 && (
-                      <p>
-                        Sorry, not finding anything for <strong>{query}</strong>
-                      </p>
-                    )}
-                  </div>
-                </>
-              )}
+              <div className={styles.navSearchResults}>
+                {results.length > 0 && (
+                  <ul>
+                    {results.map(({ slug, title }, index) => {
+                      return (
+                        <li key={slug}>
+                          <Link tabIndex={index} href={postPathBySlug(slug)}>
+                            <a>{title}</a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+                {results.length === 0 && (
+                  <p>
+                    Sorry, not finding anything for <strong>{query}</strong>
+                  </p>
+                )}
+              </div>
             </form>
           </div>
           <div className={styles.navBarSection}>
             <ul className={styles.navBarLinks}>
               <li>
-                <Link href="#">
+                <Link href={getRouteByName('books')?.path}>
                   <a>Books</a>
                 </Link>
               </li>
               <li>
-                <Link href="/store">
+                <Link href={getRouteByName('store')?.path}>
                   <a>Store</a>
                 </Link>
               </li>

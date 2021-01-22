@@ -3,7 +3,7 @@
 
 .nav {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   z-index: 1;
   width: 100%;
   padding: 0 1rem;
@@ -211,16 +211,14 @@
       display: block;
     }
   }
-
-  ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
 }
 
 .navBarLinks {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
   &,
   li {
     height: 100%;
@@ -301,18 +299,22 @@
   display: none;
   position: absolute;
   top: 100%;
-  right: 0;
-  width: 100vw;
+  left: 0;
+  width: 100%;
   background-color: white;
   padding: 1.5em;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-  border-top: solid 5px $color-primary;
+  border-top: solid 5px $color-brand-purple;
   margin-right: -1rem;
   z-index: 999;
 
   @include gtSmall() {
-    width: 30em;
+    // width: 30em;
     margin-right: 0;
+  }
+
+  @include gtMedium() {
+    width: auto;
   }
 
   [data-search-is-active="true"] & {
