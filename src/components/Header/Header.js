@@ -11,7 +11,7 @@ const Header = ({ children, className }) => {
 
   return (
     <header className={headerClassName.toString()}>
-      <Container>{children}</Container>
+      <Container className={styles.headerContainer}>{children}</Container>
     </header>
   );
 };

@@ -11,7 +11,7 @@ import styles from './PostCard.module.scss';
 
 const PostCard = ({ post, options = {} }) => {
   const { id, title, excerpt, slug, date, author, categories, featuredImage, isSticky = false } = post;
-  const { sourceUrl } = featuredImage;
+  const { sourceUrl: featuredSourceUrl } = featuredImage || {};
   const { excludeMetadata = [] } = options;
 
   const metadata = {};
@@ -36,19 +36,20 @@ const PostCard = ({ post, options = {} }) => {
 
   return (
     <div className={postCardStyle}>
-      {featuredImage && (
+      {featuredSourceUrl && (
         <Link href={postPathBySlug(slug)}>
           <a className={styles.postCardImage}>
-            <span style={{
-              backgroundImage: `url(${sourceUrl})`
-            }} />
+            <span
+              style={{
+                backgroundImage: `url(${featuredSourceUrl})`,
+              }}
+            />
           </a>
         </Link>
       )}
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
       <Link href={postPathBySlug(slug)}>
         <a>
-
           <h3
             className={styles.postCardTitle}
             dangerouslySetInnerHTML={{

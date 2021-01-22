@@ -3,9 +3,14 @@
 
 .nav {
   position: relative;
+  overflow: hidden;
   z-index: 1;
   width: 100%;
   padding: 0 1rem;
+
+  @include gtMedium() {
+    overflow: visible;
+  }
 }
 
 .navSection {
@@ -17,7 +22,7 @@
   padding-bottom: 0;
   margin: 0;
 
-  @media (min-width: 480px) {
+  @include gtSmall() {
     justify-content: space-between;
     flex-direction: row;
   }
@@ -25,19 +30,26 @@
 
 .navMasthead {
   position: relative;
-  padding: 1em 8.2em 1em 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1em 0;
+
+  @include gtMedium() {
+    flex-direction: row;
+    align-items: center;
+    padding: 1em 8.2em 1em 0;
+  }
 }
 
 .navName {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
   flex-grow: 1;
   margin: 0;
 
-  @media (min-width: 480px) {
-    justify-content: flex-start;
+  @include gtSmall() {
     margin-top: 0;
   }
 
@@ -48,7 +60,7 @@
     text-decoration: none;
     border-bottom: solid 2px transparent;
 
-    @media (min-width: 480px) {
+    @include gtSmall() {
       padding: 0.5em;
       margin-left: -0.5em;
     }
@@ -64,28 +76,40 @@
 }
 
 .navDiscord {
+  margin: 1em 0 0.5em;
 
-  margin: 0;
+  @include gtMedium() {
+    margin: 0;
+  }
 
   a {
     display: block;
     position: relative;
     color: white;
-    font-size: .9em;
+    font-size: 0.7em;
     text-decoration: none;
     background-color: $color-brand-purple;
-    padding: .8em 1em .8em 3.5em;
+    padding: 0.8em 1em 0.8em 3em;
     @include boxShadow();
+
+    @include gtMedium() {
+      font-size: 0.9em;
+      padding: 0.8em 1em 0.8em 3.5em;
+    }
   }
 
   svg {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: .35em;
+    left: 0.2em;
     color: $color-brand-deep-blue;
     font-size: 2.2em;
     margin: auto;
+
+    @include gtMedium() {
+      left: 0.35em;
+    }
   }
 
   strong,
@@ -97,68 +121,95 @@
   strong {
     font-weight: bold;
     font-size: 1.2em;
-    margin-bottom: .2em;
+    margin-bottom: 0.2em;
   }
 
+  span {
+    display: none;
+
+    @include gtMedium() {
+      display: block;
+    }
+  }
 }
 
 .navCosmo {
-
   position: absolute;
-  top: .5em;
+  top: 0.5em;
   right: -2em;
+  z-index: -1;
+
+  @include gtMedium() {
+    z-index: 0;
+  }
 
   svg {
     width: 11em;
     height: auto;
   }
-
 }
 
 .navBar {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   font-size: 1.1em;
   background-color: $color-brand-aqua;
-  padding: 0 4em 0 .6em;
-  margin-right: 4em;
+  padding: 0;
   @include boxShadow();
+
+  @include gtMedium() {
+    flex-wrap: nowrap;
+    padding: 0 4em 0 0.6em;
+    margin-right: 4em;
+  }
 }
 
 .navBarSection {
-
   display: flex;
   align-items: center;
+  order: 1;
 
   &[data-navbar-section-grow="true"] {
+    width: 100%;
+    order: 2;
     flex-grow: 1;
+    padding: 0 0.5em 0.5em;
+
+    @include gtMedium() {
+      width: auto;
+      order: 1;
+      padding: 0;
+    }
   }
 
   &[data-navbar-breakpoint="min-1024"] {
-
     display: none;
 
-    @media (min-width: 1024px) {
+    @include gtHuge() {
       display: flex;
     }
-
   }
 
   &:last-child {
-
     &:after {
       display: none;
     }
-
   }
 
   &:after {
-    display: block;
+    display: none;
     width: 3px;
-    content: '';
+    content: "";
     height: 2em;
     background-color: $color-brand-blue-shadow;
-    margin: 0 .5em;
+    margin: 0 0.5em;
+
+    @include gtMedium() {
+      display: block;
+    }
   }
 
   ul {
@@ -167,18 +218,15 @@
     padding: 0;
     margin: 0;
   }
-
 }
 
 .navBarLinks {
-
   &,
   li {
     height: 100%;
   }
 
   a {
-
     position: relative;
     display: flex;
     align-items: center;
@@ -188,39 +236,38 @@
     font-weight: bold;
     text-decoration: none;
     white-space: nowrap;
-    padding: .8em;
+    padding: 0.8em;
     outline: 0;
 
     &:focus {
-
       &:after {
         position: absolute;
         bottom: 6px;
         left: 0;
-        content: '';
+        content: "";
         width: 100%;
         height: 3px;
         background-color: white;
       }
-
     }
-
   }
-
 }
 
 .navSearch {
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
   position: relative;
   height: 2em;
-  margin: 0 .5em;
+  margin: 0;
 
-  @media (min-width: 480px) {
+  @include gtSmall() {
     justify-content: flex-end;
+  }
+
+  @include gtMedium() {
+    margin: 0 0.5em;
   }
 
   input {
@@ -263,7 +310,7 @@
   margin-right: -1rem;
   z-index: 999;
 
-  @media (min-width: 480px) {
+  @include gtSmall() {
     width: 30em;
     margin-right: 0;
   }
@@ -293,7 +340,7 @@
       outline: 2px solid $color-blue-500;
     }
 
-    @media (hover: hover) {
+    @include withHover() {
       &:hover {
         color: $color-primary;
       }

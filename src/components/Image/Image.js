@@ -8,7 +8,7 @@ const Image = ({
   width = '100%',
   height = 'auto',
   src,
-  alt,
+  altText,
   srcSet,
   sizes,
   dangerouslySetInnerHTML,
@@ -20,7 +20,7 @@ const Image = ({
   return (
     <figure className={imageClassName.toString()}>
       <div className={styles.featuredImageImg}>
-        <img width={width} height={height} src={src} alt={alt || ''} srcSet={srcSet} sizes={sizes} />
+        <img width={width} height={height} src={src} alt={altText || ''} srcSet={srcSet} sizes={sizes} />
       </div>
       {children && <figcaption>{children}</figcaption>}
       {dangerouslySetInnerHTML && (

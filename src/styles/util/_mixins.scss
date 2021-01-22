@@ -1,5 +1,51 @@
 @mixin boxShadow() {
   box-shadow: 5px 5px 0 $component-shadow-box-color;
-              // 5px 5px 25px $component-shadow-box-color,
-              // 5px 5px 30px rgba($component-shadow-box-color, .3);
+  // 5px 5px 25px $component-shadow-box-color,
+  // 5px 5px 30px rgba($component-shadow-box-color, .3);
+}
+
+/**
+ * Media Queries
+ */
+
+@mixin gtTiny() {
+  @media (min-width: $breakpoint-tiny) {
+    @content;
+  }
+}
+
+@mixin gtSmall() {
+  @media (min-width: $breakpoint-small) {
+    @content;
+  }
+}
+
+@mixin gtMedium() {
+  @media (min-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+@mixin gtLarge() {
+  @media (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin gtXlarge() {
+  @media (min-width: $breakpoint-xlarge) {
+    @content;
+  }
+}
+
+@mixin gtHuge() {
+  @media (min-width: $breakpoint-huge) {
+    @content;
+  }
+}
+
+@mixin withHover() {
+  @media (hover: hover) {
+    @content;
+  }
 }

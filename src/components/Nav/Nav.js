@@ -174,7 +174,9 @@ const Nav = () => {
       <Section className={`${styles.navSection} ${styles.navMasthead}`}>
         <p className={styles.navName}>
           <Link href="/">
-            <a><SpaceJelly /></a>
+            <a>
+              <SpaceJelly />
+            </a>
           </Link>
         </p>
         <p className={styles.navDiscord}>
@@ -269,7 +271,7 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/store">
                   <a>Store</a>
                 </Link>
               </li>
@@ -277,7 +279,6 @@ const Nav = () => {
           </div>
         </div>
       </Section>
-
     </nav>
   );
 };

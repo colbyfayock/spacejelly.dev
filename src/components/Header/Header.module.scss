@@ -1,16 +1,18 @@
 @import "styles/settings/__settings";
+@import "styles/util/__util";
 
 .header {
   margin: 3rem 0;
 
   h1 {
+    color: white;
     margin: 0;
     line-height: 1.15;
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
 
-    @media (min-width: 480px) {
+    @include gtSmall() {
       font-size: 4rem;
     }
 
@@ -40,4 +42,7 @@
     margin-left: -2rem;
     margin-right: -2rem;
   }
+}
+
+.headerContainer {
 }
