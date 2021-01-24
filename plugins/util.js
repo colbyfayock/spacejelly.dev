@@ -79,7 +79,7 @@ async function getAllPosts(apolloClient, process, verbose = false) {
             postId
             slug
             date
-            modified
+            modifiedGmt
             author {
               node {
                 name
@@ -173,7 +173,7 @@ async function getPages(apolloClient, process, verbose = false) {
         edges {
           node {
             slug
-            modified
+            modifiedGmt
           }
         }
       }
@@ -188,7 +188,7 @@ async function getPages(apolloClient, process, verbose = false) {
       ...data.data.pages.edges.map(({ node = {} }) => {
         return {
           slug: node.slug,
-          modified: node.modified,
+          modified: node.modifiedGmt,
         };
       }),
     ];
@@ -307,7 +307,7 @@ function generateSitemap({ posts = [], pages = [] }) {
             return `<url>
                       <loc>${homepage}/${page.slug}</loc>
                       <priority>0.3</priority>
-                      <lastmod>${new Date(page.modified).toISOString()}</lastmod>
+                      <lastmod>${page.modified && new Date(page.modified).toISOString()}</lastmod>
                     </url>
                 `;
           })
@@ -316,7 +316,7 @@ function generateSitemap({ posts = [], pages = [] }) {
             .map((post) => {
               return `<url>
                         <loc>${homepage}/posts/${post.slug}</loc>
-                        <lastmod>${new Date(post.modified).toISOString()}</lastmod>
+                        <lastmod>${post.modified && new Date(post.modified).toISOString()}</lastmod>
                       </url>
                   `;
             })

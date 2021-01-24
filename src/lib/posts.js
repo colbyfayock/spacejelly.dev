@@ -121,6 +121,13 @@ export function sanitizeExcerpt(excerpt) {
 export function mapPostData(post = {}) {
   const data = { ...post };
 
+  // TODO: is the date not in the right format a bug?
+
+  if (data.modifiedGmt) {
+    data.modified = data.modifiedGmt;
+    delete data.modifiedGmt;
+  }
+
   // Clean up the author object to avoid someone having to look an extra
   // level deeper into the node
 

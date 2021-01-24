@@ -11,7 +11,10 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
   const { title, slug, excerpt, date, author, categories, modified, featuredImage } = post;
   const path = postPathBySlug(slug);
   const datePublished = !!date && new Date(date);
+  const datePublishedYear = datePublished instanceof Date && datePublished.getFullYear();
+  const datePublishedIso = datePublished instanceof Date && datePublished.toISOString();
   const dateModified = !!modified && new Date(modified);
+  const dateModifiedIso = dateModified instanceof Date && dateModified.toISOString();
 
   /** TODO - As image is a recommended field would be interesting to have a
    * default image in case there is no featuredImage comming from WP,
@@ -27,11 +30,11 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
     },
     headline: title,
     image: [featuredImage?.sourceUrl],
-    datePublished: datePublished ? datePublished.toISOString() : '',
-    dateModified: dateModified ? dateModified.toISOString() : datePublished.toISOString(),
+    datePublished: datePublishedIso || '',
+    dateModified: dateModifiedIso || datePublishedIso || '',
     description: excerpt,
     keywords: [categories.map(({ name }) => `${name}`).join(', ')],
-    copyrightYear: datePublished ? datePublished.getFullYear() : '',
+    copyrightYear: datePublishedYear || '',
     author: {
       '@type': 'Person',
       name: author?.name,

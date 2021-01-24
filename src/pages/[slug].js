@@ -1,6 +1,5 @@
 import path from 'path';
 import { Helmet } from 'react-helmet';
-import { format } from 'date-fns';
 
 import { getPageById, getAllPages } from 'lib/pages';
 import { WebpageJsonLd } from 'lib/json-ld';
