@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { Button } from 'space-jelly-ui';
 
 import { getAllPosts } from 'lib/posts';
 import { WebsiteJsonLd } from 'lib/json-ld';
@@ -28,6 +29,8 @@ export default function Home({ posts }) {
           __html: title,
         }}
       />
+
+      <Button label="Test" />
 
       <Section className={styles.postsSection}>
         <Container className={styles.postsContainer}>
