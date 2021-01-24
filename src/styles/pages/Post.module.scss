@@ -2,11 +2,9 @@
 @import "styles/util/__util";
 
 .postHeader {
-
   h1 {
     color: white;
   }
-
 }
 
 .postSection {
@@ -15,11 +13,14 @@
 }
 
 .postContent {
-
-  font-size: .9em;
+  font-size: 0.9em;
   background-color: white;
-  padding: 2.5em;
+  padding: 1em;
   @include boxShadow();
+
+  @include gtMedium() {
+    padding: 2.5em;
+  }
 
   h2 {
     font-size: 2em;
@@ -27,16 +28,13 @@
   }
 
   figure {
-
     margin: 4rem 0;
 
     iframe {
       display: block;
       margin: 0 auto;
     }
-
   }
-
 }
 
 .postMetadata {

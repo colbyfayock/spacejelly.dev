@@ -15,7 +15,6 @@ body {
 }
 
 body {
-
   position: relative;
 
   &:before {
@@ -24,7 +23,7 @@ body {
     top: 0;
     left: 0;
     z-index: 0;
-    content: '';
+    content: "";
     width: 100%;
     height: 15rem;
     background: linear-gradient($color-site-background-dark, $color-site-background-light);
@@ -36,12 +35,11 @@ body {
     bottom: 0;
     left: 0;
     z-index: 0;
-    content: '';
+    content: "";
     width: 100%;
     height: 25rem;
     background: linear-gradient($color-site-background-light, lighten($color-site-background-light, 15));
   }
-
 }
 
 #__next {
@@ -81,6 +79,13 @@ pre {
   background-color: $color-site-background-dark;
   border-radius: 0;
   @include boxShadow();
+}
+
+figure {
+  iframe {
+    width: 100%;
+    max-width: 640px;
+  }
 }
 
 .sr-only {
