@@ -82,9 +82,17 @@ pre {
 }
 
 figure {
+  text-align: center;
+
   iframe {
     width: 100%;
     max-width: 640px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border: none;
   }
 }
 
