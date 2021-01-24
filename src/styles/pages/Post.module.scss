@@ -1,0 +1,53 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.postHeader {
+  h1 {
+    color: white;
+  }
+}
+
+.postSection {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.postContent {
+  font-size: 0.9em;
+  background-color: white;
+  padding: 1em;
+  @include boxShadow();
+
+  @include gtMedium() {
+    padding: 2.5em;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin-top: 2.6rem;
+  }
+
+  figure {
+    margin: 4rem 0;
+
+    iframe {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.postMetadata {
+  color: $color-gray-100;
+  text-align: center;
+  justify-content: center;
+}
+
+.postFooter {
+  text-align: center;
+}
+
+.postModified {
+  color: $color-gray-400;
+  font-style: italic;
+}

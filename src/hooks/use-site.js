@@ -3,10 +3,15 @@ import { useContext } from 'react';
 
 import SiteContext from 'context/site-context';
 
+import config from '../../package.json';
+
 export default function useSite() {
-  const { metadata } = useContext(SiteContext);
+  const { homepage = '' } = config;
+
+  const site = useContext(SiteContext);
 
   return {
-    metadata
+    ...site,
+    homepage,
   };
 }

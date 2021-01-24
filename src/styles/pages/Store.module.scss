@@ -1,0 +1,152 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.header {
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include gtMedium() {
+      flex-direction: row;
+    }
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+.cart {
+  color: white;
+  flex-grow: 1;
+  font-size: 2em;
+  text-align: center;
+
+  @include gtMedium() {
+    font-size: 1.5em;
+    text-align: right;
+  }
+
+  a {
+    color: white;
+  }
+}
+
+.cartLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.2em;
+
+  @include gtMedium() {
+    justify-content: flex-end;
+  }
+
+  svg {
+    margin-right: 0.5em;
+  }
+}
+
+.cartCheckout {
+  display: inline-block;
+  color: white;
+  font-size: 0.5em;
+  font-weight: bold;
+  background-color: $color-primary;
+  padding: 0.4em 0.6em;
+  border-radius: 0.2em;
+  margin-left: 1em;
+}
+
+.cartShipping {
+  display: block;
+  font-size: 0.6em;
+  line-height: 1;
+
+  a {
+    font-size: 0.8em;
+    text-decoration: underline;
+  }
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+
+  li {
+    width: 100%;
+    padding: 0.5em;
+
+    @include gtSmall() {
+      width: 50%;
+    }
+
+    @include gtLarge() {
+      width: 33.33%;
+    }
+
+    @include gtHuge() {
+      width: 25%;
+    }
+  }
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  background-color: white;
+  padding: 1.5em;
+  @include boxShadow();
+
+  p {
+    flex-grow: 1;
+  }
+}
+
+.productImage {
+  margin-top: 0;
+
+  img {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+}
+
+.productTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.poweredBy {
+  display: flex;
+  justify-content: center;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+
+  svg {
+    width: 10em;
+    margin-left: 1em;
+  }
+}
+
+.notes {
+  color: white;
+  text-align: center;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}

@@ -1,151 +1,113 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
-$footer-background-color: $color-purple-900;
-
 .footer {
-  color: rgba(255, 255, 255, .8);
-  background-color: $footer-background-color;
+  width: 100%;
 }
 
-.footerSection {
-
-  text-align: center;
-  padding: .5rem 0;
+.footerMenu {
   margin: 0;
 
-  &:first-child {
-    border: none;
+  @include gtMedium() {
+    margin: 2rem 0;
   }
 
-  &,
-  p {
-    color: inherit;
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.footerMenuColumns {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0;
+
+  @include gtSmall() {
+    justify-content: center;
   }
 
-  p {
+  @include gtMedium() {
+    flex-direction: row;
+  }
 
-    &:first-child {
-      margin-top: 0;
+  & > li {
+    width: 100%;
+    padding: 0 1em;
+    margin-bottom: 2em;
+
+    @include gtMedium() {
+      max-width: 15em;
+      margin: 2em;
     }
+  }
+}
+
+.footerMenuTitle {
+  display: inline-block;
+  color: $color-gray-50;
+  text-decoration: none;
+  margin-bottom: 1.4em;
+
+  @include withHover() {
+    &:hover {
+      color: $color-brand-purple;
+      text-decoration: underline;
+    }
+  }
+}
+
+.footerMenuItems {
+  li {
+    margin-bottom: 1em;
 
     &:last-child {
       margin-bottom: 0;
     }
-
   }
 
   a {
+    display: block;
+    overflow: hidden;
+    color: $color-gray-100;
+    text-decoration: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
-    @media (hover: hover) {
-
+    @include withHover() {
       &:hover {
-        color: $color-gray-50;
+        color: $color-brand-purple;
+        text-decoration: underline;
       }
-
     }
-
   }
-
-}
-
-.footerContentContainer {
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  text-align: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
-
-  @include gtMedium {
-    text-align: left;
-    flex-direction: row;
-  }
-
-  div {
-
-    min-width: 0;
-    margin: .5em 0;
-
-    @include gtMedium {
-      margin: 0 1em;
-    }
-
-  }
-
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  h3,
-  p,
-  ul {
-    margin: 0;
-  }
-
-  h3 {
-    color: $color-purple-400;
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-bottom: .4em;
-  }
-
 }
 
 .footerLegal {
+  padding: 0.8rem 0;
+  margin: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-grow: 1;
-  padding-top: 1em;
-
-  @include gtXlarge {
-    justify-content: flex-end;
-    width: auto;
-    margin-top: 0;
+  &,
+  a {
+    color: $color-gray-50;
   }
 
-  ul {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
-    margin-top: .6em;
-  }
-
-  li {
-    margin-right: .8em;
+  p {
+    font-size: 0.9em;
+    text-align: center;
+    margin: 0;
   }
 
   a {
+    text-decoration: none;
 
-    svg {
-      font-size: 1.4em;
+    @include withHover() {
+      &:hover {
+        color: $color-brand-purple;
+        text-decoration: underline;
+      }
     }
-
   }
-
-}
-
-.footerCosmo {
-
-  order: -1;
-  font-size: .6em;
-  margin-right: 1em;
-
-  @include gtXlarge {
-    order: 0;
-    transform: scaleX(-1);
-    margin-right: 0;
-  }
-
-}
-
-.footerCosmoStroke {
-  fill: $footer-background-color;
 }

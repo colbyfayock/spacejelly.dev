@@ -1,0 +1,55 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.postsSection {
+  margin: 1rem 0;
+}
+
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+
+  @include gtLarge() {
+    flex-direction: row;
+  }
+}
+
+.sidebar {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: 2em;
+
+  @include gtLarge() {
+    width: 20rem;
+    margin-top: 0;
+    margin-left: 3rem;
+  }
+}
+
+.sidebarSection {
+  background-color: white;
+  @include boxShadow();
+}
+
+.sidebarSectionHeader {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: $color-brand-aqua;
+  padding: 0.6em 0.8em;
+  margin: 0;
+}
+
+.sidebarSectionBody {
+  padding: 1.2em;
+
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

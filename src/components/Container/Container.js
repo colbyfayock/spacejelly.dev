@@ -7,11 +7,7 @@ const Container = ({ children, className }) => {
 
   containerClassName.addIf(className, className);
 
-  return (
-    <div className={containerClassName.toString()}>
-      { children }
-    </div>
-  )
-}
+  return <div className={containerClassName.toString()}>{children}</div>;
+};
 
 export default Container;

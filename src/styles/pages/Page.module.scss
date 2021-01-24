@@ -1,0 +1,39 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.pageHeader {
+  h1 {
+    color: white;
+  }
+}
+
+.pageSection {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.pageContent {
+  font-size: 0.9em;
+  background-color: white;
+  padding: 1em;
+
+  @include boxShadow();
+
+  @include gtMedium() {
+    padding: 2.5em;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin-top: 2.6rem;
+  }
+
+  figure {
+    margin: 4rem 0;
+
+    iframe {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

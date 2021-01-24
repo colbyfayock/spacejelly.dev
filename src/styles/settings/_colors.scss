@@ -20,16 +20,21 @@ $color-blue-700: #00418d;
 $color-blue-800: #002a5a;
 $color-blue-900: #001227;
 
-$color-purple-50: #fdfcfe;
-$color-purple-100: #FFF2FE;
-$color-purple-200: #dccde9;
-$color-purple-300: #c3a9da;
-$color-purple-400: #aa86ca;
-$color-purple-500: #9162BB;
-$color-purple-600: #714DA0;
-$color-purple-700: #513885;
-$color-purple-800: #30236A;
-$color-purple-900: #100E4F;
-
 $color-primary: $color-blue-500;
-$color-secondary: $color-purple-500;
+
+$color-brand-aqua: #25BEBC;
+$color-brand-blue-light: #397DFF;
+$color-brand-blue-medium: #397DFF;
+$color-brand-deep-blue: #0b0535;
+$color-brand-purple: #9C5BC3;
+$color-brand-blue-shadow: $color-brand-blue-medium;
+
+// $color
+
+$color-site-background-dark: $color-brand-deep-blue;
+$color-site-background-light: #0B106B;
+$color-site-background: $color-site-background-light;
+
+$component-shadow-box-color: #2E2FE2;
+$component-shadow-box-color-high: #2712A5;
+$component-shadow-box-color-low: #212EE4;

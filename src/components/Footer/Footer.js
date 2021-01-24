@@ -1,68 +1,84 @@
-import { FaTwitter, FaGithub, FaYoutube } from 'react-icons/fa';
+import Link from 'next/link';
 
 import useSite from 'hooks/use-site';
+import { postPathBySlug } from 'lib/posts';
+import { categoryPathBySlug } from 'lib/categories';
 
 import Section from 'components/Section';
 import Container from 'components/Container';
-import Button from 'components/Button';
-import CosmoMono from 'components/CosmoMono';
 
 import styles from './Footer.module.scss';
 
 const Footer = () => {
-  const { metadata } = useSite();
-  const { supportEmail, authorName, authorUrl } = metadata;
+  const { metadata = {}, recentPosts = [], categories = [] } = useSite();
+  const { title } = metadata;
+
+  const hasRecentPosts = Array.isArray(recentPosts) && recentPosts.length > 0;
+  const hasRecentCategories = Array.isArray(categories) && categories.length > 0;
+  const hasMenu = hasRecentPosts || hasRecentCategories;
 
   return (
     <footer className={styles.footer}>
-      <Section className={styles.footerSection}>
-        <Container className={[styles.footerContainer, styles.footerContentContainer]}>
-          <div>
-            <h3>Have any questions?</h3>
-            <p>
-              Contact me at <a href={`mailto:${supportEmail}`}>{ supportEmail }</a>
-            </p>
-          </div>
-          <div>
-            <h3>Moar awesome!</h3>
-            <ul>
-              <li>
-                <a href="https://colbyfayock.com">colbyfayock.com</a>
-              </li>
+      {hasMenu && (
+        <Section className={styles.footerMenu}>
+          <Container>
+            <ul className={styles.footerMenuColumns}>
+              {hasRecentPosts && (
+                <li>
+                  <Link href="/posts/">
+                    <a className={styles.footerMenuTitle}>
+                      <strong>Recent Posts</strong>
+                    </a>
+                  </Link>
+                  <ul className={styles.footerMenuItems}>
+                    {recentPosts.map((post) => {
+                      const { id, slug, title } = post;
+                      return (
+                        <li key={id}>
+                          <Link href={postPathBySlug(slug)}>
+                            <a>{title}</a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              )}
+              {hasRecentCategories && (
+                <li>
+                  <Link href="/categories/">
+                    <a className={styles.footerMenuTitle}>
+                      <strong>Categories</strong>
+                    </a>
+                  </Link>
+                  <ul className={styles.footerMenuItems}>
+                    {categories.map((category) => {
+                      const { id, slug, name } = category;
+                      return (
+                        <li key={id}>
+                          <Link href={categoryPathBySlug(slug)}>
+                            <a>{name}</a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              )}
             </ul>
-          </div>
-          <div className={styles.footerLegal}>
-            <div>
-              <p>
-                &copy; { new Date().getFullYear() }, <a href={authorUrl}>{ authorName }</a>
-              </p>
-              <ul>
-                <li>
-                  <a href="https://twitter.com/colbyfayock">
-                    <span className="sr-only">Twitter</span>
-                    <FaTwitter />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/colbyfayock">
-                    <span className="sr-only">GitHub</span>
-                    <FaGithub />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/colbyfayock">
-                    <span className="sr-only">YouTube</span>
-                    <FaYoutube className={styles.footerIconYoutube} />
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <CosmoMono className={styles.footerCosmo} classNameStroke={styles.footerCosmoStroke} />
-          </div>
+          </Container>
+        </Section>
+      )}
+
+      <Section className={styles.footerLegal}>
+        <Container>
+          <p>
+            &copy; {new Date().getFullYear()} {title}, <a href="https://twitter.com/colbyfayock">Colby Fayock</a>
+          </p>
         </Container>
       </Section>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

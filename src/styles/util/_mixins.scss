@@ -1,9 +1,12 @@
-$breakpoint-tiny: 320px;
-$breakpoint-small: 480px;
-$breakpoint-medium: 640px;
-$breakpoint-large: 800px;
-$breakpoint-xlarge: 960px;
-$breakpoint-huge: 1024px;
+@mixin boxShadow() {
+  box-shadow: 5px 5px 0 $component-shadow-box-color;
+  // 5px 5px 25px $component-shadow-box-color,
+  // 5px 5px 30px rgba($component-shadow-box-color, .3);
+}
+
+/**
+ * Media Queries
+ */
 
 @mixin gtTiny() {
   @media (min-width: $breakpoint-tiny) {
@@ -37,6 +40,12 @@ $breakpoint-huge: 1024px;
 
 @mixin gtHuge() {
   @media (min-width: $breakpoint-huge) {
+    @content;
+  }
+}
+
+@mixin withHover() {
+  @media (hover: hover) {
     @content;
   }
 }
