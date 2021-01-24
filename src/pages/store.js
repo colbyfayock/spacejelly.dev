@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import { FaShoppingCart } from 'react-icons/fa';
 
 import { getAllProducts } from 'lib/products';
+import { getRouteByName } from 'lib/routes';
 import { WebsiteJsonLd } from 'lib/json-ld';
 
 import Layout from 'components/Layout';
@@ -80,7 +81,7 @@ export default function Store({ products }) {
                       data-item-id={productId}
                       data-item-image={featuredImage.sourceUrl}
                       data-item-name={title}
-                      data-item-url="/"
+                      data-item-url={getRouteByName('store')?.path}
                       data-item-price={price / 100}
                     >
                       Add to Cart
