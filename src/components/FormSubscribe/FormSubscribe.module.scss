@@ -1,6 +1,13 @@
 @import "styles/settings/__settings";
 
 .formSubscribe {
+  label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+
   input,
   button {
     width: 100%;
