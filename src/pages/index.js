@@ -39,7 +39,10 @@ export default function Home({ posts }) {
             <div className={styles.sidebarSection}>
               <h3 className={styles.sidebarSectionHeader}>Newsletter</h3>
               <div className={styles.sidebarSectionBody}>
-                <p>Sign up to receive all things Space Jelly and more awesome content straight to your inbox!</p>
+                <p>
+                  Sign up to receive all things Space Jelly and more awesome content from me, Colby Fayock, straight to
+                  your inbox!
+                </p>
                 <FormSubscribe />
               </div>
             </div>
