@@ -154,7 +154,7 @@ const Nav = () => {
           </Link>
         </p>
         <p className={styles.navDiscord}>
-          <a href="https://spacejelly.dev/discord" target="_blank">
+          <a href="https://spacejelly.dev/discord" target="_blank" rel="noopener">
             <FaDiscord />
             <strong>Join the Discord</strong>
             <span>spacejelly.dev</span>
@@ -179,7 +179,7 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <a href="https://www.youtube.com/colbyfayock" target="_blank">
+                <a href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
                   Videos
                 </a>
               </li>
