@@ -34,14 +34,6 @@ const Nav = () => {
   useEffect(() => {
     addDocumentOnClick();
     addResultsRoving();
-
-    // When the search box opens up, additionall find the search input and focus
-    // on the element so someone can start typing right away
-
-    const searchInput = Array.from(formRef.current.elements).find((input) => input.type === 'search');
-
-    searchInput.focus();
-
     return () => {
       removeResultsRoving();
       removeDocumentOnClick();
@@ -162,7 +154,7 @@ const Nav = () => {
           </Link>
         </p>
         <p className={styles.navDiscord}>
-          <a href="https://spacejelly.dev/discord">
+          <a href="https://spacejelly.dev/discord" target="_blank">
             <FaDiscord />
             <strong>Join the Discord</strong>
             <span>spacejelly.dev</span>
@@ -187,9 +179,9 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link href="https://www.youtube.com/colbyfayock">
-                  <a>Videos</a>
-                </Link>
+                <a href="https://www.youtube.com/colbyfayock" target="_blank">
+                  Videos
+                </a>
               </li>
             </ul>
           </div>

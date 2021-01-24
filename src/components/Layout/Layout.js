@@ -8,10 +8,14 @@ import useSite from 'hooks/use-site';
 import Nav from 'components/Nav';
 import Main from 'components/Main';
 import Footer from 'components/Footer';
+import Banner from 'components/Banner';
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  const { asPath } = router;
+  const { asPath, query = {} } = router;
+
+  const isEmailSignupConfirm = query.emailSignup === 'confirm';
+  const isEmailSignupSuccess = query.emailSignup === 'success';
 
   const { homepage, metadata = {} } = useSite();
   const { title, language, description } = metadata;
@@ -41,6 +45,10 @@ const Layout = ({ children }) => {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={title} />
       </Helmet>
+
+      {isEmailSignupConfirm && <Banner>Thanks for signing up! Check your email inbox to confirm 📬</Banner>}
+
+      {isEmailSignupSuccess && <Banner>Confirmed! 😎 Look for an email next Sunday</Banner>}
 
       <Nav />
 

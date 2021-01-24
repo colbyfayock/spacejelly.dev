@@ -7,12 +7,23 @@
 
 .postsContainer {
   display: flex;
+  flex-direction: column;
+
+  @include gtLarge() {
+    flex-direction: row;
+  }
 }
 
 .sidebar {
   flex-shrink: 0;
-  width: 20rem;
-  margin-left: 3rem;
+  width: 100%;
+  margin-top: 2em;
+
+  @include gtLarge() {
+    width: 20rem;
+    margin-top: 0;
+    margin-left: 3rem;
+  }
 }
 
 .sidebarSection {
@@ -25,16 +36,14 @@
   font-weight: bold;
   font-size: 1.2em;
   background-color: $color-brand-aqua;
-  padding: .6em .8em;
+  padding: 0.6em 0.8em;
   margin: 0;
 }
 
 .sidebarSectionBody {
-
   padding: 1.2em;
 
   p {
-
     &:first-child {
       margin-top: 0;
     }
@@ -42,7 +51,5 @@
     &:last-child {
       margin-bottom: 0;
     }
-
   }
-
 }

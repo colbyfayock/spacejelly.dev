@@ -10,6 +10,7 @@ import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import Posts from 'components/Posts';
+import FormSubscribe from 'components/FormSubscribe';
 
 import styles from 'styles/pages/Home.module.scss';
 
@@ -38,12 +39,8 @@ export default function Home({ posts }) {
             <div className={styles.sidebarSection}>
               <h3 className={styles.sidebarSectionHeader}>Newsletter</h3>
               <div className={styles.sidebarSectionBody}>
-                <p>
-                  Sign up to receive all things Space Jelly and more awesome content straight to your inbox!
-                </p>
-                <form>
-                  <input type="text" />
-                </form>
+                <p>Sign up to receive all things Space Jelly and more awesome content straight to your inbox!</p>
+                <FormSubscribe />
               </div>
             </div>
           </aside>
