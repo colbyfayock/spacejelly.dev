@@ -206,12 +206,17 @@ const Nav = () => {
           </div>
           <div className={styles.navBarSection} data-navbar-section-grow="true">
             <form className={styles.navSearch} ref={formRef} action="/search" data-search-is-active={!!query}>
+              <label className="sr-only" htmlFor="search-query">
+                Search Query
+              </label>
               <Input
+                id="search-query"
                 type="search"
                 name="q"
                 value={query || ''}
                 onChange={handleOnSearch}
                 autoComplete="off"
+                aria-label="Enter your search query"
                 placeholder="Search..."
                 required
               />
