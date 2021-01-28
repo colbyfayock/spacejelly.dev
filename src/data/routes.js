@@ -11,6 +11,11 @@ routes.push({
 });
 
 routes.push({
+  name: 'colbyashiMaru',
+  path: '/colbyashi-maru/',
+});
+
+routes.push({
   name: 'home',
   path: '/',
 });

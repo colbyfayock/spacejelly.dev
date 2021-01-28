@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import Link from 'next/link';
 
+import { getRouteByName } from 'lib/routes';
 import { getAllPosts } from 'lib/posts';
 import { WebsiteJsonLd } from 'lib/json-ld';
 import useSite from 'hooks/use-site';
@@ -44,6 +46,20 @@ export default function Home({ posts }) {
                   your inbox!
                 </p>
                 <FormSubscribe />
+              </div>
+            </div>
+            <div className={styles.sidebarSection}>
+              <h3 className={styles.sidebarSectionHeader}>Colbyashi Maru</h3>
+              <div className={styles.sidebarSectionBody}>
+                <p>
+                  Watch developers like you face off with Colbyashi Maru, a 1-hour code challenge with today's most
+                  exciting web tech.
+                </p>
+                <p>
+                  <Link href={getRouteByName('colbyashiMaru')?.path}>
+                    <a className={styles.sidebarButton}>See the Schedule</a>
+                  </Link>
+                </p>
               </div>
             </div>
           </aside>

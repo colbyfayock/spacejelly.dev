@@ -1,6 +1,8 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
+@import "../../components/Button/Button.module.scss";
+
 .postsSection {
   margin: 1rem 0;
 }
@@ -17,7 +19,7 @@
 .sidebar {
   flex-shrink: 0;
   width: 100%;
-  margin-top: 2em;
+  margin-top: 2rem;
 
   @include gtLarge() {
     width: 20rem;
@@ -29,6 +31,11 @@
 .sidebarSection {
   background-color: white;
   @include boxShadow();
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .sidebarSectionHeader {
@@ -51,5 +58,17 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+}
+
+.sidebarButton {
+  @extend .button;
+  display: inline-block;
+  width: 100%;
+  font-size: 0.9em;
+  text-align: center;
+
+  @include gtLarge() {
+    width: auto;
   }
 }
