@@ -1,0 +1,45 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.section {
+  padding: 0;
+  margin: 4rem 0;
+}
+
+.sectionTitle {
+  color: $color-blue-100;
+  font-size: 2em;
+  font-weight: 600;
+  padding-bottom: 0.5em;
+  border-bottom: solid 5px $color-brand-aqua;
+  margin-top: 0;
+}
+
+.episodes {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+
+  li {
+    width: 100%;
+    padding: 0.5em;
+
+    @include gtMedium() {
+      width: 50%;
+    }
+
+    @include gtXlarge() {
+      width: 33.33%;
+    }
+  }
+}
+
+.notes {
+  color: white;
+  text-align: center;
+
+  h2 {
+    font-weight: bold;
+  }
+}

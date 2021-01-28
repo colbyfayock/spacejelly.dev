@@ -1,0 +1,66 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+@import "../Button/Button.module.scss";
+
+.episode {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  background-color: white;
+  padding: 0.25em;
+  @include boxShadow();
+}
+
+.episodeImage {
+  margin: 0;
+
+  img {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+}
+
+.episodeMeta {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0.5em;
+}
+
+.episodeTitle {
+  flex-grow: 1;
+  font-size: 1.4em;
+  font-weight: bold;
+  border-bottom: solid 1px $color-gray-200;
+  padding-bottom: 0.5em;
+  margin: 0 0 0.25em;
+}
+
+.episodeDatePrimary,
+.episodeDateSecondary {
+  margin: 0;
+}
+
+.episodeDatePrimary {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.episodeDateSecondary {
+  font-size: 0.8em;
+}
+
+.episodeAction {
+  margin: 0.5em 0 0;
+
+  a {
+    @extend .button;
+    display: inline-block;
+    font-size: 0.9em;
+    text-decoration: none;
+    padding: 0.5em 1em;
+  }
+}
