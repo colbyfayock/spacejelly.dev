@@ -53,8 +53,6 @@ export default function Post({ post }) {
         <meta property="twitter:image" content={ogImage} />
       </Helmet>
 
-      <ArticleJsonLd post={post} siteTitle={siteTitle} />
-
       <Header className={styles.postHeader}>
         <h1
           className={styles.title}
@@ -97,6 +95,8 @@ export default function Post({ post }) {
           <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
         </Container>
       </Section>
+
+      <ArticleJsonLd post={post} siteTitle={siteTitle} />
     </Layout>
   );
 }

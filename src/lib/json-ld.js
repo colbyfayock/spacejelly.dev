@@ -50,9 +50,12 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
   };
 
   return (
-    <Helmet encodeSpecialCharacters={false}>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd),
+      }}
+    />
   );
 }
 
@@ -96,9 +99,12 @@ export function WebpageJsonLd({ title = '', description = '', siteTitle = '', sl
   };
 
   return (
-    <Helmet encodeSpecialCharacters={false}>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd),
+      }}
+    />
   );
 }
 

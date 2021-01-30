@@ -45,8 +45,6 @@ export default function Page({ page }) {
         <meta property="twitter:image" content={ogImage} />
       </Helmet>
 
-      <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
-
       <Header className={styles.pageHeader}>
         {featuredImage && (
           <FeaturedImage
@@ -70,6 +68,8 @@ export default function Page({ page }) {
           </Container>
         </Section>
       </Content>
+
+      <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
     </Layout>
   );
 }
