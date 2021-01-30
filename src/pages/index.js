@@ -22,8 +22,6 @@ export default function Home({ posts }) {
 
   return (
     <Layout>
-      <WebsiteJsonLd siteTitle={title} />
-
       <h1
         className="sr-only"
         dangerouslySetInnerHTML={{
@@ -65,6 +63,8 @@ export default function Home({ posts }) {
           </aside>
         </Container>
       </Section>
+
+      <WebsiteJsonLd siteTitle={title} />
     </Layout>
   );
 }

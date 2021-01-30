@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { getPosts } from 'lib/posts';
+import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebpageJsonLd } from 'lib/json-ld';
 import useSite from 'hooks/use-site';
 
@@ -35,6 +36,10 @@ export default function TemplateArchive({
     metaDescription = `${metaDescription} ${description}`;
   }
 
+  const ogImage = getSpaceJellyOgPageUrl({
+    headline: title,
+  });
+
   return (
     <Layout>
       <Helmet>
@@ -42,6 +47,12 @@ export default function TemplateArchive({
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:secure_url" content={ogImage} />
+        <meta property="og:image:width" content="2024" />
+        <meta property="og:image:height" content="1012" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={ogImage} />
       </Helmet>
 
       <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />

@@ -3,6 +3,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 
 import { getAllProducts } from 'lib/products';
 import { getRouteByName } from 'lib/routes';
+import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebsiteJsonLd } from 'lib/json-ld';
 
 import Layout from 'components/Layout';
@@ -19,6 +20,10 @@ export default function Store({ products }) {
   const title = 'Space Jelly Store';
   const metaDescription = 'Buy the latest Cosmo gear';
 
+  const ogImage = getSpaceJellyOgPageUrl({
+    headline: title,
+  });
+
   return (
     <Layout>
       <Helmet>
@@ -26,12 +31,16 @@ export default function Store({ products }) {
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:secure_url" content={ogImage} />
+        <meta property="og:image:width" content="2024" />
+        <meta property="og:image:height" content="1012" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={ogImage} />
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
         <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.css" />
       </Helmet>
-
-      <WebsiteJsonLd siteTitle={title} />
 
       <Header className={styles.header}>
         <h1>{title}</h1>
@@ -136,6 +145,8 @@ export default function Store({ products }) {
 
       <script async src="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.js" />
       <div hidden id="snipcart" data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY} />
+
+      <WebsiteJsonLd siteTitle={title} />
     </Layout>
   );
 }

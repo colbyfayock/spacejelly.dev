@@ -16,7 +16,6 @@ export default function Author({ user, posts }) {
 
   return (
     <>
-      <AuthorJsonLd author={user} />
       <TemplateArchive
         title={name}
         Title={<Title title={name} thumbnail={avatar} />}
@@ -25,6 +24,7 @@ export default function Author({ user, posts }) {
         postOptions={postOptions}
         slug={slug}
       />
+      <AuthorJsonLd author={user} />
     </>
   );
 }

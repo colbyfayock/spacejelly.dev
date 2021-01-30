@@ -1,5 +1,3 @@
-import { Helmet } from 'react-helmet';
-
 import { authorPathByName } from 'lib/users';
 import { postPathBySlug } from 'lib/posts';
 import { pagePathBySlug } from 'lib/pages';
@@ -76,9 +74,12 @@ export function WebsiteJsonLd({ siteTitle = '' }) {
   };
 
   return (
-    <Helmet encodeSpecialCharacters={false}>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd),
+      }}
+    />
   );
 }
 
@@ -123,25 +124,11 @@ export function AuthorJsonLd({ author = {} }) {
   };
 
   return (
-    <Helmet encodeSpecialCharacters={false}>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
-  );
-}
-
-export function LogoJsonLd() {
-  const { homepage = '', faviconPath = '/favicon.ico' } = config;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    url: `${homepage}`,
-    logo: `${homepage}${faviconPath}`,
-  };
-
-  return (
-    <Helmet encodeSpecialCharacters={false}>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd),
+      }}
+    />
   );
 }
