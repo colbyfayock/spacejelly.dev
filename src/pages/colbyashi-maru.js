@@ -4,7 +4,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { getAllCmEpisodes } from 'lib/colbyashi-maru';
 import { getRouteByName } from 'lib/routes';
 import { WebsiteJsonLd } from 'lib/json-ld';
-import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
+import { getSpaceJellyOgColbyashiMaruUrl } from 'lib/cloudinary';
 import { sortObjectsByDate, dateIsPast, dateIsFuture } from 'lib/datetime';
 
 import Layout from 'components/Layout';
@@ -19,9 +19,7 @@ export default function ColbyashiMaru({ episodes }) {
   const title = 'Colbyashi Maru';
   const metaDescription = 'Challenging the web dev world.';
 
-  const ogImage = getSpaceJellyOgPageUrl({
-    headline: title,
-  });
+  const ogImage = getSpaceJellyOgColbyashiMaruUrl();
 
   const episodesSorted = sortObjectsByDate(episodes);
 

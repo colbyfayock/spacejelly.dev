@@ -2,6 +2,7 @@ import { contructCloudinaryUrl } from 'cloudinary-transformer';
 
 import {
   CLOUDINARY_SPACE_JELLY_OG_HOME,
+  CLOUDINARY_SPACE_JELLY_OG_COLBYASHI_MARU,
   CLOUDINARY_SPACE_JELLY_OG_POST,
   CLOUDINARY_SPACE_JELLY_OG_PAGE,
 } from 'data/cloudinary';
@@ -12,6 +13,13 @@ import {
 
 export function getSpaceJellyOgHomeUrl() {
   return contructCloudinaryUrl(CLOUDINARY_SPACE_JELLY_OG_HOME);
+}
+/**
+ * getSpaceJellyOgColbyashiMaruUrl
+ */
+
+export function getSpaceJellyOgColbyashiMaruUrl() {
+  return contructCloudinaryUrl(CLOUDINARY_SPACE_JELLY_OG_COLBYASHI_MARU);
 }
 
 /**

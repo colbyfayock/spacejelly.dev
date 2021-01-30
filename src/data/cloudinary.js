@@ -46,6 +46,18 @@ export const CLOUDINARY_SPACE_JELLY_OG_HOME = {
   ],
 };
 
+export const CLOUDINARY_SPACE_JELLY_OG_COLBYASHI_MARU = {
+  cloudName: 'fay',
+  imageId: 'space-jelly-dev-og-colbyashi-maru-v1_ijjwjz',
+  options: {
+    w: '2024',
+    h: '1012',
+    c: 'fill',
+    q: 'auto',
+    f: 'auto',
+  },
+};
+
 export const CLOUDINARY_SPACE_JELLY_OG_POST = {
   cloudName: 'fay',
   imageId: 'space-jelly-dev-og-v1_a90cow',
