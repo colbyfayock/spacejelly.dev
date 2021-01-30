@@ -11,8 +11,7 @@ import Footer from 'components/Footer';
 import Banner from 'components/Banner';
 
 const Layout = ({ children }) => {
-  const router = useRouter();
-  const { asPath, query = {} } = router;
+  const { asPath, query = {} } = useRouter();
 
   const isEmailSignupConfirm = query.emailSignup === 'confirm';
   const isEmailSignupSuccess = query.emailSignup === 'success';
@@ -31,6 +30,8 @@ const Layout = ({ children }) => {
     <div className={styles.layoutContainer}>
       <Helmet {...helmetSettings}>
         <html lang={language} />
+
+        {title && <title>{title}</title>}
         <meta name="description" content={metaDescription} />
 
         {/* Favicon sizes and manifest generated via https://favicon.io/ */}
