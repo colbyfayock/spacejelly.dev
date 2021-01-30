@@ -1,6 +1,6 @@
 {
-  "name": "next-wordpress-starter",
-  "homepage": "https://next-wordpress-starter.netlify.app",
+  "name": "space-jelly-website",
+  "homepage": "https://spacejelly.dev",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Colby Fayock <hello@colbyfayock.com>",
@@ -48,9 +48,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/colbyfayock/next-wordpress-starter"
+    "url": "https://github.com/colbyfayock/spacejelly.dev"
   },
   "bugs": {
-    "url": "https://github.com/colbyfayock/next-wordpress-starter/issues"
+    "url": "https://github.com/colbyfayock/spacejelly.dev/issues"
   }
 }
