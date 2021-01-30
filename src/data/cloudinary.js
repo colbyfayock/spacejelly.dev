@@ -1,4 +1,4 @@
-export const CLOUDINARY_SPACE_JELLY_OG = {
+export const CLOUDINARY_SPACE_JELLY_OG_POST = {
   cloudName: 'fay',
   imageId: 'space-jelly-dev-og-v1_a90cow',
   options: {
@@ -41,6 +41,37 @@ export const CLOUDINARY_SPACE_JELLY_OG = {
         g: 'south_west',
         x: '104',
         y: '65',
+      },
+    },
+  ],
+};
+
+export const CLOUDINARY_SPACE_JELLY_OG_PAGE = {
+  cloudName: 'fay',
+  imageId: 'space-jelly-dev-og-page-v1_dbhqcd',
+  options: {
+    w: '2024',
+    h: '1012',
+    c: 'fill',
+    q: 'auto',
+    f: 'auto',
+  },
+  text: [
+    {
+      text: 'im wrint asd asdo tro aosknd asd',
+      format: {
+        font: 'Source Sans Pro',
+        size: '170',
+        lineSpacing: '-50',
+        weight: 'black',
+      },
+      options: {
+        w: '1900',
+        c: 'fit',
+        co: 'rgb:ffffff',
+        g: 'center',
+        x: '0',
+        y: '-250',
       },
     },
   ],

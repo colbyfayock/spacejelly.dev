@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { getPostBySlug, getAllPosts } from 'lib/posts';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
-import { getCloudinarySpaceJellyOgUrl } from 'lib/cloudinary';
+import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
 import useSite from 'hooks/use-site';
 
 import Layout from 'components/Layout';
@@ -29,7 +29,7 @@ export default function Post({ post }) {
 
   const metaDescription = `Read ${title} at ${siteTitle}.`;
 
-  const ogImage = getCloudinarySpaceJellyOgUrl({
+  const ogImage = getSpaceJellyOgPostUrl({
     headline: title,
     subtext: categories
       .slice(0, 3)
