@@ -114,6 +114,11 @@ async function getAllPosts(apolloClient, process, verbose = false) {
       if (data.categories) {
         data.categories = data.categories.edges.map(({ node }) => node.name);
       }
+
+      if (data.modifiedGmt) {
+        data.modified = data.modifiedGmt;
+      }
+
       return data;
     });
 
