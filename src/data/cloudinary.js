@@ -23,7 +23,7 @@ export const CLOUDINARY_SPACE_JELLY_OG_HOME = {
         co: 'rgb:ffffff',
         g: 'west',
         x: '100',
-        y: '-40',
+        y: '-90',
       },
     },
     {
@@ -40,7 +40,7 @@ export const CLOUDINARY_SPACE_JELLY_OG_HOME = {
         co: 'rgb:b6cfff',
         g: 'west',
         x: '100',
-        y: '160',
+        y: '110',
       },
     },
   ],
@@ -118,7 +118,7 @@ export const CLOUDINARY_SPACE_JELLY_OG_PAGE = {
   },
   text: [
     {
-      text: 'im wrint asd asdo tro aosknd asd',
+      text: 'Headline',
       format: {
         font: 'Source Sans Pro',
         size: '170',
@@ -131,7 +131,7 @@ export const CLOUDINARY_SPACE_JELLY_OG_PAGE = {
         co: 'rgb:ffffff',
         g: 'center',
         x: '0',
-        y: '-250',
+        y: '-230',
       },
     },
   ],
