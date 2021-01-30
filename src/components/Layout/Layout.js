@@ -31,7 +31,6 @@ const Layout = ({ children }) => {
       <Helmet {...helmetSettings}>
         <html lang={language} />
 
-        {title && <title>{title}</title>}
         <meta name="description" content={metaDescription} />
 
         {/* Favicon sizes and manifest generated via https://favicon.io/ */}
