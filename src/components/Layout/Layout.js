@@ -44,6 +44,8 @@ const Layout = ({ children }) => {
         <meta property="og:url" content={path.join(homepage, asPath)} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={title} />
+        <meta property="twitter:site" content={path.join(homepage, asPath)} />
+        <meta property="twitter:creator" content="@colbyfayock" />
       </Helmet>
 
       {isEmailSignupConfirm && <Banner>Thanks for signing up! Check your email inbox to confirm 📬</Banner>}

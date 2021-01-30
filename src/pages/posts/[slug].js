@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { getPostBySlug, getAllPosts } from 'lib/posts';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
+import { getCloudinarySpaceJellyOgUrl } from 'lib/cloudinary';
 import useSite from 'hooks/use-site';
 
 import Layout from 'components/Layout';
@@ -28,6 +29,14 @@ export default function Post({ post }) {
 
   const metaDescription = `Read ${title} at ${siteTitle}.`;
 
+  const ogImage = getCloudinarySpaceJellyOgUrl({
+    headline: title,
+    subtext: categories
+      .slice(0, 3)
+      .map(({ name }) => name)
+      .join('     '),
+  });
+
   return (
     <Layout>
       <Helmet>
@@ -36,12 +45,17 @@ export default function Post({ post }) {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="article" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:secure_url" content={ogImage} />
+        <meta property="og:image:width" content="2024" />
+        <meta property="og:image:height" content="1012" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={ogImage} />
       </Helmet>
 
       <ArticleJsonLd post={post} siteTitle={siteTitle} />
 
       <Header className={styles.postHeader}>
-
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{

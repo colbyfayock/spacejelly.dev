@@ -1011,6 +1011,11 @@ cli-truncate@^2.1.0:
     slice-ansi "^3.0.0"
     string-width "^4.2.0"
 
+cloudinary-transformer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/cloudinary-transformer/-/cloudinary-transformer-1.0.0.tgz#da15b1f092a6dc16dbfe182417ffb385c4f5b1ff"
+  integrity sha512-ASPxkB5gTq69KfRrWcWcS+vnsr50bJnEKE99vQHsALXhTMo1j8d/OvdOVdPuYzAKG4pVdzk10DGfw3fRt550RA==
+
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
