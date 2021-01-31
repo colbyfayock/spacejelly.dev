@@ -78,7 +78,7 @@ export const CLOUDINARY_SPACE_JELLY_OG_POST = {
         weight: 'black',
       },
       options: {
-        w: '1200',
+        w: 1200,
         c: 'fit',
         co: 'rgb:ffffff',
         g: 'west',
@@ -95,7 +95,7 @@ export const CLOUDINARY_SPACE_JELLY_OG_POST = {
         weight: 'bold',
       },
       options: {
-        w: 860,
+        w: 1200,
         c: 'fit',
         co: 'rgb:a2cfff',
         g: 'south_west',
