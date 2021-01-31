@@ -43,7 +43,7 @@ export default function Post({ post }) {
   const ogImage = getSpaceJellyOgPostUrl({
     headline: cardtitle || title,
     subtext: categories
-      .slice(0, 3)
+      .slice(0, 2)
       .map(({ name }) => name)
       .join('     '),
   });
