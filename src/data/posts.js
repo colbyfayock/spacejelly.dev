@@ -43,6 +43,9 @@ export const QUERY_ALL_POSTS = gql`
           }
           modifiedGmt
           postId
+          post {
+            cardtitle
+          }
           title
           slug
           isSticky
@@ -94,6 +97,9 @@ export function getQueryPostBySlug(slug) {
         }
         modifiedGmt
         postId
+        post {
+          cardtitle
+        }
         title
         slug
         isSticky
@@ -146,6 +152,9 @@ export function getQueryPostsByCategoryId(categoryId) {
             }
             modifiedGmt
             postId
+            post {
+              cardtitle
+            }
             title
             slug
             isSticky
@@ -187,6 +196,9 @@ export function getQueryPostsByAuthorSlug(slug) {
             id
             modifiedGmt
             postId
+            post {
+              cardtitle
+            }
             slug
             title
             isSticky

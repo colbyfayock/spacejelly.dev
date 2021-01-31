@@ -21,7 +21,18 @@ export default function Post({ post }) {
   const { metadata } = useSite();
   const { title: siteTitle } = metadata;
 
-  const { title, content, excerpt, date, author, categories, modified, featuredImage, isSticky = false } = post;
+  const {
+    title,
+    cardtitle,
+    content,
+    excerpt,
+    date,
+    author,
+    categories,
+    modified,
+    featuredImage,
+    isSticky = false,
+  } = post;
 
   const metadataOptions = {
     compactCategories: false,
@@ -30,7 +41,7 @@ export default function Post({ post }) {
   const metaDescription = `Read ${title} at ${siteTitle}.`;
 
   const ogImage = getSpaceJellyOgPostUrl({
-    headline: title,
+    headline: cardtitle || title,
     subtext: categories
       .slice(0, 3)
       .map(({ name }) => name)

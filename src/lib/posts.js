@@ -119,7 +119,10 @@ export function sanitizeExcerpt(excerpt) {
  */
 
 export function mapPostData(post = {}) {
-  const data = { ...post };
+  const data = {
+    ...post,
+    ...post.post,
+  };
 
   // TODO: is the date not in the right format a bug?
 
