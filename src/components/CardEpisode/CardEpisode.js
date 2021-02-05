@@ -49,9 +49,9 @@ const CardEpisode = ({ id, title, name, date, featuredImage, youtube }) => {
         )}
         {dateIsFuture(date, datetimeOffset) && (
           <p className={styles.episodeAction}>
-            <Link href={calendarLink}>
-              <a target="_blank">Add to Google Calendar</a>
-            </Link>
+            <a href={calendarLink} target="_blank">
+              Add to Google Calendar
+            </a>
           </p>
         )}
       </div>

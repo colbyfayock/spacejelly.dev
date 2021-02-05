@@ -24,6 +24,7 @@
     "@apollo/client": "^3.3.7",
     "cloudinary-transformer": "^1.0.0",
     "date-fns": "^2.16.1",
+    "date-fns-timezone": "^0.1.4",
     "dotenv": "^8.2.0",
     "fuse.js": "^6.4.6",
     "graphql": "^15.4.0",
