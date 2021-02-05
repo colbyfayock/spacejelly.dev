@@ -26,7 +26,7 @@ export default function ColbyashiMaru({ episodes }) {
   const datetimeOffset = 1000 * 60 * 60 * 1.5;
 
   const episodesPast = episodesSorted.filter((episode) => dateIsPast(episode.date, datetimeOffset));
-  const episodesFuture = episodesSorted.filter((episode) => dateIsFuture(episode.date, datetimeOffset));
+  const episodesFuture = episodesSorted.filter((episode) => dateIsFuture(episode.date, datetimeOffset)).reverse();
 
   return (
     <Layout>
