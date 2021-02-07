@@ -1,6 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { Helmet } from 'react-helmet';
 
+import { GA_TRACKING_ID } from '../lib/gtag';
+
 // Via https://github.com/vercel/next.js/blob/canary/examples/with-react-helmet/pages/_document.js
 
 export default class MyDocument extends Document {
@@ -32,7 +34,7 @@ export default class MyDocument extends Document {
     return (
       <Html {...this.helmetHtmlAttrComponents}>
         <Head>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR59CQX33" />
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -40,7 +42,9 @@ export default class MyDocument extends Document {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', 'G-9LR59CQX33');
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
               `,
             }}
           />
