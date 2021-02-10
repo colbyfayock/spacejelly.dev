@@ -15,11 +15,18 @@ import CardEpisode from 'components/CardEpisode';
 
 import styles from 'styles/pages/ColbyashiMaru.module.scss';
 
-export default function ColbyashiMaru({ episodesFuture, episodesPast }) {
+export default function ColbyashiMaru({ episodes }) {
   const title = 'Colbyashi Maru';
   const metaDescription = 'Challenging the web dev world.';
 
   const ogImage = getSpaceJellyOgColbyashiMaruUrl();
+
+  const episodesSorted = sortObjectsByDate(episodes);
+
+  const datetimeOffset = 1000 * 60 * 60 * 1.5;
+
+  const episodesPast = episodesSorted.filter((episode) => dateIsPast(episode.date));
+  const episodesFuture = episodesSorted.filter((episode) => dateIsFuture(episode.date, datetimeOffset)).reverse();
 
   return (
     <Layout>
@@ -86,18 +93,9 @@ export default function ColbyashiMaru({ episodesFuture, episodesPast }) {
 export async function getStaticProps({ params = {} } = {}) {
   const { episodes } = await getAllCmEpisodes();
 
-  const episodesSorted = sortObjectsByDate(episodes);
-
-  const datetimeOffset = 1000 * 60 * 60 * 1.5;
-
-  const episodesPast = episodesSorted.filter((episode) => dateIsPast(episode.date));
-  const episodesFuture = episodesSorted.filter((episode) => dateIsFuture(episode.date, datetimeOffset)).reverse();
-
   return {
     props: {
       episodes,
-      episodesPast,
-      episodesFuture,
     },
   };
 }
