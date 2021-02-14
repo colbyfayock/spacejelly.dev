@@ -77,7 +77,7 @@ export default function ColbyashiMaru({ episodes }) {
 
       <Section className={styles.notes}>
         <Container>
-          <h2>Want to be on Colbyashi Maru?</h2>
+          <h2>Want to see someone on Colbyashi Maru?</h2>
           <p>
             Reach out on <a href="https://discord.com/invite/FYQX5Vs">Discord</a> or email me at hello@colbyfayock.com
             and let me know your idea!
