@@ -3,6 +3,7 @@ const he = require('he');
 const { gql, ApolloClient, InMemoryCache } = require('@apollo/client');
 const RSS = require('rss');
 const prettier = require('prettier');
+const parseFromTimeZone = require('date-fns-timezone').parseFromTimeZone;
 
 const config = require('../package.json');
 
@@ -128,6 +129,82 @@ async function getAllPosts(apolloClient, process, verbose = false) {
     };
   } catch (e) {
     throw new Error(`[${process}] Failed to fetch posts from ${apolloClient.link.options.uri}: ${e.message}`);
+  }
+}
+
+/**
+ * getAllColbyashiMaruEpisodes
+ */
+
+async function getAllColbyashiMaruEpisodes(apolloClient, process, verbose = false) {
+  const query = gql`
+    {
+      cmEpisodes(first: 10000) {
+        edges {
+          node {
+            content
+            episode {
+              company
+              date
+              name
+              role
+              socialImage {
+                altText
+                sourceUrl
+              }
+              twitterhandle
+              youtube
+            }
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+                sizes
+                srcSet
+                slug
+              }
+            }
+            id
+            slug
+            title
+          }
+        }
+      }
+    }
+  `;
+
+  let episodes = [];
+
+  try {
+    const data = await apolloClient.query({ query });
+    const nodes = [...data.data.cmEpisodes.edges.map(({ node = {} }) => node)];
+
+    episodes = nodes.map((episode) => {
+      const data = {
+        ...episode,
+        ...episode.episode,
+      };
+
+      data.date = setDatetimeTimezone(data.date, 'America/New_York').toISOString();
+
+      // Clean up the featured image to make them more easy to access
+
+      if (data.featuredImage) {
+        data.featuredImage = data.featuredImage.node;
+      }
+
+      return data;
+    });
+
+    verbose &&
+      console.log(`[${process}] Successfully fetched Colbyashi Maru episodes from ${apolloClient.link.options.uri}`);
+    return {
+      episodes,
+    };
+  } catch (e) {
+    throw new Error(
+      `[${process}] Failed to fetch Colbyashi Maru  episodes from ${apolloClient.link.options.uri}: ${e.message}`
+    );
   }
 }
 
@@ -295,6 +372,42 @@ function generateIndexSearch({ posts }) {
 }
 
 /**
+ * generateIndexColbyashiMaru
+ */
+
+function generateIndexColbyashiMaru({ episodes }) {
+  const keysToInclude = [
+    'id',
+    'slug',
+    'title',
+    'company',
+    'date',
+    'name',
+    'role',
+    'twitterhandle',
+    'socialImage',
+    'youtube',
+  ];
+
+  const index = episodes.map((episode) => {
+    let data = {};
+
+    keysToInclude.forEach((key) => {
+      data[key] = episode[key];
+    });
+
+    return data;
+  });
+
+  const indexJson = JSON.stringify({
+    generated: Date.now(),
+    episodes: index,
+  });
+
+  return indexJson;
+}
+
+/**
  * getSitemapData
  */
 
@@ -416,16 +529,33 @@ function terminalColor(text, level) {
   }
 }
 
+/**
+ * setDatetimeTimezone
+ * @via https://stackoverflow.com/a/53652131
+ */
+
+function setDatetimeTimezone(date, ianatz) {
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+
+  const newDate = parseFromTimeZone(date, { timeZone: ianatz });
+
+  return new Date(newDate);
+}
+
 module.exports = {
   createFile,
   promiseToWriteFile,
   mkdirp,
   createApolloClient,
   getAllPosts,
+  getAllColbyashiMaruEpisodes,
   getSiteMetadata,
   getFeedData,
   generateFeed,
   generateIndexSearch,
+  generateIndexColbyashiMaru,
   getPages,
   getSitemapData,
   generateSitemap,
