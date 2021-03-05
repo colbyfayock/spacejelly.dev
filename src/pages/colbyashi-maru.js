@@ -54,7 +54,7 @@ export default function ColbyashiMaru({ episodes }) {
           </li>
           <li>
             <a
-              href="https://calendar.google.com/calendar/u/1?cid=Y19jY2NzcGRkNGtrbW0xN2doajRoNmNyYnQ3c0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+              href="https://calendar.google.com/calendar?cid=Y19jY2NzcGRkNGtrbW0xN2doajRoNmNyYnQ3c0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
               target="_blank"
               rel="noopener"
             >
