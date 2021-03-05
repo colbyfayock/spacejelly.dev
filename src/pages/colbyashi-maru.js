@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaTwitch, FaCalendarCheck } from 'react-icons/fa';
 
 import { getAllCmEpisodes } from 'lib/colbyashi-maru';
 import { getRouteByName } from 'lib/routes';
@@ -43,8 +43,25 @@ export default function ColbyashiMaru({ episodes }) {
         <meta property="twitter:image" content={ogImage} />
       </Helmet>
 
-      <Header>
+      <Header className={styles.header}>
         <h1>{title}</h1>
+        <p>Boldy facing off against the most logical tools on the web.</p>
+        <ul>
+          <li>
+            <a href="https://twitch.tv/colbyfayock" target="_blank" rel="noopener">
+              <FaTwitch /> Follow on Twitch
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://calendar.google.com/calendar/u/1?cid=Y19jY2NzcGRkNGtrbW0xN2doajRoNmNyYnQ3c0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+              target="_blank"
+              rel="noopener"
+            >
+              <FaCalendarCheck /> Add to Google Calendar
+            </a>
+          </li>
+        </ul>
       </Header>
 
       <Section className={styles.section}>

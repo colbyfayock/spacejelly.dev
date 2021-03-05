@@ -1,6 +1,44 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
+.header {
+  p {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+  }
+
+  li {
+    margin: 0 0.75em;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    color: white;
+
+    svg {
+      color: $color-brand-aqua;
+      margin-right: 0.4em;
+    }
+  }
+}
+
 .section {
   padding: 0;
   margin: 4rem 0;
