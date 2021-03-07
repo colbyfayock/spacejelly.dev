@@ -5,6 +5,7 @@ import { getPostBySlug, getAllPosts } from 'lib/posts';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
 import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
+import { addIdsToHeadersHtml, getHeadersAnchorsFromHtml } from 'lib/parse';
 import useSite from 'hooks/use-site';
 
 import Layout from 'components/Layout';
@@ -14,6 +15,7 @@ import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
+import Video from 'components/Video';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -22,16 +24,18 @@ export default function Post({ post }) {
   const { title: siteTitle } = metadata;
 
   const {
-    title,
-    cardtitle,
-    content,
-    excerpt,
-    date,
     author,
+    cardtitle,
     categories,
-    modified,
+    content,
+    date,
+    excerpt,
     featuredImage,
+    intro,
     isSticky = false,
+    modified,
+    title,
+    video,
   } = post;
 
   const metadataOptions = {
@@ -46,6 +50,14 @@ export default function Post({ post }) {
       .slice(0, 3)
       .map(({ name }) => name)
       .join('     '),
+  });
+
+  const html = addIdsToHeadersHtml({
+    html: content,
+  });
+
+  const anchors = getHeadersAnchorsFromHtml({
+    html,
   });
 
   return (
@@ -91,12 +103,28 @@ export default function Post({ post }) {
                 dangerouslySetInnerHTML={featuredImage.caption}
               />
             )}
-            <div
-              className={styles.postContent}
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
+            <div className={styles.postContent}>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: intro,
+                }}
+              />
+              <ul>
+                {anchors.map(({ anchor, title }) => {
+                  return (
+                    <li key={anchor}>
+                      <a href={`#${anchor}`}>{title}</a>
+                    </li>
+                  );
+                })}
+              </ul>
+              {video && <Video className={styles.postVideo} url={video} title={`Video for ${title}`} />}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: html,
+                }}
+              />
+            </div>
           </Container>
         </Section>
       </Content>

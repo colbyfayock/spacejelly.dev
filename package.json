@@ -38,9 +38,13 @@
     "react-dom": "17.0.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.1.0",
+    "rehype-parse": "^7.0.1",
+    "rehype-stringify": "^8.0.0",
     "rss": "^1.2.2",
     "sass": "^1.32.5",
-    "style.css": "^1.0.0"
+    "style.css": "^1.0.0",
+    "unified": "^9.2.1",
+    "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
     "husky": ">=4.3.8",

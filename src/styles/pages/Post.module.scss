@@ -12,6 +12,10 @@
   margin-top: 0;
 }
 
+.postVideo {
+  max-width: 50rem;
+}
+
 .postContent {
   font-size: 0.9em;
   background-color: white;
@@ -28,12 +32,7 @@
   }
 
   figure {
-    margin: 4rem 0;
-
-    iframe {
-      display: block;
-      margin: 0 auto;
-    }
+    margin: 4rem auto;
   }
 }
 

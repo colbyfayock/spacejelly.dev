@@ -45,6 +45,8 @@ export const QUERY_ALL_POSTS = gql`
           postId
           post {
             cardtitle
+            intro
+            video
           }
           title
           slug
@@ -99,6 +101,8 @@ export function getQueryPostBySlug(slug) {
         postId
         post {
           cardtitle
+          intro
+          video
         }
         title
         slug
@@ -154,6 +158,8 @@ export function getQueryPostsByCategoryId(categoryId) {
             postId
             post {
               cardtitle
+              intro
+              video
             }
             title
             slug
@@ -198,6 +204,8 @@ export function getQueryPostsByAuthorSlug(slug) {
             postId
             post {
               cardtitle
+              intro
+              video
             }
             slug
             title
