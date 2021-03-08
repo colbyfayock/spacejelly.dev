@@ -15,17 +15,17 @@ import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
+import Anchors from 'components/Anchors';
 import Video from 'components/Video';
 
 import styles from 'styles/pages/Post.module.scss';
 
-export default function Post({ post }) {
+export default function Post({ post, anchors }) {
   const { metadata } = useSite();
   const { title: siteTitle } = metadata;
 
   const {
     author,
-    cardtitle,
     categories,
     content,
     date,
@@ -34,6 +34,7 @@ export default function Post({ post }) {
     intro,
     isSticky = false,
     modified,
+    ogImage,
     title,
     video,
   } = post;
@@ -43,22 +44,6 @@ export default function Post({ post }) {
   };
 
   const metaDescription = `Read ${title} at ${siteTitle}.`;
-
-  const ogImage = getSpaceJellyOgPostUrl({
-    headline: cardtitle || title,
-    subtext: categories
-      .slice(0, 3)
-      .map(({ name }) => name)
-      .join('     '),
-  });
-
-  const html = addIdsToHeadersHtml({
-    html: content,
-  });
-
-  const anchors = getHeadersAnchorsFromHtml({
-    html,
-  });
 
   return (
     <Layout>
@@ -109,19 +94,11 @@ export default function Post({ post }) {
                   __html: intro,
                 }}
               />
-              <ul>
-                {anchors.map(({ anchor, title }) => {
-                  return (
-                    <li key={anchor}>
-                      <a href={`#${anchor}`}>{title}</a>
-                    </li>
-                  );
-                })}
-              </ul>
+              {Array.isArray(anchors) && <Anchors className={styles.postAnchors} anchors={anchors} />}
               {video && <Video className={styles.postVideo} url={video} title={`Video for ${title}`} />}
               <div
                 dangerouslySetInnerHTML={{
-                  __html: html,
+                  __html: content,
                 }}
               />
             </div>
@@ -142,9 +119,42 @@ export default function Post({ post }) {
 
 export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
+  const { cardtitle, title, categories } = post;
+  let { content } = post;
+
+  // Parse the HTML and add IDs to all of the
+  // h2 headers
+
+  content = addIdsToHeadersHtml({
+    html: content,
+  });
+
+  // Generate the anchors which will be used for the
+  // table of contents
+
+  const anchors = getHeadersAnchorsFromHtml({
+    html: content,
+  });
+
+  // Build a custom OG image based on the title
+  // and the categories
+
+  const ogImage = getSpaceJellyOgPostUrl({
+    headline: cardtitle || title,
+    subtext: categories
+      .slice(0, 3)
+      .map(({ name }) => name)
+      .join('     '),
+  });
+
   return {
     props: {
-      post,
+      post: {
+        ...post,
+        ogImage,
+        content,
+      },
+      anchors,
     },
   };
 }
