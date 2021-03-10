@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = 'G-9LR59CQX33';
+export const GA_TRACKING_ID = 'G-7HGHDYPPJ9';
 
 /**
  * pageview
