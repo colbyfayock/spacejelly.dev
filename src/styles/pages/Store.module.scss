@@ -1,5 +1,6 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
+@import "../../components/Button/Button.module.scss";
 
 .header {
   div {
@@ -102,10 +103,6 @@
   background-color: white;
   padding: 1.5em;
   @include boxShadow();
-
-  p {
-    flex-grow: 1;
-  }
 }
 
 .productImage {
@@ -122,6 +119,39 @@
   font-size: 1.5em;
   font-weight: bold;
   margin: 0;
+}
+
+.productPrice {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.productVariation,
+.productAvailableOn {
+  margin: 0;
+}
+
+.productButton {
+  width: 100%;
+  margin-top: 0.5em;
+
+  a {
+    @extend .button;
+    text-decoration: none;
+    padding: 0.573em 1.4em;
+  }
+
+  button,
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    svg {
+      margin-left: 0.5em;
+    }
+  }
 }
 
 .poweredBy {

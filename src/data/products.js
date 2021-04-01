@@ -21,6 +21,7 @@ export const QUERY_ALL_PRODUCTS = gql`
             order
             price
             productId
+            variation
           }
         }
       }

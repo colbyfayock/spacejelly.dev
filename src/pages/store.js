@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaExternalLinkSquareAlt } from 'react-icons/fa';
 
 import { getAllProducts } from 'lib/products';
 import { getRouteByName } from 'lib/routes';
@@ -73,7 +73,46 @@ export default function Store({ products }) {
           <h2 className="sr-only">Products</h2>
           <ul className={styles.products}>
             {products.map((product) => {
-              const { productId, title, price, featuredImage } = product;
+              const { productId, title, price, featuredImage, variation } = product;
+
+              const external = [
+                {
+                  title: 'Cotton Bureau',
+                  pattern: /cottonbureau\.com/,
+                },
+                {
+                  title: 'Redbubble',
+                  pattern: /redbubble\.com/,
+                },
+              ];
+
+              const externalProduct = external.find(({ pattern }) => productId.match(pattern));
+
+              if (externalProduct) {
+                return (
+                  <li key={productId}>
+                    <div className={styles.product}>
+                      <Image
+                        className={styles.productImage}
+                        {...featuredImage}
+                        src={featuredImage.sourceUrl}
+                        dangerouslySetInnerHTML={featuredImage.caption}
+                      />
+                      <h3 className={styles.productTitle}>{title}</h3>
+                      {variation && <p className={styles.productVariation}>{variation}</p>}
+                      <p className={styles.productAvailableOn}>Available on {externalProduct.title}</p>
+                      <p className={styles.productPrice}>${(price / 100).toFixed(2)}</p>
+                      <p className={styles.productButton}>
+                        <a href={productId} rel="noreferrer" target="_blank">
+                          Buy Now
+                          <FaExternalLinkSquareAlt />
+                        </a>
+                      </p>
+                    </div>
+                  </li>
+                );
+              }
+
               return (
                 <li key={productId}>
                   <div className={styles.product}>
@@ -84,17 +123,20 @@ export default function Store({ products }) {
                       dangerouslySetInnerHTML={featuredImage.caption}
                     />
                     <h3 className={styles.productTitle}>{title}</h3>
+                    {variation && <p className={styles.productVariation}>{variation}</p>}
                     <p className={styles.productPrice}>${(price / 100).toFixed(2)}</p>
-                    <Button
-                      className="snipcart-add-item"
-                      data-item-id={productId}
-                      data-item-image={featuredImage.sourceUrl}
-                      data-item-name={title}
-                      data-item-url={getRouteByName('store')?.path}
-                      data-item-price={price / 100}
-                    >
-                      Add to Cart
-                    </Button>
+                    <p className={styles.productButton}>
+                      <Button
+                        className="snipcart-add-item"
+                        data-item-id={productId}
+                        data-item-image={featuredImage.sourceUrl}
+                        data-item-name={title}
+                        data-item-url={getRouteByName('store')?.path}
+                        data-item-price={price / 100}
+                      >
+                        Add to Cart
+                      </Button>
+                    </p>
                   </div>
                 </li>
               );
