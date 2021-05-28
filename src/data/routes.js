@@ -35,6 +35,11 @@ routes.push({
 });
 
 routes.push({
+  name: 'categoryGithubActions',
+  path: '/categories/github-actions/',
+});
+
+routes.push({
   name: 'categoryNextjs',
   path: '/categories/next-js/',
 });

@@ -193,13 +193,8 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link href={getRouteByName('categoryReact')?.path}>
-                  <a>React</a>
-                </Link>
-              </li>
-              <li>
-                <Link href={getRouteByName('categoryJamstack')?.path}>
-                  <a>Jamstack</a>
+                <Link href={getRouteByName('categoryGithubActions')?.path}>
+                  <a>GitHub Actions</a>
                 </Link>
               </li>
             </ul>

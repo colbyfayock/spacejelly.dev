@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { ApolloProvider } from '@apollo/client';
 
 import SiteContext from 'context/site-context';
 import { getSiteMetadata } from 'lib/site';
@@ -8,13 +7,11 @@ import { getRecentPosts } from 'lib/posts';
 import { getNavigationPages } from 'lib/pages';
 import { getCategories } from 'lib/categories';
 import { pageview } from 'lib/gtag';
-import useApolloClient from 'hooks/use-apollo-client';
 
 import 'styles/globals.scss';
 
 function App({ Component, pageProps = {}, metadata, navigation, recentPosts, categories }) {
   const router = useRouter();
-  const apolloClient = useApolloClient(pageProps.initialApolloState);
 
   const context = {
     metadata,
@@ -39,11 +36,9 @@ function App({ Component, pageProps = {}, metadata, navigation, recentPosts, cat
   }, [router.events]);
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <SiteContext.Provider value={context}>
-        <Component {...pageProps} />
-      </SiteContext.Provider>
-    </ApolloProvider>
+    <SiteContext.Provider value={context}>
+      <Component {...pageProps} />
+    </SiteContext.Provider>
   );
 }
 
