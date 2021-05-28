@@ -240,6 +240,11 @@ const Nav = () => {
           <div className={styles.navBarSection}>
             <ul className={styles.navBarLinks}>
               <li>
+                <Link href={getRouteByName('courses')?.path}>
+                  <a>Courses</a>
+                </Link>
+              </li>
+              <li>
                 <Link href={getRouteByName('books')?.path}>
                   <a>Books</a>
                 </Link>

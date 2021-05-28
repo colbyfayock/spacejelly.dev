@@ -53,7 +53,6 @@ export default function Store({ courses }) {
             {coursesSorted.map((course) => {
               const { courseLink, title, id, featuredImage = {}, platformid } = course;
               const platform = getPlatformById(platformid);
-              console.log('platform', platform);
               return (
                 <li key={id}>
                   <a href={courseLink} className={styles.course} rel="noreferrer">

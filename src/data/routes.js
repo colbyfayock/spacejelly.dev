@@ -16,6 +16,11 @@ routes.push({
 });
 
 routes.push({
+  name: 'courses',
+  path: '/courses/',
+});
+
+routes.push({
   name: 'home',
   path: '/',
 });
