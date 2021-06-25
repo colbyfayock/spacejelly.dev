@@ -165,5 +165,35 @@ export function mapPostData(post = {}) {
     data.featuredImage = data.featuredImage.node;
   }
 
+  // When using the Read More feature in WordPress, the excerpt that we get from
+  // our query includes it + the beginning of the content itself. We only want
+  // the excerpt produced before the Read More tag, so if it exists on the post
+  // try to find it and replace the excerpt with it
+
+  const { intro, content: moreContent } = parseIntroFromContent(data.content);
+
+  if (intro) {
+    data.excerpt = intro;
+  }
+
   return data;
+}
+
+/**
+ * parseIntroFromContent
+ */
+
+export function parseIntroFromContent(original) {
+  if (!original.includes('<!--more-->')) {
+    return {
+      content: original,
+    };
+  }
+
+  const [intro, content] = original.split('<!--more-->');
+
+  return {
+    content: content && content.trim(),
+    intro: intro && intro.trim(),
+  };
 }

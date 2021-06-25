@@ -12,9 +12,16 @@
   margin-top: 0;
 }
 
+.postIntro {
+  font-size: 1.3em;
+  margin-bottom: 1.5em;
+}
+
 .postAnchors {
-  list-style: none;
-  border-left: solid 5px $color-brand-aqua;
+  ul {
+    list-style: none;
+    border-left: solid 5px $color-brand-aqua;
+  }
 
   li {
     margin: 0.25em 0;
@@ -34,7 +41,6 @@
 }
 
 .postContent {
-  font-size: 0.9em;
   background-color: white;
   padding: 1em;
   @include boxShadow();

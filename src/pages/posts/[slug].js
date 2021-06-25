@@ -1,7 +1,7 @@
 import path from 'path';
 import { Helmet } from 'react-helmet';
 
-import { getPostBySlug, getAllPosts } from 'lib/posts';
+import { getPostBySlug, getAllPosts, parseIntroFromContent } from 'lib/posts';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
 import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
@@ -89,12 +89,17 @@ export default function Post({ post, anchors }) {
               />
             )}
             <div className={styles.postContent}>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: intro,
-                }}
-              />
-              {Array.isArray(anchors) && <Anchors className={styles.postAnchors} anchors={anchors} />}
+              {intro && (
+                <div
+                  className={styles.postIntro}
+                  dangerouslySetInnerHTML={{
+                    __html: intro,
+                  }}
+                />
+              )}
+              {Array.isArray(anchors) && (
+                <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside 🧐" />
+              )}
               {video && <Video className={styles.postVideo} url={video} title={`Video for ${title}`} />}
               <div
                 dangerouslySetInnerHTML={{
@@ -136,6 +141,17 @@ export async function getStaticProps({ params = {} } = {}) {
     html: content,
   });
 
+  // In order to support having a block of intro text with a video and TOC
+  // between that and the rest of the content, we want to search the content
+  // for the <!--more--> tag if it exists which designates where that split
+  // should occur in the content
+
+  const { intro = '', content: moreContent } = parseIntroFromContent(content);
+
+  if (intro.length > 0) {
+    content = moreContent;
+  }
+
   // Build a custom OG image based on the title
   // and the categories
 
@@ -153,6 +169,7 @@ export async function getStaticProps({ params = {} } = {}) {
         ...post,
         ogImage,
         content,
+        intro,
       },
       anchors,
     },
