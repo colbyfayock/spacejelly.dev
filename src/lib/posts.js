@@ -184,7 +184,7 @@ export function mapPostData(post = {}) {
  */
 
 export function parseIntroFromContent(original) {
-  if (!original.includes('<!--more-->')) {
+  if (!original || !original.includes('<!--more-->')) {
     return {
       content: original,
     };
