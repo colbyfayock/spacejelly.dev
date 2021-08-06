@@ -15,3 +15,9 @@
   to = "https://app.snipcart.com/register?utm_source=levelup&utm_term=colbyfayock"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/levelupecommerce"
+  to = "https://www.leveluptutorials.com/tutorials/ecommerce-on-the-jamstack-with-snipcart-next-js-and-wordpress"
+  status = 302
+  force = true
