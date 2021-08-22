@@ -12,6 +12,10 @@ const PLATFORMS = [
     name: 'Free Email Newsletter',
   },
   {
+    id: 'leveluptuts',
+    name: 'Level Up Tutorials',
+  },
+  {
     id: 'youtube',
     name: 'YouTube',
   },
