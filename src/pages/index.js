@@ -47,6 +47,22 @@ export default function Home({ posts }) {
               </div>
             </div>
             <div className={styles.sidebarSection}>
+              <h3 className={styles.sidebarSectionHeader}>Ecommerce on the Jamstack</h3>
+              <div className={styles.sidebarSectionBody}>
+                <p>
+                  Learn how to build an online store with modern tools like Next.js, Snipcart, and headless WordPress.
+                </p>
+                <p>
+                  <a
+                    className={styles.sidebarButton}
+                    href="https://www.leveluptutorials.com/tutorials/ecommerce-on-the-jamstack-with-snipcart-next-js-and-wordpress"
+                  >
+                    Get Started at Level Up Tutorials
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className={styles.sidebarSection}>
               <h3 className={styles.sidebarSectionHeader}>Colbyashi Maru</h3>
               <div className={styles.sidebarSectionBody}>
                 <p>
