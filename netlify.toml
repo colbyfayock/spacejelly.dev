@@ -21,3 +21,8 @@
   to = "https://www.leveluptutorials.com/tutorials/ecommerce-on-the-jamstack-with-snipcart-next-js-and-wordpress"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
