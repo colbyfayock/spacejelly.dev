@@ -29,8 +29,8 @@ export function getSpaceJellyOgColbyashiMaruUrl() {
 export function getSpaceJellyOgPostUrl({ headline, subtext }) {
   const config = { ...CLOUDINARY_SPACE_JELLY_OG_POST };
 
-  config.text[0].text = headline;
-  config.text[1].text = subtext;
+  config.text[0].text = headline.replace(/,/g, escape(','));
+  config.text[1].text = subtext.replace(/,/g, escape(','));
 
   return contructCloudinaryUrl(config);
 }
@@ -42,7 +42,7 @@ export function getSpaceJellyOgPostUrl({ headline, subtext }) {
 export function getSpaceJellyOgPageUrl({ headline }) {
   const config = { ...CLOUDINARY_SPACE_JELLY_OG_PAGE };
 
-  config.text[0].text = headline;
+  config.text[0].text = headline.replace(/,/g, escape(','));
 
   return contructCloudinaryUrl(config);
 }
