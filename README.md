@@ -5,7 +5,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Scaling WordPress with the power of [Next.js](https://nextjs.org/) and the static web!
-
+asdf
 ## ⚡️ Quick Start
 
 ### Requirements
