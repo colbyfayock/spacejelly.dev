@@ -367,7 +367,7 @@
 .squidRobotEye {
   display: block;
   position: absolute;
-  transform: scale(0.25);
+  transform: rotate(45deg);
   top: 18px;
   left: 25px;
   z-index: 0;
