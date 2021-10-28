@@ -349,3 +349,48 @@
     }
   }
 }
+
+.squidRobot {
+  position: absolute;
+  bottom: 0;
+  width: 120px;
+  left: 40vw;
+}
+
+.squidRobotImage {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.squidRobotEye {
+  display: block;
+  position: absolute;
+  transform: scale(0.25);
+  top: 18px;
+  left: 25px;
+  z-index: 0;
+  border-radius: 25px;
+  margin-top: 1em;
+  background: rgba(0, 0, 0, 0.69);
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  background: white;
+
+  &:after {
+    content: " ";
+    bottom: 15px;
+    right: 10px;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 15px;
+  }
+
+  &:nth-child(2) {
+    left: 59px;
+  }
+}
