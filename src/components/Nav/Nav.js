@@ -47,13 +47,8 @@ const Nav = () => {
         const dimensions = eye.getBoundingClientRect();
         const x = dimensions.left + dimensions.width / 2;
         const y = dimensions.top + dimensions.height / 2;
-        console.log(dimensions);
-        console.log(x);
-        console.log(y);
         const rad = Math.atan2(event.pageX - x, event.pageY - y);
-        console.log('rad', rad);
         const rot = rad * (180 / Math.PI) * -1 + 90;
-        console.log('rot', rot);
         eye.style.transform = `rotate(${rot}deg)`;
       });
     });
