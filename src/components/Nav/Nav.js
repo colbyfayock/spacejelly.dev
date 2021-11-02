@@ -181,11 +181,6 @@ const Nav = () => {
             </a>
           </Link>
         </div>
-        <div className={styles.squidRobot}>
-          <img className={styles.squidRobotImage} src="/squid-robot.png" />
-          <span className={styles.squidRobotEye} />
-          <span className={styles.squidRobotEye} />
-        </div>
       </Section>
 
       <Section className={styles.navSection}>
