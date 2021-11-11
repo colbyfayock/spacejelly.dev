@@ -4,6 +4,8 @@ import parse from 'rehype-parse';
 import stringify from 'rehype-stringify';
 import parameterize from 'parameterize';
 
+const CLOUDINARY_HOST = 'res.cloudinary.com';
+
 /**
  * transformHtml
  * @example
@@ -17,19 +19,40 @@ import parameterize from 'parameterize';
  */
 
 export function transformHtml({ html, transform, test }) {
-  return unified()
-    .use(parse, {
-      fragment: true,
-    })
-    .use(() => {
-      return (tree) => {
-        visit(tree, test, transform);
-        return;
-      };
-    })
-    .use(stringify)
-    .processSync(html)
-    .toString();
+  return (
+    unified()
+      .use(parse, {
+        fragment: true,
+      })
+      // Fix img srcset that collides with Cloudinary ,'s
+      .use(() => {
+        return (tree) => {
+          visit(tree, testNodeIsImage(), (node) => {
+            const { properties } = node;
+
+            if (!properties.src.includes(CLOUDINARY_HOST)) return;
+
+            let srcSet = properties.srcSet.join(',').split(`,https://${CLOUDINARY_HOST}`);
+
+            srcSet[0] = srcSet[0].replace(`https://${CLOUDINARY_HOST}`, '');
+
+            srcSet = srcSet.map((set) => `https://${CLOUDINARY_HOST}${set.replace(',', '%2C')}`);
+
+            node.properties.srcSet = srcSet;
+          });
+          return;
+        };
+      })
+      .use(() => {
+        return (tree) => {
+          visit(tree, test, transform);
+          return;
+        };
+      })
+      .use(stringify)
+      .processSync(html)
+      .toString()
+  );
 }
 
 /**
@@ -90,6 +113,14 @@ export function getHeadersAnchorsFromHtml({ html, headers = ['h2'] }) {
 
 export function testNodeInHeaders(headers) {
   return (node) => headers.includes(node.tagName);
+}
+
+/**
+ * testNodeIsImage
+ */
+
+export function testNodeIsImage() {
+  return (node) => node.tagName === 'img';
 }
 
 /**
