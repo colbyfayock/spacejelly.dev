@@ -30,7 +30,7 @@ export function transformHtml({ html, transform, test }) {
           visit(tree, testNodeIsImage(), (node) => {
             const { properties } = node;
 
-            if (!properties.src.includes(CLOUDINARY_HOST)) return;
+            if (!properties.src.includes(CLOUDINARY_HOST) || !Array.isArray(properties.srcSet)) return;
 
             let srcSet = properties.srcSet.join(',').split(`,https://${CLOUDINARY_HOST}`);
 
