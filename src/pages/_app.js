@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { UniformTracker } from '@uniformdev/optimize-tracker-react';
+import { localTracker } from '../lib/tracking/local-tracker';
 
 import SiteContext from 'context/site-context';
 import { getSiteMetadata } from 'lib/site';
@@ -10,7 +12,7 @@ import { pageview } from 'lib/gtag';
 
 import 'styles/globals.scss';
 
-function App({ Component, pageProps = {}, metadata, navigation, recentPosts, categories }) {
+function App({ Component, pageProps = {}, metadata, navigation, recentPosts, categories, tracker, scoring }) {
   const router = useRouter();
 
   const context = {
@@ -36,9 +38,11 @@ function App({ Component, pageProps = {}, metadata, navigation, recentPosts, cat
   }, [router.events]);
 
   return (
-    <SiteContext.Provider value={context}>
-      <Component {...pageProps} />
-    </SiteContext.Provider>
+    <UniformTracker trackerInstance={tracker || localTracker} initialIntentScores={scoring}>
+      <SiteContext.Provider value={context}>
+        <Component {...pageProps} />
+      </SiteContext.Provider>
+    </UniformTracker>
   );
 }
 

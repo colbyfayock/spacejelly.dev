@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Link from 'next/link';
+import { CanvasClient } from '@uniformdev/canvas';
+import { Composition, Slot } from '@uniformdev/canvas-react';
 
 import { getRouteByName } from 'lib/routes';
 import { getAllPosts } from 'lib/posts';
@@ -16,10 +18,10 @@ import FormSubscribe from 'components/FormSubscribe';
 
 import styles from 'styles/pages/Home.module.scss';
 
-export default function Home({ posts }) {
+export default function Home({ posts, composition }) {
   const { metadata = {} } = useSite();
   const { title } = metadata;
-
+  console.log('composition', composition);
   return (
     <Layout>
       <h1
@@ -36,6 +38,24 @@ export default function Home({ posts }) {
             <Posts posts={posts} />
           </div>
           <aside className={styles.sidebar}>
+            <Composition
+              data={composition}
+              resolveRenderer={() => {
+                const defaultComponent = ({ title, body }) => {
+                  return (
+                    <div className={styles.sidebarSection}>
+                      <h3 className={styles.sidebarSectionHeader}>{title}</h3>
+                      <div className={styles.sidebarSectionBody}>
+                        <p>{body}</p>
+                      </div>
+                    </div>
+                  );
+                };
+                return defaultComponent;
+              }}
+            >
+              {({ title, body }) => <Slot name="sidebar" />}
+            </Composition>
             <div className={styles.sidebarSection}>
               <h3 className={styles.sidebarSectionHeader}>Newsletter</h3>
               <div className={styles.sidebarSectionBody}>
@@ -87,8 +107,23 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const { posts } = await getAllPosts();
+
+  const client = new CanvasClient({
+    // if this weren't a tutorial, ↙ should be in an environment variable :)
+    apiKey: process.env.UNIFORM_API_KEY,
+    // if this weren't a tutorial, ↙ should be in an environment variable :)
+    projectId: process.env.UNIFORM_PROJECT_ID,
+  });
+
+  // fetch the composition from Canvas
+  const { composition } = await client.getCompositionBySlug({
+    // if you used something else as your slug, use that here instead
+    slug: 'homepage',
+  });
+
   return {
     props: {
+      composition,
       posts: posts.sort((post) => (post.isSticky ? -1 : 1)),
     },
   };

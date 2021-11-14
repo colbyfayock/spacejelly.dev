@@ -1,0 +1,26 @@
+{
+  "site": {
+    "sampleSize": 0,
+    "intents": [
+      {
+        "id": "sidebarCta",
+        "signals": [
+          {
+            "type": "QS",
+            "freq": "visit",
+            "scope": "visitor",
+            "str": 50,
+            "value": {
+              "cs": false,
+              "expr": "newsletter",
+              "type": "exact"
+            },
+            "parameter": "utm_source"
+          }
+        ]
+      }
+    ],
+    "enrichments": [],
+    "tests": []
+  }
+}

@@ -10,7 +10,8 @@
     "format": "yarn prettier --config ./config/prettier.config.js --write .",
     "format:nopath": "yarn prettier --config ./config/prettier.config.js --write",
     "lint": "yarn prettier --config ./config/prettier.config.js --check .",
-    "start": "next start"
+    "start": "next start",
+    "manifest": "uniform optimize manifest download --output ./src/lib/intentManifest.json"
   },
   "husky": {
     "hooks": {
@@ -22,6 +23,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@uniformdev/canvas": "^12.2.0",
+    "@uniformdev/canvas-react": "^12.2.0",
+    "@uniformdev/cli": "^12.2.0",
+    "@uniformdev/optimize-tracker": "^12.2.0",
     "cloudinary-transformer": "^1.0.0",
     "date-fns": "^2.16.1",
     "date-fns-timezone": "^0.1.4",
@@ -32,6 +37,7 @@
     "loader-utils": "^2.0.0",
     "next": "10.0.5",
     "next-compose-plugins": "^2.2.1",
+    "nookies": "^2.5.2",
     "parameterize": "^1.0.0",
     "path": "^0.12.7",
     "react": "17.0.1",
