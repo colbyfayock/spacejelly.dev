@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
@@ -25,7 +27,6 @@
 }
 
 .postCardImage {
-
   display: block;
   margin: -1.8em -1.8em 1.8em;
 
@@ -35,9 +36,8 @@
     height: 0;
     background-size: cover;
     background-position: center center;
-    padding-top: percentage(985 / 2560);
+    padding-top: math.div(985, 2560);
   }
-
 }
 
 .postCardSticky {

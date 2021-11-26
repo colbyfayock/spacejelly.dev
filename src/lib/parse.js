@@ -1,5 +1,5 @@
-import visit from 'unist-util-visit';
-import unified from 'unified';
+import { visit } from 'unist-util-visit';
+import { unified } from 'unified';
 import parse from 'rehype-parse';
 import stringify from 'rehype-stringify';
 import parameterize from 'parameterize';

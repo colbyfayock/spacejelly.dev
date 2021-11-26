@@ -7,9 +7,7 @@ const Input = ({ children, className, ...rest }) => {
     inputClassName = `${inputClassName} ${className}`;
   }
 
-  return (
-    <input {...rest} className={inputClassName} />
-  );
+  return <input {...rest} className={inputClassName} />;
 };
 
 export default Input;
