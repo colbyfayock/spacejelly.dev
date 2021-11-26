@@ -21,7 +21,6 @@ import styles from 'styles/pages/Home.module.scss';
 export default function Home({ posts, composition }) {
   const { metadata = {} } = useSite();
   const { title } = metadata;
-  console.log('composition', composition);
   return (
     <Layout>
       <h1
