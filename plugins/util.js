@@ -411,8 +411,9 @@ function generateIndexColbyashiMaru({ episodes }) {
  * getSitemapData
  */
 
-function generateSitemap({ posts = [], pages = [] }) {
+function generateSitemap({ posts = [], pages = [] }, nextConfig = {}) {
   const { homepage = '' } = config;
+  const { trailingSlash } = nextConfig;
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -423,7 +424,7 @@ function generateSitemap({ posts = [], pages = [] }) {
         ${pages
           .map((page) => {
             return `<url>
-                      <loc>${homepage}/${page.slug}</loc>
+                      <loc>${homepage}/${page.slug}${trailingSlash ? '/' : ''}</loc>
                       <priority>0.3</priority>
                       <lastmod>${page.modified && new Date(page.modified).toISOString()}</lastmod>
                     </url>
@@ -433,7 +434,7 @@ function generateSitemap({ posts = [], pages = [] }) {
           ${posts
             .map((post) => {
               return `<url>
-                        <loc>${homepage}/posts/${post.slug}</loc>
+                        <loc>${homepage}/posts/${post.slug}${trailingSlash ? '/' : ''}</loc>
                         <lastmod>${post.modified && new Date(post.modified).toISOString()}</lastmod>
                       </url>
                   `;

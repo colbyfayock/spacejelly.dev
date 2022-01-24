@@ -10,7 +10,7 @@ class WebpackPlugin {
   }
 
   async index(compilation, options) {
-    const { url, host, plugin, verbose = false } = options;
+    const { url, host, plugin, verbose = false, nextConfig } = options;
     let endpoint = url;
 
     if (!endpoint && host) {
@@ -35,7 +35,7 @@ class WebpackPlugin {
 
       const data = await plugin.getData(apolloClient, plugin.name, verbose);
 
-      const file = plugin.generate(data);
+      const file = plugin.generate(data, nextConfig);
 
       await createFile(file, plugin.name, plugin.outputDirectory, plugin.outputLocation, verbose);
 
