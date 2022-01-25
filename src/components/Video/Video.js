@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaPlay } from 'react-icons/fa';
 
 import { getUrlParamsFromString } from 'lib/parse';
@@ -6,8 +6,20 @@ import ClassName from 'models/classname';
 
 import styles from './Video.module.scss';
 
-export const Video = ({ className, title, url, width = 560, height = 315, thumbnail }) => {
-  const [isActive, setIsActive] = useState(false);
+export const Video = ({
+  className,
+  title,
+  url,
+  width = 560,
+  height = 315,
+  thumbnail,
+  isActive: defaultIsActive = false,
+}) => {
+  const [isActive, setIsActive] = useState(defaultIsActive);
+
+  useEffect(() => {
+    if (isActive !== defaultIsActive) setIsActive(defaultIsActive);
+  }, [defaultIsActive]);
 
   const videoClassName = new ClassName(styles.video);
 
@@ -19,8 +31,6 @@ export const Video = ({ className, title, url, width = 560, height = 315, thumbn
     e.preventDefault();
     setIsActive(true);
   }
-
-  console.log('thumbnail', thumbnail);
 
   return (
     <figure className={videoClassName.toString()}>

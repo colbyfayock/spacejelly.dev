@@ -7,6 +7,7 @@ import { ArticleJsonLd } from 'lib/json-ld';
 import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
 import { addIdsToHeadersHtml, getHeadersAnchorsFromHtml } from 'lib/parse';
 import useSite from 'hooks/use-site';
+import useOnLoad from 'hooks/use-onload';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
@@ -44,6 +45,8 @@ export default function Post({ post, anchors }) {
   };
 
   const metaDescription = `Read ${title} at ${siteTitle}.`;
+
+  const { loaded: pageIsLoaded } = useOnLoad();
 
   return (
     <Layout>
@@ -100,7 +103,9 @@ export default function Post({ post, anchors }) {
               {Array.isArray(anchors) && (
                 <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside 🧐" />
               )}
-              {video && <Video className={styles.postVideo} {...video} title={`Video for ${title}`} />}
+              {video && (
+                <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={pageIsLoaded} />
+              )}
               <div
                 dangerouslySetInnerHTML={{
                   __html: content,
