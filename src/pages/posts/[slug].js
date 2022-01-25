@@ -100,7 +100,7 @@ export default function Post({ post, anchors }) {
               {Array.isArray(anchors) && (
                 <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside 🧐" />
               )}
-              {video && <Video className={styles.postVideo} url={video} title={`Video for ${title}`} />}
+              {video && <Video className={styles.postVideo} {...video} title={`Video for ${title}`} />}
               <div
                 dangerouslySetInnerHTML={{
                   __html: content,
@@ -162,6 +162,34 @@ export async function getStaticProps({ params = {} } = {}) {
       .map(({ name }) => name)
       .join('     '),
   });
+
+  if (post.video) {
+    let oembed, thumbnail;
+
+    if (post.video.includes('youtube.com')) {
+      oembed = await fetch(`https://www.youtube.com/oembed?url=${post.video}`).then((r) => r.json());
+
+      const { thumbnail_url } = oembed;
+      const maxResUrl = thumbnail_url.replace('hqdefault', 'maxresdefault');
+
+      const maxResExists = await fetch(maxResUrl, { method: 'HEAD' }).then((r) => r.ok);
+
+      thumbnail = maxResExists ? maxResUrl : thumbnail_url;
+    }
+
+    if (oembed) {
+      post.video = {
+        url: post.video,
+        provider: oembed.provider_name,
+        thumbnail: {
+          url: thumbnail,
+          width: oembed.thumbnail_width,
+          height: oembed.thumbnail_height,
+          html: oembed.html,
+        },
+      };
+    }
+  }
 
   return {
     props: {
