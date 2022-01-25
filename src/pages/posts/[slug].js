@@ -1,5 +1,6 @@
 import path from 'path';
 import { Helmet } from 'react-helmet';
+import { useInView } from 'react-intersection-observer';
 
 import { getPostBySlug, getAllPosts, parseIntroFromContent } from 'lib/posts';
 import { formatDate } from 'lib/datetime';
@@ -47,6 +48,8 @@ export default function Post({ post, anchors }) {
   const metaDescription = `Read ${title} at ${siteTitle}.`;
 
   const { loaded: pageIsLoaded } = useOnLoad();
+
+  const { ref: videoContainerRef, inView, entry } = useInView();
 
   return (
     <Layout>
@@ -104,7 +107,9 @@ export default function Post({ post, anchors }) {
                 <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside 🧐" />
               )}
               {video && (
-                <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={pageIsLoaded} />
+                <div ref={videoContainerRef}>
+                  <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
+                </div>
               )}
               <div
                 dangerouslySetInnerHTML={{
