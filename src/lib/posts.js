@@ -9,7 +9,8 @@ import {
   QUERY_ALL_POSTS_INDEX,
   getQueryPostBySlug,
   getQueryPostsByAuthorSlug,
-  getQueryPostsByCategoryId,
+  QUERY_POSTS_BY_CATEGORY_ID_INDEX,
+  QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE,
 } from 'data/posts';
 
 /**
@@ -86,11 +87,21 @@ export async function getPostsByAuthorSlug(slug) {
  * getPostsByCategoryId
  */
 
-export async function getPostsByCategoryId(categoryId) {
+const postsByCategoryIdIncludesTypes = {
+  index: QUERY_POSTS_BY_CATEGORY_ID_INDEX,
+  archive: QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE,
+};
+
+export async function getPostsByCategoryId(categoryId, options = {}) {
+  const { queryIncludes } = options;
+
   const apolloClient = getApolloClient();
 
   const data = await apolloClient.query({
-    query: getQueryPostsByCategoryId(categoryId),
+    query: allPostsIncludesTypes[queryIncludes],
+    variables: {
+      categoryId,
+    },
   });
 
   const posts = data?.data.posts.edges.map(({ node = {} }) => node);

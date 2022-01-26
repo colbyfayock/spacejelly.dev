@@ -146,63 +146,47 @@ export function getQueryPostBySlug(slug) {
   `;
 }
 
-export function getQueryPostsByCategoryId(categoryId) {
-  return gql`
-    query {
-      posts(where: { categoryId: ${categoryId} }) {
-        edges {
-          node {
-            author {
-              node {
-                avatar {
-                  height
-                  url
-                  width
-                }
-                id
-                name
-                slug
-              }
-            }
-            id
-            categories {
-              edges {
-                node {
-                  categoryId
-                  id
-                  name
-                  slug
-                }
-              }
-            }
-            content
-            date
-            excerpt
-            featuredImage {
-              node {
-                altText
-                caption
-                id
-                sizes
-                sourceUrl
-                srcSet
-              }
-            }
-            modifiedGmt
-            postId
-            post {
-              cardtitle
-              video
-            }
-            title
-            slug
-            isSticky
-          }
+export const QUERY_POSTS_BY_CATEGORY_ID_INDEX = gql`
+  ${POST_FIELDS}
+  query PostBySlug($categoryId: Int!) {
+    posts(where: { categoryId: $categoryId }) {
+      edges {
+        node {
+          ...PostFields
         }
       }
     }
-  `;
-}
+  }
+`;
+
+export const QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE = gql`
+  ${POST_FIELDS}
+  query PostBySlug($categoryId: Int!) {
+    posts(where: { categoryId: $categoryId }) {
+      edges {
+        node {
+          ...PostFields
+          author {
+            node {
+              avatar {
+                height
+                url
+                width
+              }
+              id
+              name
+              slug
+            }
+          }
+          date
+          excerpt
+          postId
+          isSticky
+        }
+      }
+    }
+  }
+`;
 
 export function getQueryPostsByAuthorSlug(slug) {
   return gql`

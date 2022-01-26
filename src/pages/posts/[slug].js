@@ -1,8 +1,10 @@
 import path from 'path';
+import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 import { useInView } from 'react-intersection-observer';
 
-import { getPostBySlug, getAllPosts, parseIntroFromContent } from 'lib/posts';
+import { getPostBySlug, getAllPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
+import { categoryPathBySlug } from 'lib/categories';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
 import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
@@ -19,10 +21,11 @@ import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
 import Anchors from 'components/Anchors';
 import Video from 'components/Video';
+import Posts from 'components/Posts';
 
 import styles from 'styles/pages/Post.module.scss';
 
-export default function Post({ post, anchors }) {
+export default function Post({ post, anchors, related }) {
   const { metadata } = useSite();
   const { title: siteTitle } = metadata;
 
@@ -111,21 +114,34 @@ export default function Post({ post, anchors }) {
                   <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
                 </div>
               )}
+
               <div
                 dangerouslySetInnerHTML={{
                   __html: content,
                 }}
               />
+
+              <div className={styles.postFooter}>
+                <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
+              </div>
             </div>
           </Container>
         </Section>
-      </Content>
 
-      <Section className={styles.postFooter}>
-        <Container>
-          <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
-        </Container>
-      </Section>
+        <Section className={styles.postRelated}>
+          <Container>
+            <h2>
+              More from{' '}
+              <strong>
+                <Link href={categoryPathBySlug(related.slug)}>
+                  <a>{related.name}</a>
+                </Link>
+              </strong>
+            </h2>
+            <Posts className={styles.postRelatedPosts} posts={related?.posts} />
+          </Container>
+        </Section>
+      </Content>
 
       <ArticleJsonLd post={post} siteTitle={siteTitle} />
     </Layout>
@@ -136,6 +152,12 @@ export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
   const { cardtitle, title, categories } = post;
   let { content } = post;
+
+  const relatedCategory = categories[0];
+  const related = await getPostsByCategoryId(relatedCategory?.categoryId, {
+    queryIncludes: 'index',
+  });
+  const relatedPosts = related?.posts.filter(({ slug }) => slug !== params?.slug).slice(0, 3);
 
   // Parse the HTML and add IDs to all of the
   // h2 headers
@@ -210,6 +232,10 @@ export async function getStaticProps({ params = {} } = {}) {
         intro,
       },
       anchors,
+      related: {
+        ...relatedCategory,
+        posts: relatedPosts,
+      },
     },
   };
 }
