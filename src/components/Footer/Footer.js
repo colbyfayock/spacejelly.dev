@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import useSite from 'hooks/use-site';
 import { postPathBySlug } from 'lib/posts';
+import { getRouteByName } from 'lib/routes';
 import { categoryPathBySlug } from 'lib/categories';
 
 import Section from 'components/Section';
@@ -65,6 +66,22 @@ const Footer = () => {
                   </ul>
                 </li>
               )}
+
+              <li>
+                <p className={styles.footerMenuTitle}>
+                  <strong>Space Jelly</strong>
+                </p>
+                <ul className={styles.footerMenuItems}>
+                  <li>
+                    <Link href={getRouteByName('colbyashiMaru')?.path}>
+                      <a>Colbyashi Maru</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <a href={getRouteByName('sitemap')?.path}>Sitemap</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </Container>
         </Section>

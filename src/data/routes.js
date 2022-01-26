@@ -64,4 +64,13 @@ routes.push({
   path: '/categories/react/',
 });
 
+/**
+ * Misc
+ */
+
+routes.push({
+  name: 'sitemap',
+  path: '/sitemap.xml',
+});
+
 export default routes;

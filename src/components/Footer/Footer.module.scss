@@ -39,7 +39,8 @@
     margin-bottom: 2em;
 
     @include gtMedium() {
-      max-width: 15em;
+      max-width: 20em;
+      width: auto;
       margin: 2em;
     }
   }
@@ -49,8 +50,10 @@
   display: inline-block;
   color: $color-gray-50;
   text-decoration: none;
-  margin-bottom: 1.4em;
+  margin: 0 0 1.4em;
+}
 
+a.footerMenuTitle {
   @include withHover() {
     &:hover {
       color: $color-brand-purple;
