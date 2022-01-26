@@ -193,7 +193,7 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <a href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
+                <a className="link-external" href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
                   Videos
                 </a>
               </li>
@@ -207,8 +207,8 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link href={getRouteByName('categoryGithubActions')?.path}>
-                  <a>GitHub Actions</a>
+                <Link href={getRouteByName('categoryMedia')?.path}>
+                  <a>Images & Video</a>
                 </Link>
               </li>
             </ul>

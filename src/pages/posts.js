@@ -12,7 +12,9 @@ export default function Posts({ posts }) {
 }
 
 export async function getStaticProps({ params = {} } = {}) {
-  const { posts } = await getAllPosts();
+  const { posts } = await getAllPosts({
+    queryIncludes: 'archive',
+  });
 
   return {
     props: {

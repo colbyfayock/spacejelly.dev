@@ -1,10 +1,45 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_ALL_POSTS = gql`
+export const POST_FIELDS = gql`
+  fragment PostFields on Post {
+    id
+    categories {
+      edges {
+        node {
+          categoryId
+          id
+          name
+          slug
+        }
+      }
+    }
+    date
+    title
+    postId
+    slug
+  }
+`;
+
+export const QUERY_ALL_POSTS_INDEX = gql`
+  ${POST_FIELDS}
   {
     posts(first: 10000) {
       edges {
         node {
+          ...PostFields
+        }
+      }
+    }
+  }
+`;
+
+export const QUERY_ALL_POSTS_ARCHIVE = gql`
+  ${POST_FIELDS}
+  {
+    posts(first: 10000) {
+      edges {
+        node {
+          ...PostFields
           author {
             node {
               avatar {
@@ -17,38 +52,39 @@ export const QUERY_ALL_POSTS = gql`
               slug
             }
           }
-          id
-          categories {
-            edges {
-              node {
-                categoryId
-                id
-                name
-                slug
+          excerpt
+          isSticky
+        }
+      }
+    }
+  }
+`;
+
+export const QUERY_ALL_POSTS = gql`
+  ${POST_FIELDS}
+  {
+    posts(first: 10000) {
+      edges {
+        node {
+          ...PostFields
+          author {
+            node {
+              avatar {
+                height
+                url
+                width
               }
+              id
+              name
+              slug
             }
           }
           content
-          date
-          excerpt
-          featuredImage {
-            node {
-              altText
-              caption
-              sourceUrl
-              srcSet
-              sizes
-              id
-            }
-          }
           modifiedGmt
-          postId
           post {
             cardtitle
             video
           }
-          title
-          slug
           isSticky
         }
       }

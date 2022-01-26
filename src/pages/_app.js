@@ -45,15 +45,19 @@ function App({ Component, pageProps = {}, metadata, navigation, recentPosts, cat
 App.getInitialProps = async function () {
   const { posts: recentPosts } = await getRecentPosts({
     count: 5,
+    queryIncludes: 'index',
   });
 
   const { categories } = await getCategories({
     count: 5,
   });
 
+  const metadata = await getSiteMetadata();
+  const navigation = await getNavigationPages();
+
   return {
-    metadata: await getSiteMetadata(),
-    navigation: await getNavigationPages(),
+    metadata,
+    navigation,
     recentPosts,
     categories,
   };

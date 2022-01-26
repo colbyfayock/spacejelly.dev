@@ -26,6 +26,11 @@ routes.push({
 });
 
 routes.push({
+  name: 'posts',
+  path: '/posts/',
+});
+
+routes.push({
   name: 'store',
   path: '/store/',
 });
@@ -42,6 +47,11 @@ routes.push({
 routes.push({
   name: 'categoryGithubActions',
   path: '/categories/github-actions/',
+});
+
+routes.push({
+  name: 'categoryMedia',
+  path: '/categories/media/',
 });
 
 routes.push({

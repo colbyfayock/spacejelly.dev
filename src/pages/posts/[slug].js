@@ -217,7 +217,9 @@ export async function getStaticProps({ params = {} } = {}) {
 export async function getStaticPaths() {
   const routes = {};
 
-  const { posts } = await getAllPosts();
+  const { posts } = await getAllPosts({
+    queryIncludes: 'index',
+  });
 
   const paths = posts.map((post) => {
     const { slug } = post;

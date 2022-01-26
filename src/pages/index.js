@@ -32,8 +32,13 @@ export default function Home({ posts }) {
       <Section className={styles.postsSection}>
         <Container className={styles.postsContainer}>
           <div className={styles.content}>
-            <h2 className="sr-only">Posts</h2>
+            <h2 className={`${styles.contentHeader} sr-only`}>Latest Posts</h2>
             <Posts posts={posts} />
+            <p className={styles.postsAllPosts}>
+              <Link href={getRouteByName('posts')?.path}>
+                <a>View All Posts</a>
+              </Link>
+            </p>
           </div>
           <aside className={styles.sidebar}>
             <div className={styles.sidebarSection}>
@@ -86,10 +91,13 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const { posts } = await getAllPosts();
+  const { posts } = await getAllPosts({
+    queryIncludes: 'archive',
+  });
+
   return {
     props: {
-      posts: posts.sort((post) => (post.isSticky ? -1 : 1)),
+      posts: posts.sort((post) => (post.isSticky ? -1 : 1)).slice(0, 5),
     },
   };
 }

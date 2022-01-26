@@ -103,3 +103,11 @@ figure {
 .text-center {
   text-align: center;
 }
+
+.link-external {
+  &:after {
+    content: "⇱";
+    transform: scaleX(-1);
+    margin-left: 0.4em;
+  }
+}

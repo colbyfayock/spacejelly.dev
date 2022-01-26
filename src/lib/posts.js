@@ -3,7 +3,14 @@ import { getApolloClient } from 'lib/apollo-client';
 import { updateUserAvatar } from 'lib/users';
 import { sortObjectsByDate } from 'lib/datetime';
 
-import { QUERY_ALL_POSTS, getQueryPostBySlug, getQueryPostsByAuthorSlug, getQueryPostsByCategoryId } from 'data/posts';
+import {
+  QUERY_ALL_POSTS,
+  QUERY_ALL_POSTS_ARCHIVE,
+  QUERY_ALL_POSTS_INDEX,
+  getQueryPostBySlug,
+  getQueryPostsByAuthorSlug,
+  getQueryPostsByCategoryId,
+} from 'data/posts';
 
 /**
  * postPathBySlug
@@ -35,11 +42,19 @@ export async function getPostBySlug(slug) {
  * getAllPosts
  */
 
-export async function getAllPosts(options) {
+const allPostsIncludesTypes = {
+  all: QUERY_ALL_POSTS,
+  archive: QUERY_ALL_POSTS_ARCHIVE,
+  index: QUERY_ALL_POSTS_INDEX,
+};
+
+export async function getAllPosts(options = {}) {
+  const { queryIncludes = 'all' } = options;
+
   const apolloClient = getApolloClient();
 
   const data = await apolloClient.query({
-    query: QUERY_ALL_POSTS,
+    query: allPostsIncludesTypes[queryIncludes],
   });
 
   const posts = data?.data.posts.edges.map(({ node = {} }) => node);
@@ -89,8 +104,8 @@ export async function getPostsByCategoryId(categoryId) {
  * getRecentPosts
  */
 
-export async function getRecentPosts({ count }) {
-  const { posts } = await getAllPosts();
+export async function getRecentPosts({ count, ...options }) {
+  const { posts } = await getAllPosts(options);
   const sorted = sortObjectsByDate(posts);
   return {
     posts: sorted.slice(0, count),
