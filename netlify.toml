@@ -44,3 +44,11 @@
   from = "/*"
   to = "/404"
   status = 404
+
+## GitHub
+  
+[[redirects]]
+  from = "/gearstarter"
+  to = "https://github.com/colbyfayock/space-jelly-gear-starter"
+  status = 302
+  force = true
