@@ -1,18 +1,27 @@
 import { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
 
-import searchIndex from 'public/wp-search.json';
-
 const searchKeys = ['slug', 'title'];
 
-const fuse = new Fuse(searchIndex.posts, {
-  keys: searchKeys,
-  isCaseSensitive: false,
-});
+let fuse;
 
 export default function useSearch({ defaultQuery, maxResults } = {}) {
+  const [index, setIndex] = useState();
   const [query, setQuery] = useState(defaultQuery);
-  let results = query ? searchIndex.posts : [];
+  let results = query && index ? index.posts : [];
+
+  useEffect(() => {
+    (async function run() {
+      const results = await fetch('/wp-search.json').then((r) => r.json());
+
+      setIndex(results);
+
+      fuse = new Fuse(results.posts, {
+        keys: searchKeys,
+        isCaseSensitive: false,
+      });
+    })();
+  }, []);
 
   // If the defaultQuery argument changes, the hook should reflect
   // that update and set that as the new state
@@ -22,7 +31,7 @@ export default function useSearch({ defaultQuery, maxResults } = {}) {
   // If we have a query, make a search with fuse. Otherwise, don't
   // modify the results to avoid passing back empty results
 
-  if (query) {
+  if (query && fuse) {
     results = fuse.search(query).map(({ item }) => item);
   }
 

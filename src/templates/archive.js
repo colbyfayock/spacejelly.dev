@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { getPosts } from 'lib/posts';
@@ -27,6 +27,8 @@ export default function TemplateArchive({
   postOptions = DEFAULT_POST_OPTIONS,
   slug,
 }) {
+  const [index, setIndex] = useState();
+
   const { metadata = {} } = useSite();
   const { title: siteTitle } = metadata;
 
@@ -39,6 +41,13 @@ export default function TemplateArchive({
   const ogImage = getSpaceJellyOgPageUrl({
     headline: title,
   });
+
+  useEffect(() => {
+    (async function run() {
+      const results = fetch('/wp-search.json').then((r) => r.json());
+      setIndex(results);
+    })();
+  }, []);
 
   return (
     <Layout>
