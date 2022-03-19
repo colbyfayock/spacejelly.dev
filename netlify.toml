@@ -45,6 +45,20 @@
   to = "/404"
   status = 404
 
+## Sponsors / Affiliates
+
+[[redirects]]
+  from = "/butter"
+  to = "https://buttercms.com/?utm_source=colbyfayock&utm_medium=affiliate&utm_campaign=affiliate"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/buttergatsby"
+  to = "https://buttercms.com/docs/api-client/gatsbyjs?utm_source=colbyfayock&utm_medium=affiliate&utm_campaign=affiliate#Quickstart"
+  status = 302
+  force = true
+
 ## GitHub
   
 [[redirects]]
