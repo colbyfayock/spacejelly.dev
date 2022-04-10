@@ -154,7 +154,7 @@ export function getQueryPostBySlug(slug) {
 
 export const QUERY_POSTS_BY_CATEGORY_ID_INDEX = gql`
   ${POST_FIELDS}
-  query PostBySlug($categoryId: Int!) {
+  query PostByCategoryIdIndex($categoryId: Int!) {
     posts(where: { categoryId: $categoryId }) {
       edges {
         node {
@@ -167,7 +167,7 @@ export const QUERY_POSTS_BY_CATEGORY_ID_INDEX = gql`
 
 export const QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE = gql`
   ${POST_FIELDS}
-  query PostBySlug($categoryId: Int!) {
+  query PostByCategoryIdArchive($categoryId: Int!) {
     posts(where: { categoryId: $categoryId }) {
       edges {
         node {
@@ -196,7 +196,7 @@ export const QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE = gql`
 
 export function getQueryPostsByAuthorSlug(slug) {
   return gql`
-    query {
+    query PostByAuthorslug {
       posts(where: {authorName: "${slug}"}) {
         edges {
           node {

@@ -98,7 +98,7 @@ export async function getPostsByCategoryId(categoryId, options = {}) {
   const apolloClient = getApolloClient();
 
   const data = await apolloClient.query({
-    query: allPostsIncludesTypes[queryIncludes],
+    query: postsByCategoryIdIncludesTypes[queryIncludes],
     variables: {
       categoryId,
     },
