@@ -349,7 +349,6 @@ function generateFeed({ posts = [], metadata = {} }) {
  */
 
 function generateIndexSearch({ posts }) {
-  console.log('posts', posts);
   const index = posts.map((post = {}) => {
     // We need to decode the title because we're using the
     // rendered version which assumes this value will be used

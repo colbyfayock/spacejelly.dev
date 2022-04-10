@@ -69,18 +69,6 @@ export default function Home({ posts }) {
                 </p>
               </SidebarSectionBody>
             </SidebarSection>
-            <SidebarSection>
-              <SidebarSectionHeader>Colbyashi Maru</SidebarSectionHeader>
-              <SidebarSectionBody>
-                <p>
-                  Watch developers like you face off with Colbyashi Maru, a 1-hour code challenge with today's most
-                  exciting web tech.
-                </p>
-                <p>
-                  <Button href={getRouteByName('colbyashiMaru')?.path}>See the Schedule</Button>
-                </p>
-              </SidebarSectionBody>
-            </SidebarSection>
           </Sidebar>
         </Container>
       </Section>

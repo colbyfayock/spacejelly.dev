@@ -27,6 +27,7 @@ import Sidebar from 'components/Sidebar';
 import SidebarSection from 'components/SidebarSection';
 import SidebarSectionHeader from 'components/SidebarSectionHeader';
 import SidebarSectionBody from 'components/SidebarSectionBody';
+import FormSubscribe from 'components/FormSubscribe';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -165,6 +166,13 @@ export default function Post({ post, anchors, related }) {
                   </SidebarSectionBody>
                 </SidebarSection>
               )}
+              <SidebarSection>
+                <SidebarSectionHeader>Newsletter</SidebarSectionHeader>
+                <SidebarSectionBody>
+                  <p>Get tutorials like this right to your inbox each week!</p>
+                  <FormSubscribe />
+                </SidebarSectionBody>
+              </SidebarSection>
             </Sidebar>
           </Container>
         </Section>

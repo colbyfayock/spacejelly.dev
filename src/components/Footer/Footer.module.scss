@@ -5,6 +5,27 @@
   width: 100%;
 }
 
+.footerSignup {
+  text-align: center;
+
+  h3 {
+    max-width: 20em;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    margin: 0 auto 1em;
+  }
+
+  form {
+    max-width: 20em;
+    margin: 0 auto;
+  }
+
+  label {
+    color: white;
+  }
+}
+
 .footerMenu {
   margin: 0;
 

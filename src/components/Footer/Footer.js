@@ -7,6 +7,7 @@ import { categoryPathBySlug } from 'lib/categories';
 
 import Section from 'components/Section';
 import Container from 'components/Container';
+import FormSubscribe from 'components/FormSubscribe';
 
 import styles from './Footer.module.scss';
 
@@ -20,6 +21,12 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
+      <Section className={styles.footerSignup}>
+        <Container>
+          <h3>Get free tutorials and web dev resources straight to your inbox!</h3>
+          <FormSubscribe />
+        </Container>
+      </Section>
       {hasMenu && (
         <Section className={styles.footerMenu}>
           <Container>
