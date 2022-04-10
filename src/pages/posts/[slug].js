@@ -134,29 +134,37 @@ export default function Post({ post, anchors, related }) {
                   dangerouslySetInnerHTML={featuredImage.caption}
                 />
               )}
-              <SidebarSection>
-                <SidebarSectionHeader>Demo</SidebarSectionHeader>
-                <SidebarSectionBody>
-                  <p>
-                    <Button href={demowebsiteurl} display="full">
-                      View Demo Website
-                    </Button>
-                    <Button href={demorepourl} display="full">
-                      See the Code
-                    </Button>
-                  </p>
-                </SidebarSectionBody>
-              </SidebarSection>
-              <SidebarSection>
-                <SidebarSectionHeader>Starter</SidebarSectionHeader>
-                <SidebarSectionBody>
-                  <p>
-                    <Button href={demowebsiteurl} display="full">
-                      Go to Repository
-                    </Button>
-                  </p>
-                </SidebarSectionBody>
-              </SidebarSection>
+              {(demowebsiteurl || demorepourl) && (
+                <SidebarSection>
+                  <SidebarSectionHeader>Demo</SidebarSectionHeader>
+                  <SidebarSectionBody>
+                    <p>
+                      {demowebsiteurl && (
+                        <Button href={demowebsiteurl} display="full">
+                          View Demo Website
+                        </Button>
+                      )}
+                      {demorepourl && (
+                        <Button href={demorepourl} display="full">
+                          See the Code
+                        </Button>
+                      )}
+                    </p>
+                  </SidebarSectionBody>
+                </SidebarSection>
+              )}
+              {demowebsiteurl && (
+                <SidebarSection>
+                  <SidebarSectionHeader>Starter</SidebarSectionHeader>
+                  <SidebarSectionBody>
+                    <p>
+                      <Button href={demowebsiteurl} display="full">
+                        Go to Repository
+                      </Button>
+                    </p>
+                  </SidebarSectionBody>
+                </SidebarSection>
+              )}
             </Sidebar>
           </Container>
         </Section>
