@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
 
-const searchKeys = ['slug', 'title'];
+const searchKeys = [
+  {
+    name: 'title',
+    weight: 1,
+  },
+  {
+    name: 'categories',
+    weight: 0.1,
+  },
+];
 
 let fuse;
 
