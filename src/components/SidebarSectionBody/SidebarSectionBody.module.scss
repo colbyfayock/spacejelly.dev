@@ -1,0 +1,35 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.sidebarSectionBody {
+  padding: 1.2em;
+
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  [data-display-type="button"] {
+    width: 100%;
+    font-size: 0.9em;
+    text-align: center;
+    margin: 0.5em 0;
+
+    @include gtHuge() {
+      width: auto;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -83,6 +83,9 @@ export const QUERY_ALL_POSTS = gql`
           modifiedGmt
           post {
             cardtitle
+            demorepourl
+            demostarterurl
+            demowebsiteurl
             video
           }
           isSticky
@@ -136,6 +139,9 @@ export function getQueryPostBySlug(slug) {
         postId
         post {
           cardtitle
+          demorepourl
+          demostarterurl
+          demowebsiteurl
           video
         }
         title
@@ -221,6 +227,9 @@ export function getQueryPostsByAuthorSlug(slug) {
             postId
             post {
               cardtitle
+              demorepourl
+              demostarterurl
+              demowebsiteurl
               video
             }
             slug

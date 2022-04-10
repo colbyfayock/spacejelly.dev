@@ -11,8 +11,13 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
+import Sidebar from 'components/Sidebar';
+import SidebarSection from 'components/SidebarSection';
+import SidebarSectionHeader from 'components/SidebarSectionHeader';
+import SidebarSectionBody from 'components/SidebarSectionBody';
 import Posts from 'components/Posts';
 import FormSubscribe from 'components/FormSubscribe';
+import Button from 'components/Button';
 
 import styles from 'styles/pages/Home.module.scss';
 
@@ -40,48 +45,43 @@ export default function Home({ posts }) {
               </Link>
             </p>
           </div>
-          <aside className={styles.sidebar}>
-            <div className={styles.sidebarSection}>
-              <h3 className={styles.sidebarSectionHeader}>Newsletter</h3>
-              <div className={styles.sidebarSectionBody}>
+          <Sidebar>
+            <SidebarSection>
+              <SidebarSectionHeader>Newsletter</SidebarSectionHeader>
+              <SidebarSectionBody>
                 <p>
                   Sign up to receive all things Space Jelly and more awesome content from me, Colby Fayock, straight to
                   your inbox!
                 </p>
                 <FormSubscribe />
-              </div>
-            </div>
-            <div className={styles.sidebarSection}>
-              <h3 className={styles.sidebarSectionHeader}>Ecommerce on the Jamstack</h3>
-              <div className={styles.sidebarSectionBody}>
+              </SidebarSectionBody>
+            </SidebarSection>
+            <SidebarSection>
+              <SidebarSectionHeader>Ecommerce on the Jamstack</SidebarSectionHeader>
+              <SidebarSectionBody>
                 <p>
                   Learn how to build an online store with modern tools like Next.js, Snipcart, and headless WordPress.
                 </p>
                 <p>
-                  <a
-                    className={styles.sidebarButton}
-                    href="https://www.leveluptutorials.com/tutorials/ecommerce-on-the-jamstack-with-snipcart-next-js-and-wordpress"
-                  >
+                  <Button href="https://www.leveluptutorials.com/tutorials/ecommerce-on-the-jamstack-with-snipcart-next-js-and-wordpress">
                     Get Started at Level Up Tutorials
-                  </a>
+                  </Button>
                 </p>
-              </div>
-            </div>
-            <div className={styles.sidebarSection}>
-              <h3 className={styles.sidebarSectionHeader}>Colbyashi Maru</h3>
-              <div className={styles.sidebarSectionBody}>
+              </SidebarSectionBody>
+            </SidebarSection>
+            <SidebarSection>
+              <SidebarSectionHeader>Colbyashi Maru</SidebarSectionHeader>
+              <SidebarSectionBody>
                 <p>
                   Watch developers like you face off with Colbyashi Maru, a 1-hour code challenge with today's most
                   exciting web tech.
                 </p>
                 <p>
-                  <Link href={getRouteByName('colbyashiMaru')?.path}>
-                    <a className={styles.sidebarButton}>See the Schedule</a>
-                  </Link>
+                  <Button href={getRouteByName('colbyashiMaru')?.path}>See the Schedule</Button>
                 </p>
-              </div>
-            </div>
-          </aside>
+              </SidebarSectionBody>
+            </SidebarSection>
+          </Sidebar>
         </Container>
       </Section>
 

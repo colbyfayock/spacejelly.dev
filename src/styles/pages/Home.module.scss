@@ -1,7 +1,7 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
-@import "../../components/Button/Button.module.scss";
+@import "components/Button/Button.module.scss";
 
 .contentHeader {
   color: white;
@@ -39,62 +39,5 @@
     @include gtLarge() {
       width: auto;
     }
-  }
-}
-
-.sidebar {
-  flex-shrink: 0;
-  width: 100%;
-  margin-top: 2rem;
-
-  @include gtLarge() {
-    width: 20rem;
-    margin-top: 0;
-    margin-left: 3rem;
-  }
-}
-
-.sidebarSection {
-  background-color: white;
-  @include boxShadow();
-  margin-bottom: 1.5rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.sidebarSectionHeader {
-  color: white;
-  font-weight: bold;
-  font-size: 1.2em;
-  background-color: $color-brand-aqua;
-  padding: 0.6em 0.8em;
-  margin: 0;
-}
-
-.sidebarSectionBody {
-  padding: 1.2em;
-
-  p {
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.sidebarButton {
-  @extend .button;
-  display: inline-block;
-  width: 100%;
-  font-size: 0.9em;
-  text-align: center;
-
-  @include gtLarge() {
-    width: auto;
   }
 }

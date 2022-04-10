@@ -1,0 +1,14 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.sidebar {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: 2rem;
+
+  @include gtLarge() {
+    width: 20rem;
+    margin-top: 0;
+    margin-left: 3rem;
+  }
+}

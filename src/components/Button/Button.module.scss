@@ -2,6 +2,7 @@
 @import "styles/util/__util";
 
 .button {
+  display: inline-block;
   color: white;
   font-family: inherit;
   font-size: 1.3em;
@@ -10,4 +11,9 @@
   padding: 0.8em 1.4em;
   border: 0;
   cursor: pointer;
+
+  &[data-display="full"] {
+    display: block;
+    width: 100%;
+  }
 }

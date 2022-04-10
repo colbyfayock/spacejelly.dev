@@ -44,6 +44,54 @@
   }
 }
 
+@mixin gtMax() {
+  @media (min-width: $breakpoint-max) {
+    @content;
+  }
+}
+
+@mixin ltTiny() {
+  @media (max-width: ( $breakpoint-tiny - 1)) {
+    @content;
+  }
+}
+
+@mixin ltSmall() {
+  @media (max-width: ( $breakpoint-small - 1)) {
+    @content;
+  }
+}
+
+@mixin ltMedium() {
+  @media (max-width: ( $breakpoint-medium - 1)) {
+    @content;
+  }
+}
+
+@mixin ltLarge() {
+  @media (max-width: ( $breakpoint-large - 1)) {
+    @content;
+  }
+}
+
+@mixin ltXlarge() {
+  @media (max-width: ( $breakpoint-xlarge - 1)) {
+    @content;
+  }
+}
+
+@mixin ltHuge() {
+  @media (max-width: ( $breakpoint-huge - 1)) {
+    @content;
+  }
+}
+
+@mixin ltMax() {
+  @media (max-width: ( $breakpoint-max - 1)) {
+    @content;
+  }
+}
+
 @mixin withHover() {
   @media (hover: hover) {
     @content;

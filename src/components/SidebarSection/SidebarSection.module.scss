@@ -1,0 +1,12 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.sidebarSection {
+  background-color: white;
+  @include boxShadow();
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

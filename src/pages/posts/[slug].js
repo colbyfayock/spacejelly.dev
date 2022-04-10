@@ -19,9 +19,14 @@ import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
+import Button from 'components/Button';
 import Anchors from 'components/Anchors';
 import Video from 'components/Video';
 import Posts from 'components/Posts';
+import Sidebar from 'components/Sidebar';
+import SidebarSection from 'components/SidebarSection';
+import SidebarSectionHeader from 'components/SidebarSectionHeader';
+import SidebarSectionBody from 'components/SidebarSectionBody';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -34,6 +39,9 @@ export default function Post({ post, anchors, related }) {
     categories,
     content,
     date,
+    demorepourl,
+    demostarterurl,
+    demowebsiteurl,
     excerpt,
     featuredImage,
     intro,
@@ -89,14 +97,7 @@ export default function Post({ post, anchors, related }) {
 
       <Content>
         <Section className={styles.postSection}>
-          <Container>
-            {featuredImage && (
-              <FeaturedImage
-                {...featuredImage}
-                src={featuredImage.sourceUrl}
-                dangerouslySetInnerHTML={featuredImage.caption}
-              />
-            )}
+          <Container className={styles.postContainer}>
             <div className={styles.postContent}>
               {intro && (
                 <div
@@ -125,6 +126,38 @@ export default function Post({ post, anchors, related }) {
                 <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
               </div>
             </div>
+            <Sidebar>
+              {featuredImage && (
+                <FeaturedImage
+                  {...featuredImage}
+                  src={featuredImage.sourceUrl}
+                  dangerouslySetInnerHTML={featuredImage.caption}
+                />
+              )}
+              <SidebarSection>
+                <SidebarSectionHeader>Demo</SidebarSectionHeader>
+                <SidebarSectionBody>
+                  <p>
+                    <Button href={demowebsiteurl} display="full">
+                      View Demo Website
+                    </Button>
+                    <Button href={demorepourl} display="full">
+                      See the Code
+                    </Button>
+                  </p>
+                </SidebarSectionBody>
+              </SidebarSection>
+              <SidebarSection>
+                <SidebarSectionHeader>Starter</SidebarSectionHeader>
+                <SidebarSectionBody>
+                  <p>
+                    <Button href={demowebsiteurl} display="full">
+                      Go to Repository
+                    </Button>
+                  </p>
+                </SidebarSectionBody>
+              </SidebarSection>
+            </Sidebar>
           </Container>
         </Section>
 

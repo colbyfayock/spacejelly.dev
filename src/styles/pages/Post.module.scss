@@ -1,6 +1,8 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
+@import "components/Button/Button.module.scss";
+
 .postHeader {
   h1 {
     color: white;
@@ -10,6 +12,32 @@
 .postSection {
   padding-top: 0;
   margin-top: 0;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+
+  @include gtMax() {
+    flex-direction: row;
+  }
+
+  aside {
+    @include ltMax() {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      margin-top: 3em;
+      margin-left: 0;
+    }
+
+    & > div {
+      @include ltMax() {
+        margin: 0 1em;
+      }
+    }
+  }
 }
 
 .postIntro {
