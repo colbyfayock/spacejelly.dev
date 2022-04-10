@@ -8,6 +8,7 @@ import { categoryPathBySlug } from 'lib/categories';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import FormSubscribe from 'components/FormSubscribe';
+import LogoWPEngine from 'components/LogoWPEngine';
 
 import styles from './Footer.module.scss';
 
@@ -93,6 +94,18 @@ const Footer = () => {
           </Container>
         </Section>
       )}
+
+      <Section className={styles.footerPoweredBy}>
+        <Container>
+          <p>
+            WordPress hosting provided by
+            <a className={styles.footerWPEngine} href="https://wpengine.com/">
+              <LogoWPEngine />
+              <span className="sr-only">WP Engine</span>
+            </a>
+          </p>
+        </Container>
+      </Section>
 
       <Section className={styles.footerLegal}>
         <Container>

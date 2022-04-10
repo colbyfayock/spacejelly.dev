@@ -109,9 +109,9 @@ a.footerMenuTitle {
   }
 }
 
-.footerLegal {
+.footerLegal,
+.footerPoweredBy {
   padding: 0.8rem 0;
-  margin: 0;
 
   &,
   a {
@@ -119,13 +119,32 @@ a.footerMenuTitle {
   }
 
   p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 0.9em;
     text-align: center;
     margin: 0;
   }
+}
+
+.footerWPEngine {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5em;
+
+  svg {
+    width: auto;
+    height: 1.5em;
+  }
+}
+
+.footerLegal {
+  margin: 0;
 
   a {
     text-decoration: none;
+    margin: 0 0.25em;
 
     @include withHover() {
       &:hover {
