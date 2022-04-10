@@ -153,12 +153,12 @@ export default function Post({ post, anchors, related }) {
                   </SidebarSectionBody>
                 </SidebarSection>
               )}
-              {demowebsiteurl && (
+              {demostarterurl && (
                 <SidebarSection>
                   <SidebarSectionHeader>Starter</SidebarSectionHeader>
                   <SidebarSectionBody>
                     <p>
-                      <Button href={demowebsiteurl} display="full">
+                      <Button href={demostarterurl} display="full">
                         Go to Repository
                       </Button>
                     </p>
