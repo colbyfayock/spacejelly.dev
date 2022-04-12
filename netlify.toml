@@ -44,6 +44,14 @@
   from = "/*"
   to = "/404"
   status = 404
+  
+## Misc
+
+[[redirects]]
+  from = "/swag"
+  to = "https://forms.gle/S3asFUGNFBJ8VmJHA"
+  status = 302
+  force = true
 
 ## Sponsors / Affiliates
 
