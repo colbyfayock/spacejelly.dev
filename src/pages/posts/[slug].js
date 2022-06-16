@@ -248,14 +248,20 @@ export async function getStaticProps({ params = {} } = {}) {
     let oembed, thumbnail;
 
     if (post.video.includes('youtube.com')) {
-      oembed = await fetch(`https://www.youtube.com/oembed?url=${post.video}`).then((r) => r.json());
+      try {
+        oembed = await fetch(`https://www.youtube.com/oembed?url=${post.video}`).then((r) => r.json());
+      } catch (e) {
+        console.log(`Failed to fetch oembed for ${post.video} on ${title}: ${e}`);
+      }
 
-      const { thumbnail_url } = oembed;
-      const maxResUrl = thumbnail_url.replace('hqdefault', 'maxresdefault');
+      if (oembed) {
+        const { thumbnail_url } = oembed;
+        const maxResUrl = thumbnail_url.replace('hqdefault', 'maxresdefault');
 
-      const maxResExists = await fetch(maxResUrl, { method: 'HEAD' }).then((r) => r.ok);
+        const maxResExists = await fetch(maxResUrl, { method: 'HEAD' }).then((r) => r.ok);
 
-      thumbnail = maxResExists ? maxResUrl : thumbnail_url;
+        thumbnail = maxResExists ? maxResUrl : thumbnail_url;
+      }
     }
 
     if (oembed) {
