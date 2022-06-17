@@ -5,6 +5,12 @@
   force = true
 
 [[redirects]]
+  from = "/ecommcourse"
+  to = "https://egghead.io/courses/ecommerce-product-management-storefront-with-graphcms-snipcart-next-js-13cc0534?af=atzgap"
+  status = 302
+  force = true
+  
+[[redirects]]
   from = "/eggheadecommerce"
   to = "https://egghead.io/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout?af=atzgap"
   status = 302
@@ -39,11 +45,14 @@
   to = "https://app.snipcart.com/register?utm_source=levelup&utm_term=colbyfayock"
   status = 302
   force = true
+  
+## Misc
 
 [[redirects]]
-  from = "/*"
-  to = "/404"
-  status = 404
+  from = "/swag"
+  to = "https://forms.gle/S3asFUGNFBJ8VmJHA"
+  status = 302
+  force = true
 
 ## Sponsors / Affiliates
 
@@ -66,3 +75,10 @@
   to = "https://github.com/colbyfayock/space-jelly-gear-starter"
   status = 302
   force = true
+
+## Catchall 404
+
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
