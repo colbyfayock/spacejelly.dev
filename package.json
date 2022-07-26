@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Colby Fayock <hello@colbyfayock.com>",
   "scripts": {
-    "build": "next build && next export",
+    "build": "next build",
     "dev": "next dev",
     "format": "yarn prettier --config ./config/prettier.config.js --write .",
     "format:nopath": "yarn prettier --config ./config/prettier.config.js --write",
