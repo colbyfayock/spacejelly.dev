@@ -22,7 +22,7 @@ export const POST_FIELDS = gql`
 
 export const QUERY_ALL_POSTS_INDEX = gql`
   ${POST_FIELDS}
-  {
+  query AllPostsIndex {
     posts(first: 10000) {
       edges {
         node {
@@ -35,7 +35,7 @@ export const QUERY_ALL_POSTS_INDEX = gql`
 
 export const QUERY_ALL_POSTS_ARCHIVE = gql`
   ${POST_FIELDS}
-  {
+  query AllPostsArchive {
     posts(first: 10000) {
       edges {
         node {
@@ -62,7 +62,7 @@ export const QUERY_ALL_POSTS_ARCHIVE = gql`
 
 export const QUERY_ALL_POSTS = gql`
   ${POST_FIELDS}
-  {
+  query AllPosts {
     posts(first: 10000) {
       edges {
         node {
@@ -97,7 +97,7 @@ export const QUERY_ALL_POSTS = gql`
 
 export function getQueryPostBySlug(slug) {
   return gql`
-    query {
+    query PostBySlug {
       postBy(slug: "${slug}"){
         author {
           node {

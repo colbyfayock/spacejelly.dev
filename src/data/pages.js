@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ALL_PAGES = gql`
-  {
+  query AllPages {
     pages(first: 10000) {
       edges {
         node {
@@ -28,7 +28,7 @@ export const QUERY_ALL_PAGES = gql`
 
 export function getQueryPageById(id) {
   return gql`
-    query {
+    query PageById {
       page(id: "${id}") {
         content
         featuredImage {

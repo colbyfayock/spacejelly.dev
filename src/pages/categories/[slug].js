@@ -17,6 +17,14 @@ export default function Category({ category, posts }) {
 
 export async function getStaticProps({ params = {} } = {}) {
   const { category } = await getCategoryBySlug(params?.slug);
+
+  if (!category) {
+    return {
+      props: {},
+      notFound: true,
+    };
+  }
+
   const { posts } = await getPostsByCategoryId(category.categoryId, {
     queryIncludes: 'archive',
   });
@@ -30,21 +38,8 @@ export async function getStaticProps({ params = {} } = {}) {
 }
 
 export async function getStaticPaths() {
-  const routes = {};
-
-  const { categories } = await getAllCategories();
-
-  const paths = categories.map((category) => {
-    const { slug } = category;
-    return {
-      params: {
-        slug,
-      },
-    };
-  });
-
   return {
-    paths,
-    fallback: false,
+    paths: [],
+    fallback: 'blocking',
   };
 }

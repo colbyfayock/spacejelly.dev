@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ALL_CM_EPISODES = gql`
-  {
+  query AllCmEpisodes {
     cmEpisodes(first: 10000) {
       edges {
         node {

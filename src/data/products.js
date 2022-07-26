@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ALL_PRODUCTS = gql`
-  {
+  query AllProducts {
     products {
       edges {
         node {

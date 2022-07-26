@@ -18,6 +18,8 @@ module.exports = withPlugins([[indexSearch], [indexColbyashiMaru], [feed], [site
   //verbose: true,
 
   env: {
+    POSTS_PRERENDER_COUNT: 5,
+
     WORDPRESS_HOST: removeLastTrailingSlash(process.env.WORDPRESS_HOST),
     WORDPRESS_GRAPHQL_ENDPOINT: removeLastTrailingSlash(process.env.WORDPRESS_GRAPHQL_ENDPOINT),
   },

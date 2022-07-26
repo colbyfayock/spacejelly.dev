@@ -21,6 +21,8 @@ export async function getPageById(id) {
     query: getQueryPageById(id),
   });
 
+  if (data?.data.page) return { page: undefined };
+
   const page = [data?.data.page].map(mapPageData)[0];
 
   return {

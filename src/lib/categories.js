@@ -39,6 +39,8 @@ export async function getCategoryBySlug(slug) {
     query: getQueryCategoryBySlug(slug),
   });
 
+  if (!data) return { category: undefined };
+
   // Use the first category as we should only be matching 1 with the slug
 
   const category = data?.data.categories.edges.map(({ node = {} }) => node)[0];

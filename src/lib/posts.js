@@ -34,6 +34,8 @@ export async function getPostBySlug(slug) {
 
   const post = data?.data.postBy;
 
+  if (!post) return { post: undefined };
+
   return {
     post: [post].map(mapPostData)[0],
   };

@@ -31,6 +31,14 @@ export default function Author({ user, posts }) {
 
 export async function getStaticProps({ params = {} } = {}) {
   const { user } = await getUserByNameSlug(params?.slug);
+
+  if (!user) {
+    return {
+      props: {},
+      notFound: true,
+    };
+  }
+
   const { posts } = await getPostsByAuthorSlug(user?.slug);
   return {
     props: {
@@ -41,21 +49,8 @@ export async function getStaticProps({ params = {} } = {}) {
 }
 
 export async function getStaticPaths() {
-  const routes = {};
-
-  const { authors } = await getAllAuthors();
-
-  const paths = authors.map((author) => {
-    const { name } = author;
-    return {
-      params: {
-        slug: userSlugByName(name),
-      },
-    };
-  });
-
   return {
-    paths,
-    fallback: false,
+    paths: [],
+    fallback: 'blocking',
   };
 }

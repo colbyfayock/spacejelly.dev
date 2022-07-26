@@ -79,6 +79,13 @@ export async function getStaticProps({ params = {} } = {}, ...rest) {
 
   const id = pages.find(({ slug }) => slug === params.slug)?.id;
 
+  if (!id) {
+    return {
+      props: {},
+      notFound: true,
+    };
+  }
+
   const { page } = await getPageById(id);
 
   return {
@@ -89,21 +96,8 @@ export async function getStaticProps({ params = {} } = {}, ...rest) {
 }
 
 export async function getStaticPaths() {
-  const routes = {};
-
-  const { pages } = await getAllPages();
-
-  const paths = pages.map((page) => {
-    const { slug } = page;
-    return {
-      params: {
-        slug,
-      },
-    };
-  });
-
   return {
-    paths,
-    fallback: false,
+    paths: [],
+    fallback: 'blocking',
   };
 }

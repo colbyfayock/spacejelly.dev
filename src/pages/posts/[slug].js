@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 import { useInView } from 'react-intersection-observer';
 
-import { getPostBySlug, getAllPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
+import { getPostBySlug, getRecentPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
@@ -199,6 +199,14 @@ export default function Post({ post, anchors, related }) {
 
 export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
+
+  if (!post) {
+    return {
+      props: {},
+      notFound: true,
+    };
+  }
+
   const { cardtitle, title, categories } = post;
   let { content } = post;
 
@@ -298,7 +306,8 @@ export async function getStaticProps({ params = {} } = {}) {
 export async function getStaticPaths() {
   const routes = {};
 
-  const { posts } = await getAllPosts({
+  const { posts } = await getRecentPosts({
+    count: process.env.POSTS_PRERENDER_COUNT,
     queryIncludes: 'index',
   });
 
@@ -313,6 +322,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 }

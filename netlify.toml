@@ -9,7 +9,7 @@
   to = "https://egghead.io/courses/ecommerce-product-management-storefront-with-graphcms-snipcart-next-js-13cc0534?af=atzgap"
   status = 302
   force = true
-  
+
 [[redirects]]
   from = "/eggheadecommerce"
   to = "https://egghead.io/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout?af=atzgap"
@@ -27,7 +27,7 @@
   to = "https://www.leveluptutorials.com/?ref=fayock"
   status = 302
   force = true
-  
+
 [[redirects]]
   from = "/leveluppro"
   to = "https://www.leveluptutorials.com/pro?ref=fayock"
@@ -39,13 +39,13 @@
   to = "https://www.leveluptutorials.com/tutorials/ecommerce-on-the-jamstack-with-snipcart-next-js-and-wordpress?ref=fayock"
   status = 302
   force = true
-  
+
 [[redirects]]
   from = "/levelupsnipcart"
   to = "https://app.snipcart.com/register?utm_source=levelup&utm_term=colbyfayock"
   status = 302
   force = true
-  
+
 ## Misc
 
 [[redirects]]
@@ -69,16 +69,9 @@
   force = true
 
 ## GitHub
-  
+
 [[redirects]]
   from = "/gearstarter"
   to = "https://github.com/colbyfayock/space-jelly-gear-starter"
   status = 302
   force = true
-
-## Catchall 404
-
-[[redirects]]
-  from = "/*"
-  to = "/404"
-  status = 404
