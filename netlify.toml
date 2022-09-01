@@ -39,6 +39,13 @@
   to = "https://app.snipcart.com/register?utm_source=levelup&utm_term=colbyfayock"
   status = 302
   force = true
+  
+
+[[redirects]]
+  from = "/mediaworkshop"
+  to = "https://github.com/colbyfayock/media-ecommerce-workshop"
+  status = 302
+  force = true
 
 [[redirects]]
   from = "/snipcart"
