@@ -17,12 +17,6 @@
   force = true
 
 [[redirects]]
-  from = "/snipcart"
-  to = "https://app.snipcart.com/register?utm_source=youtube&utm_term=colbyfayock"
-  status = 302
-  force = true
-
-[[redirects]]
   from = "/levelup"
   to = "https://www.leveluptutorials.com/?ref=fayock"
   status = 302
@@ -45,6 +39,32 @@
   to = "https://app.snipcart.com/register?utm_source=levelup&utm_term=colbyfayock"
   status = 302
   force = true
+  
+
+[[redirects]]
+  from = "/mediaworkshop"
+  to = "https://github.com/colbyfayock/media-ecommerce-workshop"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/snipcart"
+  to = "https://app.snipcart.com/register?utm_source=youtube&utm_term=colbyfayock"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/stream"
+  to = "https://gstrm.io/colbyfayockmaker"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/streamreact"
+  to = "https://gstrm.io/colbyfayockreact"
+  status = 302
+  force = true
+  
 
 ## Misc
 
