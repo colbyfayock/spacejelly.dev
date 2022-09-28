@@ -19,8 +19,13 @@ const Image = ({
 
   return (
     <figure className={imageClassName.toString()}>
-      <div className={styles.featuredImageImg}>
-        <img width={width} height={height} src={src} alt={altText || ''} srcSet={srcSet} sizes={sizes} />
+      <div
+        className={styles.featuredImageImg}
+        style={{
+          paddingTop: `${(height / width) * 100}%`,
+        }}
+      >
+        <img width="100%" height="auto" src={src} alt={altText || ''} srcSet={srcSet} sizes={sizes} />
       </div>
       {children && <figcaption>{children}</figcaption>}
       {dangerouslySetInnerHTML && (

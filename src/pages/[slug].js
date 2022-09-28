@@ -47,13 +47,18 @@ export default function Page({ page }) {
 
       <Header className={styles.pageHeader}>
         {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
-          />
+          <>
+            <FeaturedImage
+              width={featuredImage.mediaDetails.width}
+              height={featuredImage.mediaDetails.height}
+              src={featuredImage.sourceUrl}
+              altText=""
+              dangerouslySetInnerHTML={featuredImage.caption}
+            />
+            <h1 className="sr-only">{title}</h1>
+          </>
         )}
-        <h1 className={styles.title}>{title}</h1>
+        {!featuredImage && <h1 className={styles.title}>{title}</h1>}
       </Header>
 
       <Content>

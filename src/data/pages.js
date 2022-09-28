@@ -39,6 +39,10 @@ export function getQueryPageById(id) {
             sizes
             sourceUrl
             srcSet
+            mediaDetails {
+              height
+              width
+            }
           }
         }
         id
