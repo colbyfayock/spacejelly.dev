@@ -17,6 +17,12 @@
   force = true
 
 [[redirects]]
+  from = "/harperdb"
+  to = "https://harperdb.io/"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/levelup"
   to = "https://www.leveluptutorials.com/?ref=fayock"
   status = 302
