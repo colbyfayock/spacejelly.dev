@@ -19,6 +19,8 @@
 }
 
 .cart {
+  position: relative;
+  z-index: 999;
   color: white;
   flex-grow: 1;
   font-size: 2em;

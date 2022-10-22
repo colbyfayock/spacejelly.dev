@@ -32,7 +32,9 @@
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1em 0;
+  // @halloween
+  // padding: 1em 0;
+  padding: 1em 0 3em;
 
   @include gtMedium() {
     flex-direction: row;
@@ -135,8 +137,12 @@
 
 .navCosmo {
   position: absolute;
-  top: 0.5em;
-  right: -2em;
+  // @halloween
+  // top: 0.5em;
+  top: 1em;
+  // @halloween
+  // right: -2em;
+  right: -1em;
   z-index: -1;
 
   @include gtMedium() {
