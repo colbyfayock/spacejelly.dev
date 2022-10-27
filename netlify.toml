@@ -93,7 +93,13 @@
   to = "https://buttercms.com/docs/api-client/gatsbyjs?utm_source=colbyfayock&utm_medium=affiliate&utm_campaign=affiliate#Quickstart"
   status = 302
   force = true
-
+  
+[[redirects]]
+  from = "/clerk"
+  to = "https://clerk.dev/?utm_source=youtube&utm_medium=influencer&utm_campaign=colby"
+  status = 302
+  force = true
+ 
 ## GitHub
 
 [[redirects]]
