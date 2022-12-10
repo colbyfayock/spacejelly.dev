@@ -37,9 +37,7 @@ export default function Store({ courses }) {
             </p>
             <p className="text-center">Not sure what you were looking for, but this isn't it!</p>
             <p className="text-center">
-              <Link href="/">
-                <a>Go Back Home</a>
-              </Link>
+              <Link href="/">Go Back Home</Link>
             </p>
           </Container>
         </Section>

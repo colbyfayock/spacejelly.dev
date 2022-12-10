@@ -34,19 +34,15 @@ const Footer = () => {
             <ul className={styles.footerMenuColumns}>
               {hasRecentPosts && (
                 <li>
-                  <Link href="/posts/">
-                    <a className={styles.footerMenuTitle}>
-                      <strong>Recent Posts</strong>
-                    </a>
+                  <Link href="/posts/" className={styles.footerMenuTitle}>
+                    <strong>Recent Posts</strong>
                   </Link>
                   <ul className={styles.footerMenuItems}>
                     {recentPosts.map((post) => {
                       const { id, slug, title } = post;
                       return (
                         <li key={id}>
-                          <Link href={postPathBySlug(slug)}>
-                            <a>{title}</a>
-                          </Link>
+                          <Link href={postPathBySlug(slug)}>{title}</Link>
                         </li>
                       );
                     })}
@@ -55,19 +51,15 @@ const Footer = () => {
               )}
               {hasRecentCategories && (
                 <li>
-                  <Link href="/categories/">
-                    <a className={styles.footerMenuTitle}>
-                      <strong>Categories</strong>
-                    </a>
+                  <Link href="/categories/" className={styles.footerMenuTitle}>
+                    <strong>Categories</strong>
                   </Link>
                   <ul className={styles.footerMenuItems}>
                     {categories.map((category) => {
                       const { id, slug, name } = category;
                       return (
                         <li key={id}>
-                          <Link href={categoryPathBySlug(slug)}>
-                            <a>{name}</a>
-                          </Link>
+                          <Link href={categoryPathBySlug(slug)}>{name}</Link>
                         </li>
                       );
                     })}
@@ -81,9 +73,7 @@ const Footer = () => {
                 </p>
                 <ul className={styles.footerMenuItems}>
                   <li>
-                    <Link href={getRouteByName('colbyashiMaru')?.path}>
-                      <a>Colbyashi Maru</a>
-                    </Link>
+                    <Link href={getRouteByName('colbyashiMaru')?.path}>Colbyashi Maru</Link>
                   </li>
                   <li>
                     <a href={getRouteByName('sitemap')?.path}>Sitemap</a>

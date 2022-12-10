@@ -182,9 +182,7 @@ export default function Post({ post, anchors, related }) {
             <h2>
               More from{' '}
               <strong>
-                <Link href={categoryPathBySlug(related.slug)}>
-                  <a>{related.name}</a>
-                </Link>
+                <Link href={categoryPathBySlug(related.slug)}>{related.name}</Link>
               </strong>
             </h2>
             <Posts className={styles.postRelatedPosts} posts={related?.posts} />

@@ -37,26 +37,22 @@ const PostCard = ({ post, options = {} }) => {
   return (
     <div className={postCardStyle}>
       {featuredSourceUrl && (
-        <Link href={postPathBySlug(slug)}>
-          <a className={styles.postCardImage}>
-            <span
-              style={{
-                backgroundImage: `url(${featuredSourceUrl})`,
-              }}
-            />
-          </a>
+        <Link href={postPathBySlug(slug)} className={styles.postCardImage}>
+          <span
+            style={{
+              backgroundImage: `url(${featuredSourceUrl})`,
+            }}
+          />
         </Link>
       )}
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
       <Link href={postPathBySlug(slug)}>
-        <a>
-          <h3
-            className={styles.postCardTitle}
-            dangerouslySetInnerHTML={{
-              __html: title,
-            }}
-          />
-        </a>
+        <h3
+          className={styles.postCardTitle}
+          dangerouslySetInnerHTML={{
+            __html: title,
+          }}
+        />
       </Link>
       <Metadata className={styles.postCardMetadata} {...metadata} />
       {excerpt && (

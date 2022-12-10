@@ -162,9 +162,7 @@ const Nav = () => {
       <Section className={`${styles.navSection} ${styles.navMasthead}`}>
         <p className={styles.navName}>
           <Link href={getRouteByName('home')?.path}>
-            <a>
-              <SpaceJelly />
-            </a>
+            <SpaceJelly />
           </Link>
         </p>
         <p className={styles.navDiscord}>
@@ -176,9 +174,7 @@ const Nav = () => {
         </p>
         <div className={styles.navCosmo}>
           <Link href={getRouteByName('about')?.path}>
-            <a>
-              <CosmoWave />
-            </a>
+            <CosmoWave />
           </Link>
         </div>
       </Section>
@@ -188,9 +184,7 @@ const Nav = () => {
           <div className={styles.navBarSection}>
             <ul className={styles.navBarLinks}>
               <li>
-                <Link href={getRouteByName('home')?.path}>
-                  <a>Articles</a>
-                </Link>
+                <Link href={getRouteByName('home')?.path}>Articles</Link>
               </li>
               <li>
                 <a className="link-external" href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
@@ -202,14 +196,10 @@ const Nav = () => {
           <div className={styles.navBarSection} data-navbar-breakpoint="min-1024">
             <ul className={styles.navBarLinks}>
               <li>
-                <Link href={getRouteByName('categoryNextjs')?.path}>
-                  <a>Next.js</a>
-                </Link>
+                <Link href={getRouteByName('categoryNextjs')?.path}>Next.js</Link>
               </li>
               <li>
-                <Link href={getRouteByName('categoryMedia')?.path}>
-                  <a>Images & Video</a>
-                </Link>
+                <Link href={getRouteByName('categoryMedia')?.path}>Images & Video</Link>
               </li>
             </ul>
           </div>
@@ -236,7 +226,7 @@ const Nav = () => {
                       return (
                         <li key={slug}>
                           <Link tabIndex={index} href={postPathBySlug(slug)}>
-                            <a>{title}</a>
+                            {title}
                           </Link>
                         </li>
                       );
@@ -254,19 +244,13 @@ const Nav = () => {
           <div className={styles.navBarSection}>
             <ul className={styles.navBarLinks}>
               <li>
-                <Link href={getRouteByName('courses')?.path}>
-                  <a>Courses</a>
-                </Link>
+                <Link href={getRouteByName('courses')?.path}>Courses</Link>
               </li>
               <li>
-                <Link href={getRouteByName('books')?.path}>
-                  <a>Books</a>
-                </Link>
+                <Link href={getRouteByName('books')?.path}>Books</Link>
               </li>
               <li>
-                <Link href={getRouteByName('store')?.path}>
-                  <a>Store</a>
-                </Link>
+                <Link href={getRouteByName('store')?.path}>Store</Link>
               </li>
             </ul>
           </div>

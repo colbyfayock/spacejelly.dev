@@ -12,6 +12,15 @@
   margin-top: 0;
 }
 
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+
+  @include gtLarge() {
+    flex-direction: row;
+  }
+}
+
 .pageContent {
   font-size: 0.9em;
   background-color: white;

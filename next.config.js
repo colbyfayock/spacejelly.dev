@@ -1,26 +1,24 @@
-const withPlugins = require('next-compose-plugins');
-const { removeLastTrailingSlash } = require('./plugins/util');
-
 const indexSearch = require('./plugins/search-index');
 const indexColbyashiMaru = require('./plugins/colbyashi-maru-index');
 const feed = require('./plugins/feed');
 const sitemap = require('./plugins/sitemap');
+// const socialImages = require('./plugins/socialImages'); TODO: failing to run on Netlify
 
-module.exports = withPlugins([[indexSearch], [indexColbyashiMaru], [feed], [sitemap]], {
-  // By default, Next.js removes the trailing slash. One reason this would be good
-  // to include is by default, the `path` property of the router for the homepage
-  // is `/` and by using that, would instantly create a redirect
-
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   trailingSlash: true,
-
-  // By enabling verbose logging, it will provide additional output details for
-  // diagnostic purposes. By default is set to false.
-  //verbose: true,
 
   env: {
     POSTS_PRERENDER_COUNT: 5,
 
-    WORDPRESS_HOST: removeLastTrailingSlash(process.env.WORDPRESS_HOST),
-    WORDPRESS_GRAPHQL_ENDPOINT: removeLastTrailingSlash(process.env.WORDPRESS_GRAPHQL_ENDPOINT),
+    WORDPRESS_HOST: process.env.WORDPRESS_HOST,
+    WORDPRESS_GRAPHQL_ENDPOINT: process.env.WORDPRESS_GRAPHQL_ENDPOINT,
   },
-});
+};
+
+module.exports = () => {
+  const plugins = [indexSearch, indexColbyashiMaru, feed, sitemap];
+  return plugins.reduce((acc, plugin) => plugin(acc), nextConfig);
+};

@@ -42,9 +42,7 @@ export default function Store({ courses }) {
               <a href="mailto:cosmo@spacejelly.dev">cosmo@spacejelly.dev</a>.
             </p>
             <p className="text-center">
-              <Link href="/">
-                <a>Go Back Home</a>
-              </Link>
+              <Link href="/">Go Back Home</Link>
             </p>
           </Container>
         </Section>

@@ -42,8 +42,8 @@ const CardEpisode = ({ id, title, name, date, featuredImage, youtube }) => {
         </p>
         {dateIsPast(date, datetimeOffset) && youtube && (
           <p className={styles.episodeAction}>
-            <Link href={youtube}>
-              <a target="_blank">Watch on YouTube</a>
+            <Link href={youtube} target="_blank">
+              Watch on YouTube
             </Link>
           </p>
         )}

@@ -17,10 +17,8 @@ const Button = ({ children, className, href, display, ...rest }) => {
 
   if (href && href.startsWith('/')) {
     return (
-      <Link href={href}>
-        <a {...buttonProps} data-display-type="button">
-          {children}
-        </a>
+      <Link href={href} {...buttonProps} data-display-type="button">
+        {children}
       </Link>
     );
   }

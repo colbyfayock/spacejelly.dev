@@ -36,13 +36,11 @@ export default function Home({ posts }) {
 
       <Section className={styles.postsSection}>
         <Container className={styles.postsContainer}>
-          <div className={styles.content}>
+          <div>
             <h2 className={`${styles.contentHeader} sr-only`}>Latest Posts</h2>
             <Posts posts={posts} />
             <p className={styles.postsAllPosts}>
-              <Link href={getRouteByName('posts')?.path}>
-                <a>View All Posts</a>
-              </Link>
+              <Link href={getRouteByName('posts')?.path}>View All Posts</Link>
             </p>
           </div>
           <Sidebar>
