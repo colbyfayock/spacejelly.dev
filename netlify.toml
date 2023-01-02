@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/codux"
+  to = "https://codux.hopp.to/colby"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/discord"
   to = "https://discord.gg/FYQX5Vs"
   status = 302
