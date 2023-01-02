@@ -1,0 +1,39 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+  @include gtSmall() {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &[data-color="orange"] {
+    color: $color-brand-orange-light;
+  }
+}
+
+.headingComponent {
+  width: 100%;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+
+  @include gtSmall() {
+    text-align: left;
+  }
+}
+
+.headingAction {
+  font-size: 0.7em;
+
+  a {
+    @include pageLink;
+    white-space: nowrap;
+  }
+}

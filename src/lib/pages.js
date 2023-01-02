@@ -6,7 +6,7 @@ import { QUERY_ALL_PAGES, getQueryPageById } from 'data/pages';
  * pagePathBySlug
  */
 
-export function pagePathBySlug(slug) {
+export function pagePathBySlug(slug = '') {
   return `/${slug}`;
 }
 

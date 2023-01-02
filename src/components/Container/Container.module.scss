@@ -1,8 +1,17 @@
 @import "styles/settings/__settings";
+@import "styles/util/__util";
 
 .container {
-  width: 100vw;
+  width: 100%;
   max-width: $display-page-width-max;
   padding: 0 1rem;
   margin: 0 auto;
+
+  @include gtMedium() {
+    padding: 0 2rem;
+  }
+
+  &[data-container-size="narrow"] {
+    max-width: $display-page-width-narrow;
+  }
 }

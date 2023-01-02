@@ -1,13 +1,19 @@
 @import "styles/settings/__settings";
+@import "styles/util/__util";
 
 .metadata {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  color: $color-gray-600;
+  align-items: flex-start;
+  flex-direction: column;
+  color: rgba(white, 0.9);
+  text-transform: uppercase;
   list-style: none;
   padding: 0;
-  margin: 0 -0.8em;
+  margin: 0 -1em;
+
+  @include gtSmall() {
+    flex-direction: row;
+  }
 
   ul {
     list-style: none;
@@ -16,7 +22,7 @@
   }
 
   & > li {
-    margin: 0.8em;
+    margin: 0.8em 1em;
   }
 
   p {
@@ -24,13 +30,7 @@
   }
 
   a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      color: $color-brand-purple;
-      text-decoration: underline;
-    }
+    @include pageLink;
   }
 }
 
@@ -54,19 +54,20 @@
 }
 
 .metadataCategories {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.4em -0.5em;
+  }
+
   li {
-    display: inline-block;
+    margin: 0;
+  }
 
-    &:after {
-      content: ", ";
-      margin-right: 0.4em;
-    }
-
-    &:last-child {
-      &:after {
-        content: none;
-      }
-    }
+  a {
+    display: block;
+    white-space: nowrap;
+    padding: 0.4em 0.5em;
   }
 }
 

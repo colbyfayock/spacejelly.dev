@@ -2,6 +2,8 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_CATEGORIES, getQueryCategoryBySlug } from 'data/categories';
 
+export const DEFAULT_CATEGORY = 'tutorials';
+
 /**
  * categoryPathBySlug
  */

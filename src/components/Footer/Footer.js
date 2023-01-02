@@ -30,7 +30,7 @@ const Footer = () => {
       </Section>
       {hasMenu && (
         <Section className={styles.footerMenu}>
-          <Container>
+          <Container className={styles.footerMenuContainer}>
             <ul className={styles.footerMenuColumns}>
               {hasRecentPosts && (
                 <li>

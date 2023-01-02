@@ -3,7 +3,6 @@
 
 .sidebarSection {
   background-color: white;
-  @include boxShadow();
   margin-bottom: 1.5rem;
 
   &:last-child {

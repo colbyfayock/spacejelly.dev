@@ -5,12 +5,8 @@
 
 .postCard {
   position: relative;
-  padding: 1.8em;
-  color: inherit;
   text-align: left;
   text-decoration: none;
-  background-color: white;
-  @include boxShadow();
 
   & > a {
     display: block;
@@ -19,49 +15,23 @@
 
     &:hover {
       h3 {
-        color: $color-brand-purple;
-        text-decoration: underline;
+        color: $color-brand-yellow-medium;
       }
     }
   }
 }
 
-.postCardImage {
-  display: block;
-  margin: -1.8em -1.8em 1.8em;
-
-  span {
-    display: block;
-    width: 100%;
-    height: 0;
-    background-size: cover;
-    background-position: center center;
-    padding-top: math.div(985, 2560);
-  }
-}
-
-.postCardSticky {
-  border: solid 0.02em $color-gray-100;
-  border-radius: 1em;
-
-  svg {
-    position: absolute;
-    top: 1.2em;
-    right: 1em;
-    font-size: 1.15em;
-    color: $color-gray-300;
-  }
-}
-
 .postCardTitle {
-  margin: 0 0 1em 0;
-  font-size: 2em;
+  font-size: 2.2em;
   font-weight: bold;
+  margin: 0 0 0.6em 0;
 }
 
 .postCardContent {
-  font-size: 1.25em;
-  margin: 0;
+  color: rgba(white, 0.9);
+  font-size: 1.1em;
+  font-weight: 400;
+  margin: 0.4em 0 0 0;
 
   p {
     &:first-child {

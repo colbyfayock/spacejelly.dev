@@ -26,8 +26,6 @@
   background-color: white;
   padding: 1em;
 
-  @include boxShadow();
-
   @include gtMedium() {
     padding: 2.5em;
   }

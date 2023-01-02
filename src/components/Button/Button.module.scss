@@ -3,11 +3,13 @@
 
 .button {
   display: inline-block;
-  color: white;
+  color: $color-brand-deepaqua-dark;
   font-family: inherit;
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: 700;
-  background-color: $color-brand-purple;
+  text-decoration: none;
+  line-height: 1.2;
+  background-color: $color-brand-yellow-medium;
   padding: 0.8em 1.4em;
   border: 0;
   cursor: pointer;

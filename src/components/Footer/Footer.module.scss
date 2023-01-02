@@ -2,6 +2,7 @@
 @import "styles/util/__util";
 
 .footer {
+  display: grid;
   width: 100%;
 }
 
@@ -27,6 +28,7 @@
 }
 
 .footerMenu {
+  overflow: hidden;
   margin: 0;
 
   @include gtMedium() {
@@ -37,6 +39,10 @@
     list-style: none;
     padding: 0;
   }
+}
+
+.footerMenuContainer {
+  overflow: hidden;
 }
 
 .footerMenuColumns {
@@ -119,19 +125,35 @@ a.footerMenuTitle {
   }
 
   p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 0.9em;
     text-align: center;
     margin: 0;
   }
 }
 
+.footerPoweredBy {
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    @include gtSmall() {
+      flex-direction: row;
+    }
+  }
+}
+
 .footerWPEngine {
   display: flex;
   align-items: center;
-  margin-left: 0.5em;
+  justify-content: center;
+  margin: 0.5em 0 0;
+
+  @include gtSmall() {
+    margin: 0 0 0 0.8em;
+  }
 
   svg {
     width: auto;
