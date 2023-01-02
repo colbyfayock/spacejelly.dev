@@ -107,12 +107,12 @@ export default function Home({ page, latestPost, posts }) {
             </Heading>
             <ul>
               <li>
-                <a href="">
+                <a href="https://spacejelly.dev/discord" target="_blank" rel="noreferrer noopener">
                   <BsDiscord /> Space Jelly
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="https://twitter.com/colbyfayock" target="_blank" rel="noreferrer noopener">
                   <FaTwitter /> @colbyfayock
                 </a>
               </li>

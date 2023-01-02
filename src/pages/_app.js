@@ -3,21 +3,17 @@ import { useRouter } from 'next/router';
 
 import SiteContext from 'context/site-context';
 import { getSiteMetadata } from 'lib/site';
-import { getRecentPosts } from 'lib/posts';
-import { getNavigationPages } from 'lib/pages';
-import { getCategories } from 'lib/categories';
+import { getUserBySlug } from 'lib/users';
 import { pageview } from 'lib/gtag';
 
 import 'styles/globals.scss';
 
-function App({ Component, pageProps = {}, metadata, navigation, recentPosts, categories }) {
+function App({ Component, pageProps = {}, metadata, author }) {
   const router = useRouter();
 
   const context = {
     metadata,
-    navigation,
-    recentPosts,
-    categories,
+    author,
   };
 
   /**
@@ -43,23 +39,12 @@ function App({ Component, pageProps = {}, metadata, navigation, recentPosts, cat
 }
 
 App.getInitialProps = async function () {
-  const { posts: recentPosts } = await getRecentPosts({
-    count: 5,
-    queryIncludes: 'index',
-  });
-
-  const { categories } = await getCategories({
-    count: 5,
-  });
-
   const metadata = await getSiteMetadata();
-  const navigation = await getNavigationPages();
+  const { user: author } = await getUserBySlug('colby');
 
   return {
     metadata,
-    navigation,
-    recentPosts,
-    categories,
+    author,
   };
 };
 
