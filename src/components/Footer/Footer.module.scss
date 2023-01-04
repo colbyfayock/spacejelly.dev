@@ -3,8 +3,34 @@
 
 .footer {
   display: grid;
+  position: relative;
+  z-index: 1;
   width: 100%;
   background-color: $color-brand-pink-medium;
+  padding-top: calc(5rem + 5vw);
+}
+
+.footerSand {
+  position: absolute;
+  top: -4vw;
+  width: 100vw;
+  height: auto;
+  left: 0;
+  z-index: -1;
+}
+
+.footerSandSpaceship {
+  position: absolute;
+  top: -12vw;
+  left: 0;
+  right: 0;
+  width: 50vw;
+  height: auto;
+  margin: 0 auto;
+}
+
+.footerSection {
+  padding: 0;
 }
 
 .heading {

@@ -10,6 +10,8 @@ import Container from 'components/Container';
 import FormSubscribe from 'components/FormSubscribe';
 import LogoWPEngine from 'components/LogoWPEngine';
 import Heading from 'components/Heading';
+import Sand from 'components/Sand';
+import SandSpaceship from 'components/SandSpaceship';
 
 import styles from './Footer.module.scss';
 
@@ -19,7 +21,9 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <Section>
+      <Sand className={styles.footerSand} />
+      <SandSpaceship className={styles.footerSandSpaceship} />
+      <Section className={styles.footerSection}>
         <Container>
           <Heading className={styles.heading} as="h3">
             Who's behind the tentacles?
@@ -62,7 +66,7 @@ const Footer = () => {
           </div>
         </Container>
       </Section>
-      <Section className={styles.footerSignup}>
+      <Section className={`${styles.footerSection} ${styles.footerSignup}`}>
         <Container>
           <Heading className={styles.heading} as="h3">
             Get free tutorials and web dev resources straight to your inbox!
@@ -71,7 +75,7 @@ const Footer = () => {
         </Container>
       </Section>
 
-      <Section className={styles.footerPoweredBy}>
+      <Section className={`${styles.footerSection} ${styles.footerPoweredBy}`}>
         <Container>
           <p>
             WordPress hosting provided by
@@ -83,7 +87,7 @@ const Footer = () => {
         </Container>
       </Section>
 
-      <Section className={styles.footerAnchor}>
+      <Section className={`${styles.footerSection} ${styles.footerAnchor}`}>
         <Container>
           <p>
             &copy; {new Date().getFullYear()} {title}, <a href="https://twitter.com/colbyfayock">Colby Fayock</a>

@@ -10,7 +10,16 @@
  * Hero
  */
 
-.heroContainer {
+.heroSection {
+  position: relative;
+}
+
+.heroGalaxyCloud {
+  position: absolute;
+  top: 10em;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
 
 .heroFeature {
@@ -98,9 +107,19 @@
  */
 
 .featuredSection {
+  position: relative;
   background-color: $color-brand-purple-medium;
-  padding: 5rem 0;
-  margin: 0;
+  padding: 5rem 0 calc(4vw + 5rem); // Additional vw to acommodate for section art
+  margin: 18vw 0 0 0;
+}
+
+.featuredMountainRange {
+  position: absolute;
+  top: -14vw;
+  width: 100vw;
+  height: auto;
+  left: 0;
+  z-index: -1;
 }
 
 .featuredFeatures {
@@ -194,14 +213,23 @@
  */
 
 .morePostsSection {
+  position: relative;
   font-size: 0.8em;
   background-color: $color-brand-aqua-dark;
-  padding: 5rem 0;
-  margin: 0;
+  padding: calc(14vw + 5rem) 0 calc(15vw + 5rem); // Additional vw to acommodate for section art
+  margin: 4vw 0 0;
 
   @include gtLarge() {
     font-size: 1em;
   }
+}
+
+.morePostsShoreRocks {
+  position: absolute;
+  top: -10vw;
+  width: 100vw;
+  height: auto;
+  left: 0;
 }
 
 .morePostsContainer {

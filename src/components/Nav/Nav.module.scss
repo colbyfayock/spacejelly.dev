@@ -12,6 +12,11 @@
   }
 }
 
+.navPrimary,
+.navSecondary {
+  background: rgba($color-site-background, 0.6);
+}
+
 .navBar {
   display: flex;
   flex-wrap: wrap;

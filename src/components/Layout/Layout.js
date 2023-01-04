@@ -10,6 +10,7 @@ import Nav from 'components/Nav';
 import Main from 'components/Main';
 import Footer from 'components/Footer';
 import Banner from 'components/Banner';
+import Stars from 'components/Stars';
 
 const Layout = ({ children }) => {
   const { asPath, query = {} } = useRouter();
@@ -63,6 +64,8 @@ const Layout = ({ children }) => {
       <Nav />
 
       <Main>{children}</Main>
+
+      <Stars className={styles.stars} />
 
       <Footer />
     </div>

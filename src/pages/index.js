@@ -21,6 +21,9 @@ import FormSubscribe from 'components/FormSubscribe';
 import Button from 'components/Button';
 import Heading from 'components/Heading';
 import CosmoWave from 'components/CosmoWave';
+import GalaxyCloud from 'components/GalaxyCloud';
+import MountainRange from 'components/MountainRange';
+import ShoreRocks from 'components/ShoreRocks';
 
 import styles from 'styles/pages/Home.module.scss';
 
@@ -40,6 +43,7 @@ export default function Home({ page, latestPost, posts }) {
       />
 
       <Section className={styles.heroSection}>
+        <GalaxyCloud className={styles.heroGalaxyCloud} />
         <Container className={styles.heroContainer} size="narrow">
           <div className={styles.heroFeature}>
             <div className={styles.heroFeatureLatest}>
@@ -67,6 +71,7 @@ export default function Home({ page, latestPost, posts }) {
       </Section>
 
       <Section className={styles.featuredSection}>
+        <MountainRange className={styles.featuredMountainRange} />
         <Container className={styles.featuredContainer}>
           <div className={styles.featuredFeatures}>
             <div className={styles.featuredCourse}>
@@ -122,6 +127,7 @@ export default function Home({ page, latestPost, posts }) {
       </Section>
 
       <Section className={styles.morePostsSection}>
+        <ShoreRocks className={styles.morePostsShoreRocks} />
         <Container className={styles.morePostsContainer}>
           <div>
             <Heading className={styles.heading} as="h2" color="orange">
