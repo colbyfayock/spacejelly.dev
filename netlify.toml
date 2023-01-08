@@ -1,3 +1,13 @@
+## Website
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 302
+  force = true
+
+## Misc
+
 [[redirects]]
   from = "/codux"
   to = "https://codux.hopp.to/colby"
