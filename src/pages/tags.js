@@ -1,36 +1,25 @@
+import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 
+import useSite from 'hooks/use-site';
+import { getAllTags } from 'lib/tags';
 import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebpageJsonLd } from 'lib/json-ld';
-import useSite from 'hooks/use-site';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
-import Content from 'components/Content';
 import Section from 'components/Section';
 import Container from 'components/Container';
-import PostCard from 'components/PostCard';
+import SectionTitle from 'components/SectionTitle';
 
-import styles from 'styles/templates/Archive.module.scss';
+import styles from 'styles/pages/Tags.module.scss';
 
-const DEFAULT_POST_OPTIONS = {};
-
-export default function TemplateArchive({
-  title = 'Archive',
-  Title,
-  description,
-  posts,
-  postOptions = DEFAULT_POST_OPTIONS,
-  slug,
-}) {
+export default function Tags({ tags }) {
   const { metadata = {} } = useSite();
   const { title: siteTitle } = metadata;
-
-  let metaDescription = `Read ${posts.length} posts from ${title} at ${siteTitle}.`;
-
-  if (description) {
-    metaDescription = `${metaDescription} ${description}`;
-  }
+  const title = 'Tags';
+  const slug = 'tags';
+  let metaDescription = `Read ${tags.length} tags at ${siteTitle}.`;
 
   const ogImage = getSpaceJellyOgPageUrl({
     headline: title,
@@ -39,7 +28,7 @@ export default function TemplateArchive({
   return (
     <Layout>
       <Helmet>
-        <title>{title}</title>
+        <title>Tags</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDescription} />
@@ -55,26 +44,18 @@ export default function TemplateArchive({
 
       <Header>
         <Container>
-          <h1>{Title || title}</h1>
-          {description && (
-            <p
-              className={styles.archiveDescription}
-              dangerouslySetInnerHTML={{
-                __html: description,
-              }}
-            />
-          )}
+          <h1>Tags</h1>
         </Container>
       </Header>
 
-      <Section className={styles.postsSection}>
-        <Container size="content">
-          <h2 className="sr-only">Posts</h2>
-          <ul className={styles.posts}>
-            {posts.map((post) => {
+      <Section>
+        <Container>
+          <SectionTitle>All Tags</SectionTitle>
+          <ul className={styles.tags}>
+            {tags.map((tag) => {
               return (
-                <li key={post.slug}>
-                  <PostCard post={post} options={postOptions} />
+                <li key={tag.slug}>
+                  <Link href={tag.uri}>{tag.name}</Link>
                 </li>
               );
             })}
@@ -83,4 +64,14 @@ export default function TemplateArchive({
       </Section>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const { tags } = await getAllTags();
+
+  return {
+    props: {
+      tags,
+    },
+  };
 }

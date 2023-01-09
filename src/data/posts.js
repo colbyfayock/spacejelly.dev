@@ -42,10 +42,14 @@ export const QUERY_ALL_POSTS_ARCHIVE = gql`
           ...PostFields
           author {
             node {
-              avatar {
-                height
-                url
-                width
+              user {
+                userimage {
+                  mediaDetails {
+                    height
+                    width
+                  }
+                  sourceUrl
+                }
               }
               id
               name
@@ -69,10 +73,14 @@ export const QUERY_ALL_POSTS = gql`
           ...PostFields
           author {
             node {
-              avatar {
-                height
-                url
-                width
+              user {
+                userimage {
+                  mediaDetails {
+                    height
+                    width
+                  }
+                  sourceUrl
+                }
               }
               id
               name
@@ -101,10 +109,14 @@ export function getQueryPostBySlug(slug) {
       postBy(slug: "${slug}"){
         author {
           node {
-            avatar {
-              height
-              url
-              width
+            user {
+              userimage {
+                mediaDetails {
+                  height
+                  width
+                }
+                sourceUrl
+              }
             }
             id
             name
@@ -174,10 +186,14 @@ export const QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE = gql`
           ...PostFields
           author {
             node {
-              avatar {
-                height
-                url
-                width
+              user {
+                userimage {
+                  mediaDetails {
+                    height
+                    width
+                  }
+                  sourceUrl
+                }
               }
               id
               name
@@ -241,3 +257,49 @@ export function getQueryPostsByAuthorSlug(slug) {
     }
   `;
 }
+
+export const QUERY_POSTS_BY_TAG_SLUG_INDEX = gql`
+  ${POST_FIELDS}
+  query PostByTagSlugIndex($tagSlug: [String]!) {
+    posts(where: { tagSlugIn: $tagSlug }) {
+      edges {
+        node {
+          ...PostFields
+        }
+      }
+    }
+  }
+`;
+
+export const QUERY_POSTS_BY_TAG_SLUG_ARCHIVE = gql`
+  ${POST_FIELDS}
+  query PostByTagSlugIndex($tagSlug: [String]!) {
+    posts(where: { tagSlugIn: $tagSlug }) {
+      edges {
+        node {
+          ...PostFields
+          author {
+            node {
+              user {
+                userimage {
+                  mediaDetails {
+                    height
+                    width
+                  }
+                  sourceUrl
+                }
+              }
+              id
+              name
+              slug
+            }
+          }
+          date
+          excerpt
+          postId
+          isSticky
+        }
+      }
+    }
+  }
+`;

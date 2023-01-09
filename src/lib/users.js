@@ -7,14 +7,6 @@ import { QUERY_ALL_USERS } from 'data/users';
 const ROLES_AUTHOR = ['author', 'administrator'];
 
 /**
- * postPathBySlug
- */
-
-export function authorPathBySlug(slug) {
-  return `/authors/${slug}`;
-}
-
-/**
  * getUserBySlug
  */
 
@@ -100,26 +92,23 @@ export async function getAllAuthors() {
  * mapUserData
  */
 
-export function mapUserData(user) {
-  return {
+export function mapUserData(userData) {
+  const user = userData.node || userData;
+
+  const data = {
     ...user,
-    roles: [...user.roles.nodes],
-    avatar: user.avatar && updateUserAvatar(user.avatar),
   };
-}
 
-/**
- * updateUserAvatar
- */
+  if (user.user?.userimage) {
+    data.avatar = {
+      ...user.user.userimage.mediaDetails,
+      url: user.user.userimage.sourceUrl,
+    };
+  }
 
-export function updateUserAvatar(avatar) {
-  // The URL by default that comes from Gravatar / WordPress is not a secure
-  // URL. This ends up redirecting to https, but it gives mixed content warnings
-  // as the HTML shows it as http. Replace the url to avoid those warnings
-  // and provide a secure URL by default
+  if (user.roles?.nodes) {
+    data.roles = [...user.roles.nodes];
+  }
 
-  return {
-    ...avatar,
-    url: avatar.url?.replace('http://', 'https://'),
-  };
+  return data;
 }

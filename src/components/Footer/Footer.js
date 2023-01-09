@@ -3,7 +3,7 @@ import { FaTwitter, FaYoutube, FaGithub } from 'react-icons/fa';
 
 import useSite from 'hooks/use-site';
 import { getRouteByName } from 'lib/routes';
-import { authorPathBySlug } from 'lib/users';
+import { authorPathByName } from 'lib/users';
 
 import Section from 'components/Section';
 import Container from 'components/Container';
@@ -60,7 +60,7 @@ const Footer = () => {
                 </li>
               </ul>
               <p className={styles.footerAuthorMore}>
-                <a href={authorPathBySlug(author.slug)}>More about {author.name}</a>
+                <a href={authorPathByName(author.name)}>More about {author.name}</a>
               </p>
             </div>
           </div>
@@ -98,6 +98,9 @@ const Footer = () => {
             </li>
             <li>
               <a href={getRouteByName('rss')?.path}>RSS</a>
+            </li>
+            <li>
+              <a href={getRouteByName('about')?.path}>About</a>
             </li>
             <li>
               <Link href={getRouteByName('colbyashiMaru')?.path}>Colbyashi Maru</Link>

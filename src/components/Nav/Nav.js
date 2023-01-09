@@ -5,6 +5,7 @@ import useSite from 'hooks/use-site';
 import useSearch from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
 import { getRouteByName } from 'lib/routes';
+import { categoryPathBySlug } from 'lib/categories';
 
 import Section from 'components/Section';
 import Container from 'components/Container';
@@ -13,50 +14,10 @@ import SpaceJelly from 'components/SpaceJelly';
 
 import styles from './Nav.module.scss';
 
-const CATEGORIES = [
-  {
-    title: 'Authentication',
-    link: '/',
-  },
-  {
-    title: 'Automation',
-    link: '/',
-  },
-  {
-    title: 'CSS',
-    link: '/',
-  },
-  {
-    title: 'GitHub Actions',
-    link: '/',
-  },
-  {
-    title: 'GraphQL',
-    link: '/',
-  },
-  {
-    title: 'Host & Deploy',
-    link: '/',
-  },
-  {
-    title: 'Jamstack',
-    link: '/',
-  },
-  {
-    title: 'MDX',
-    link: '/',
-  },
-  {
-    title: 'Media',
-    link: '/',
-  },
-];
-
 const Nav = () => {
   const formRef = useRef();
 
-  const { metadata = {} } = useSite();
-  const { title } = metadata;
+  const { categories } = useSite();
 
   const { query, results, search, clearSearch } = useSearch({
     maxResults: 5,
@@ -234,16 +195,13 @@ const Nav = () => {
             <div className={`${styles.navBarSection} ${styles.navBarSectionLinks}`}>
               <ul className={styles.navBarLinks}>
                 <li>
-                  <Link href={getRouteByName('home')?.path}>Articles</Link>
+                  <a href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
+                    YouTube
+                  </a>
                 </li>
                 <li>
-                  <a
-                    className="link-external"
-                    href="https://www.youtube.com/colbyfayock"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Videos
+                  <a href="https://www.twitter.com/colbyfayock" target="_blank" rel="noopener">
+                    Twitter
                   </a>
                 </li>
               </ul>
@@ -267,10 +225,10 @@ const Nav = () => {
         <Container className={styles.navSecondaryContainer}>
           <div className={styles.navBarSection}>
             <ul className={styles.navBarLinks}>
-              {CATEGORIES.map(({ title, link }) => {
+              {categories.map(({ name, slug }) => {
                 return (
-                  <li key={title}>
-                    <Link href={link}>{title}</Link>
+                  <li key={name}>
+                    <Link href={categoryPathBySlug(slug)}>{name}</Link>
                   </li>
                 );
               })}

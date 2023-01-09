@@ -5,8 +5,6 @@ import TemplateArchive from 'templates/archive';
 import Title from 'components/Title';
 import { AuthorJsonLd } from 'lib/json-ld';
 
-import styles from 'styles/pages/Post.module.scss';
-
 export default function Author({ user, posts }) {
   const { name, avatar, description, slug } = user;
 

@@ -9,9 +9,11 @@ import { CldImage } from 'next-cloudinary';
 import { getApolloClient } from 'lib/apollo-client';
 import { getRouteByName } from 'lib/routes';
 import { getAllPosts, postPathBySlug } from 'lib/posts';
-import { getPageById } from 'lib/pages';
+import { getAllTags } from 'lib/tags';
 import { WebsiteJsonLd } from 'lib/json-ld';
 import useSite from 'hooks/use-site';
+
+import { HOME_TAGS } from 'data/home';
 
 import Layout from 'components/Layout';
 import Section from 'components/Section';
@@ -27,7 +29,7 @@ import ShoreRocks from 'components/ShoreRocks';
 
 import styles from 'styles/pages/Home.module.scss';
 
-export default function Home({ page, latestPost, posts }) {
+export default function Home({ page, latestPost, posts, featuredTags }) {
   const { metadata = {} } = useSite();
   const { title } = metadata;
 
@@ -63,8 +65,25 @@ export default function Home({ page, latestPost, posts }) {
             <Heading className={styles.heading} as="h2" color="orange">
               Tutorials by Tech
             </Heading>
-            <ul>
-              <li>Tech</li>
+            <ul className={styles.heroFeaturedTags}>
+              {featuredTags.map((tag) => {
+                return (
+                  <li key={tag.uri}>
+                    <Link href={tag.uri}>
+                      <img
+                        width={tag.logo?.width}
+                        height={tag.logo?.height}
+                        src={tag.logo?.url}
+                        alt={tag.name}
+                        style={{
+                          width: tag.logo?.width,
+                          height: tag.logo?.height,
+                        }}
+                      />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </Container>
@@ -188,11 +207,25 @@ export async function getStaticProps() {
 
   const latestPost = posts.shift();
 
+  const { tags: allTags } = await getAllTags();
+  const featuredTags = HOME_TAGS.map((homeTag) => {
+    const tag = allTags.find(({ slug }) => slug === homeTag.slug);
+    return {
+      ...tag,
+      logo: {
+        ...tag.logo,
+        width: homeTag.width,
+        height: homeTag.height,
+      },
+    };
+  });
+
   return {
     props: {
       page: data?.page,
       latestPost,
       posts: posts.sort((post) => (post.isSticky ? -1 : 1)).slice(0, 5),
+      featuredTags,
     },
   };
 }

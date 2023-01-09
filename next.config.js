@@ -1,5 +1,5 @@
 const indexSearch = require('./plugins/search-index');
-const indexColbyashiMaru = require('./plugins/colbyashi-maru-index');
+// const indexColbyashiMaru = require('./plugins/colbyashi-maru-index');
 const feed = require('./plugins/feed');
 const sitemap = require('./plugins/sitemap');
 // const socialImages = require('./plugins/socialImages'); TODO: failing to run on Netlify
@@ -19,6 +19,6 @@ const nextConfig = {
 };
 
 module.exports = () => {
-  const plugins = [indexSearch, indexColbyashiMaru, feed, sitemap];
+  const plugins = [indexSearch, feed, sitemap];
   return plugins.reduce((acc, plugin) => plugin(acc), nextConfig);
 };

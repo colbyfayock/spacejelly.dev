@@ -4,10 +4,9 @@
 .sidebar {
   flex-shrink: 0;
   width: 100%;
-  margin-top: 2rem;
 
   @include gtLarge() {
-    width: 20rem;
+    width: 16rem;
     margin-top: 0;
     margin-left: 3rem;
   }

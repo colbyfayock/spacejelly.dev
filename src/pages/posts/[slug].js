@@ -10,7 +10,6 @@ import { ArticleJsonLd } from 'lib/json-ld';
 import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
 import { addIdsToHeadersHtml, getHeadersAnchorsFromHtml } from 'lib/parse';
 import useSite from 'hooks/use-site';
-import useOnLoad from 'hooks/use-onload';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
@@ -18,7 +17,6 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
-import FeaturedImage from 'components/FeaturedImage';
 import Button from 'components/Button';
 import Anchors from 'components/Anchors';
 import Video from 'components/Video';
@@ -43,8 +41,6 @@ export default function Post({ post, anchors, related }) {
     demorepourl,
     demostarterurl,
     demowebsiteurl,
-    excerpt,
-    featuredImage,
     intro,
     isSticky = false,
     modified,
@@ -59,9 +55,9 @@ export default function Post({ post, anchors, related }) {
 
   const metaDescription = `Read ${title} at ${siteTitle}.`;
 
-  const { loaded: pageIsLoaded } = useOnLoad();
-
-  const { ref: videoContainerRef, inView, entry } = useInView();
+  const { ref: videoContainerRef, inView } = useInView({
+    triggerOnce: true,
+  });
 
   return (
     <Layout>
@@ -79,7 +75,7 @@ export default function Post({ post, anchors, related }) {
         <meta property="twitter:image" content={ogImage} />
       </Helmet>
 
-      <Header className={styles.postHeader}>
+      <Header className={styles.postHeader} container={{ size: 'narrow' }}>
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{
@@ -97,26 +93,53 @@ export default function Post({ post, anchors, related }) {
       </Header>
 
       <Content>
-        <Section className={styles.postSection}>
-          <Container className={styles.postContainer}>
-            <div className={styles.postContent}>
-              {intro && (
-                <div
-                  className={styles.postIntro}
-                  dangerouslySetInnerHTML={{
-                    __html: intro,
-                  }}
-                />
-              )}
-              {Array.isArray(anchors) && (
-                <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside 🧐" />
-              )}
-              {video && (
-                <div ref={videoContainerRef}>
-                  <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
-                </div>
-              )}
+        <Section className={styles.introSection}>
+          <Container size="content">
+            {intro && (
+              <div
+                className={styles.postIntro}
+                dangerouslySetInnerHTML={{
+                  __html: intro,
+                }}
+              />
+            )}
+            {Array.isArray(anchors) && (
+              <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside" />
+            )}
+            {video && (
+              <div ref={videoContainerRef}>
+                <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
+              </div>
+            )}
+            <ul className={styles.postResources}>
+              <li>
+                {demowebsiteurl && (
+                  <Button href={demowebsiteurl} display="full">
+                    View Demo Website
+                  </Button>
+                )}
+              </li>
+              <li>
+                {demorepourl && (
+                  <Button href={demorepourl} display="full">
+                    See the Code
+                  </Button>
+                )}
+              </li>
+              <li>
+                {demostarterurl && (
+                  <Button href={demostarterurl} display="full">
+                    Grab the Starter
+                  </Button>
+                )}
+              </li>
+            </ul>
+          </Container>
+        </Section>
 
+        <Content>
+          <Section className={styles.contentSection}>
+            <Container size="content">
               <div
                 dangerouslySetInnerHTML={{
                   __html: content,
@@ -126,58 +149,11 @@ export default function Post({ post, anchors, related }) {
               <div className={styles.postFooter}>
                 <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
               </div>
-            </div>
-            <Sidebar>
-              {featuredImage && (
-                <FeaturedImage
-                  {...featuredImage}
-                  src={featuredImage.sourceUrl}
-                  dangerouslySetInnerHTML={featuredImage.caption}
-                />
-              )}
-              {(demowebsiteurl || demorepourl) && (
-                <SidebarSection>
-                  <SidebarSectionHeader>Demo</SidebarSectionHeader>
-                  <SidebarSectionBody>
-                    <p>
-                      {demowebsiteurl && (
-                        <Button href={demowebsiteurl} display="full">
-                          View Demo Website
-                        </Button>
-                      )}
-                      {demorepourl && (
-                        <Button href={demorepourl} display="full">
-                          See the Code
-                        </Button>
-                      )}
-                    </p>
-                  </SidebarSectionBody>
-                </SidebarSection>
-              )}
-              {demostarterurl && (
-                <SidebarSection>
-                  <SidebarSectionHeader>Starter</SidebarSectionHeader>
-                  <SidebarSectionBody>
-                    <p>
-                      <Button href={demostarterurl} display="full">
-                        Go to Repository
-                      </Button>
-                    </p>
-                  </SidebarSectionBody>
-                </SidebarSection>
-              )}
-              <SidebarSection>
-                <SidebarSectionHeader>Newsletter</SidebarSectionHeader>
-                <SidebarSectionBody>
-                  <p>Get tutorials like this right to your inbox each week!</p>
-                  <FormSubscribe />
-                </SidebarSectionBody>
-              </SidebarSection>
-            </Sidebar>
-          </Container>
-        </Section>
+            </Container>
+          </Section>
+        </Content>
 
-        <Section className={styles.postRelated}>
+        <Section className={styles.relatedSection}>
           <Container>
             <h2>
               More from{' '}
@@ -185,7 +161,13 @@ export default function Post({ post, anchors, related }) {
                 <Link href={categoryPathBySlug(related.slug)}>{related.name}</Link>
               </strong>
             </h2>
-            <Posts className={styles.postRelatedPosts} posts={related?.posts} />
+            <Posts
+              className={styles.relatedPosts}
+              posts={related?.posts}
+              postCard={{
+                excludeMetadata: ['categories', 'date'],
+              }}
+            />
           </Container>
         </Section>
       </Content>

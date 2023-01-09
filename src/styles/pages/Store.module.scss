@@ -1,6 +1,6 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
-@import "../../components/Button/Button.module.scss";
+@import "components/Button/Button.module.scss";
 
 .header {
   div {
@@ -52,13 +52,8 @@
 }
 
 .cartCheckout {
-  display: inline-block;
-  color: white;
+  @extend .button;
   font-size: 0.5em;
-  font-weight: bold;
-  background-color: $color-primary;
-  padding: 0.4em 0.6em;
-  border-radius: 0.2em;
   margin-left: 1em;
 }
 
@@ -102,8 +97,6 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
-  background-color: white;
-  padding: 1.5em;
 }
 
 .productImage {
@@ -111,6 +104,7 @@
 
   img {
     display: block;
+    border-radius: 2px;
     padding: 0;
     border: 0;
   }
@@ -139,7 +133,6 @@
   a {
     @extend .button;
     text-decoration: none;
-    padding: 0.573em 1.4em;
   }
 
   button,
@@ -163,6 +156,7 @@
     display: flex;
     align-items: center;
     color: white;
+    text-decoration: none;
   }
 
   svg {

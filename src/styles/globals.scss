@@ -33,6 +33,11 @@ p {
 
 ul {
   padding-left: 1.2em;
+  margin: 1.2em 0;
+}
+
+li {
+  margin-bottom: 0.4em;
 }
 
 a {
@@ -61,9 +66,12 @@ input {
 pre {
   display: grid;
   color: $color-blue-100;
-  background-color: $color-site-background;
-  border-radius: 0;
+  line-height: 1.5;
+  font-size: 0.9em;
+  background-color: $color-brand-aqua-dark;
+  border-radius: 2px;
   padding: 0;
+  margin: 1.5em 0;
 
   code {
     overflow-x: scroll;
@@ -73,11 +81,27 @@ pre {
 
 figure {
   text-align: center;
+  margin: 2.5em 0;
   img {
     width: 100%;
     height: auto;
     border: none;
+    border-radius: 2px;
   }
+}
+
+figcaption {
+  color: lighten($color-brand-aqua-light, 26);
+  font-size: 0.8em;
+  font-style: italic;
+  margin-top: 0.8em;
+}
+
+blockquote {
+  color: lighten($color-brand-aqua-light, 26);
+  padding-left: 1em;
+  border-left: solid 4px $color-brand-aqua-light;
+  margin: 1.5em 0;
 }
 
 .sr-only {

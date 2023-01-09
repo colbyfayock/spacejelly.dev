@@ -6,18 +6,22 @@ const PLATFORMS = [
   {
     id: 'eggheadio',
     name: 'egghead.io',
+    type: 'video',
   },
   {
     id: 'email',
     name: 'Free Email Newsletter',
+    type: 'email',
   },
   {
     id: 'leveluptuts',
     name: 'Level Up Tutorials',
+    type: 'video',
   },
   {
     id: 'youtube',
     name: 'YouTube',
+    type: 'video',
   },
 ];
 

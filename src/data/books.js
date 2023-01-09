@@ -1,14 +1,13 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_ALL_COURSES = gql`
-  query AllCourses {
-    courses {
+export const QUERY_ALL_BOOKS = gql`
+  query AllBooks {
+    books {
       edges {
         node {
           id
-          course {
-            courseLink
-            platformid
+          book {
+            booklink
           }
           featuredImage {
             node {

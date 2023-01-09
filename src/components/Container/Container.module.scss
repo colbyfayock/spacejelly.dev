@@ -14,4 +14,8 @@
   &[data-container-size="narrow"] {
     max-width: $display-page-width-narrow;
   }
+
+  &[data-container-size="content"] {
+    max-width: $display-page-width-content;
+  }
 }

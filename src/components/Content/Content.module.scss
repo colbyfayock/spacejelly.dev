@@ -1,7 +1,8 @@
 @import "styles/settings/__settings";
 
 .content {
-  font-size: 1.2rem;
+  color: lighten($color-brand-aqua-light, 40);
+  font-size: 1.1rem;
 
   h2,
   h3,
@@ -19,10 +20,22 @@
 
   h2 {
     font-weight: bold;
+    margin-top: 1.8em;
+  }
+
+  h3 {
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 2em;
   }
 
   img {
     display: block;
     margin: 0 auto;
+  }
+
+  pre {
+    background-color: $color-brand-deepaqua-medium;
   }
 }

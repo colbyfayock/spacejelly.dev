@@ -1,3 +1,4 @@
+@import "styles/settings/__settings";
 @import "mixins-display";
 
 @mixin withHover() {
@@ -11,7 +12,21 @@
   text-decoration: none;
   text-transform: uppercase;
 
-  &:hover {
-    text-decoration: underline;
+  @include withHover() {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@mixin titleLink {
+  color: white;
+  text-decoration: none;
+
+  @include withHover() {
+    &:hover {
+      color: $color-brand-yellow-medium;
+      text-decoration: underline;
+    }
   }
 }

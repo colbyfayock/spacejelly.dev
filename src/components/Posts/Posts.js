@@ -4,7 +4,7 @@ import PostCard from 'components/PostCard';
 
 import styles from './Posts.module.scss';
 
-const Posts = ({ children, className, posts = [], ...rest }) => {
+const Posts = ({ children, className, posts = [], postCard, ...rest }) => {
   const postsClassName = new ClassName(styles.posts);
 
   postsClassName.addIf(className, className);
@@ -14,7 +14,7 @@ const Posts = ({ children, className, posts = [], ...rest }) => {
       {posts.map((post) => {
         return (
           <li key={post.slug}>
-            <PostCard post={post} />
+            <PostCard post={post} options={postCard} />
           </li>
         );
       })}

@@ -8,8 +8,6 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
-  background-color: white;
-  padding: 0.25em;
 }
 
 .episodeImage {
@@ -33,7 +31,7 @@
   flex-grow: 1;
   font-size: 1.4em;
   font-weight: bold;
-  border-bottom: solid 1px $color-gray-200;
+  border-bottom: solid 1px rgba($color-gray-200, 0.5);
   padding-bottom: 0.5em;
   margin: 0 0 0.25em;
 }

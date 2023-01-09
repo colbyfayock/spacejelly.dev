@@ -12,12 +12,18 @@
 
 .heroSection {
   position: relative;
+  margin: 3rem 0 8rem;
+
+  @include gtSmall() {
+    margin: 3rem 0;
+  }
 }
 
 .heroGalaxyCloud {
   position: absolute;
   top: 10em;
   left: 0;
+  z-index: -1;
   width: 100%;
   height: auto;
 }
@@ -102,6 +108,30 @@
   }
 }
 
+.heroFeaturedTags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 0.5em;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 4em;
+    background-color: rgba($color-brand-aqua-medium, 0.5);
+    padding: 0.5em 0.8em;
+  }
+}
+
 /**
  * Features
  */
@@ -109,17 +139,26 @@
 .featuredSection {
   position: relative;
   background-color: $color-brand-purple-medium;
-  padding: 5rem 0 calc(4vw + 5rem); // Additional vw to acommodate for section art
+  padding: 2rem 0 calc(4vw + 5rem); // Additional vw to acommodate for section art
   margin: 18vw 0 0 0;
+
+  @include gtSmall() {
+    padding: 5rem 0 calc(4vw + 5rem); // Additional vw to acommodate for section art
+  }
 }
 
 .featuredMountainRange {
   position: absolute;
-  top: -14vw;
-  width: 100vw;
+  top: -28vw;
+  width: 200vw;
   height: auto;
   left: 0;
   z-index: -1;
+
+  @include gtSmall() {
+    top: -14vw;
+    width: 100vw;
+  }
 }
 
 .featuredFeatures {
@@ -217,7 +256,7 @@
   font-size: 0.8em;
   background-color: $color-brand-aqua-dark;
   padding: calc(14vw + 5rem) 0 calc(15vw + 5rem); // Additional vw to acommodate for section art
-  margin: 4vw 0 0;
+  margin: 4vw 0 -22vw; // Negative margin overrides global page layout for footer scene
 
   @include gtLarge() {
     font-size: 1em;
@@ -226,20 +265,39 @@
 
 .morePostsShoreRocks {
   position: absolute;
-  top: -10vw;
-  width: 100vw;
+  top: -20vw;
+  width: 200vw;
   height: auto;
   left: 0;
+
+  @include gtSmall() {
+    top: -10vw;
+    width: 100vw;
+  }
 }
 
 .morePostsContainer {
   max-width: 50rem;
 
   .heading {
-    margin-bottom: 3em;
+    margin-bottom: 2.5em;
+
+    @include gtSmall() {
+      margin-bottom: 3em;
+    }
 
     h2 {
       text-align: center;
+    }
+  }
+
+  h3 {
+    font-size: 1.8em;
+    margin-bottom: 0.8em;
+
+    @include gtSmall() {
+      font-size: 2.2em;
+      margin-bottom: 0.6em;
     }
   }
 }

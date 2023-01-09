@@ -58,7 +58,7 @@ export default function Page({ page }) {
             <h1 className="sr-only">{title}</h1>
           </>
         )}
-        {!featuredImage && <h1 className={styles.title}>{title}</h1>}
+        {!featuredImage && <h1>{title}</h1>}
       </Header>
 
       <Content>
