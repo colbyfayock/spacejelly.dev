@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
 import Link from 'next/link';
-import { Helmet } from 'react-helmet';
 
 import useSite from 'hooks/use-site';
 import { getAllCategories, categoryPathBySlug } from 'lib/categories';
 import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebpageJsonLd } from 'lib/json-ld';
 
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
@@ -28,7 +27,7 @@ export default function Categories({ categories }) {
 
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>Categories</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
@@ -39,7 +38,7 @@ export default function Categories({ categories }) {
         <meta property="og:image:height" content="1012" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      </Head>
 
       <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
 

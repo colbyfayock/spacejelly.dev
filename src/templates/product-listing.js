@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 
 import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebsiteJsonLd } from 'lib/json-ld';
@@ -7,7 +7,6 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
-import Button from 'components/Button';
 
 import styles from 'styles/templates/ProductListing.module.scss';
 
@@ -25,7 +24,7 @@ export default function TemplateProductListing({
 
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
@@ -36,7 +35,7 @@ export default function TemplateProductListing({
         <meta property="og:image:height" content="1012" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      </Head>
 
       <WebsiteJsonLd siteTitle={title} />
 

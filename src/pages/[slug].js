@@ -1,12 +1,10 @@
-import path from 'path';
-import { Helmet } from 'react-helmet';
-
 import { getPageById, getAllPages } from 'lib/pages';
 import { WebpageJsonLd } from 'lib/json-ld';
 import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import useSite from 'hooks/use-site';
 
 import Layout from 'components/Layout';
+import Head from 'components/Head';
 import Header from 'components/Header';
 import Content from 'components/Content';
 import Section from 'components/Section';
@@ -19,9 +17,7 @@ export default function Page({ page }) {
   const { metadata = {} } = useSite();
   const { title: siteTitle } = metadata;
 
-  const { title, content, date, featuredImage, slug } = page;
-
-  const pageTitle = title?.rendered;
+  const { title, content, featuredImage, slug } = page;
 
   const metaDescription = `${title} on ${siteTitle}`;
 
@@ -31,7 +27,7 @@ export default function Page({ page }) {
 
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
@@ -43,7 +39,7 @@ export default function Page({ page }) {
         <meta property="og:image:height" content="1012" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      </Head>
 
       <Header className={styles.pageHeader}>
         {featuredImage && (

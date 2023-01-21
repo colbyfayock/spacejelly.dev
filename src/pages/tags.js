@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 
 import useSite from 'hooks/use-site';
 import { getAllTags } from 'lib/tags';
@@ -27,7 +27,7 @@ export default function Tags({ tags }) {
 
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>Tags</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
@@ -38,7 +38,7 @@ export default function Tags({ tags }) {
         <meta property="og:image:height" content="1012" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      </Head>
 
       <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
 

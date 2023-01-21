@@ -217,7 +217,7 @@ export function mapPostData(post = {}) {
   // the excerpt produced before the Read More tag, so if it exists on the post
   // try to find it and replace the excerpt with it
 
-  const { intro, content: moreContent } = parseIntroFromContent(data.content);
+  const { intro } = parseIntroFromContent(data.content);
 
   if (intro) {
     data.excerpt = intro;

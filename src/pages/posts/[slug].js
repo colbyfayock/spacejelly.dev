@@ -1,6 +1,5 @@
-import path from 'path';
 import Link from 'next/link';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { useInView } from 'react-intersection-observer';
 
 import { getPostBySlug, getRecentPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
@@ -21,11 +20,6 @@ import Button from 'components/Button';
 import Anchors from 'components/Anchors';
 import Video from 'components/Video';
 import Posts from 'components/Posts';
-import Sidebar from 'components/Sidebar';
-import SidebarSection from 'components/SidebarSection';
-import SidebarSectionHeader from 'components/SidebarSectionHeader';
-import SidebarSectionBody from 'components/SidebarSectionBody';
-import FormSubscribe from 'components/FormSubscribe';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -61,7 +55,7 @@ export default function Post({ post, anchors, related }) {
 
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
@@ -73,7 +67,7 @@ export default function Post({ post, anchors, related }) {
         <meta property="og:image:height" content="1012" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      </Head>
 
       <Header className={styles.postHeader} container={{ size: 'narrow' }}>
         <h1

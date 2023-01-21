@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import Link from 'next/link';
 import { FaTwitter } from 'react-icons/fa';
 import { BsDiscord } from 'react-icons/bs';
 import { gql } from '@apollo/client';
-import { CldImage } from 'next-cloudinary';
 
 import { getApolloClient } from 'lib/apollo-client';
 import { getRouteByName } from 'lib/routes';

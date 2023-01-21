@@ -1,8 +1,6 @@
-import { Helmet } from 'react-helmet';
 import Link from 'next/link';
 
-import { getRouteByName } from 'lib/routes';
-
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Content from 'components/Content';
@@ -12,18 +10,17 @@ import CosmoShrug from 'components/CosmoShrug';
 
 import styles from 'styles/pages/Page.module.scss';
 
-export default function Store({ courses }) {
+export default function Page404() {
   const title = 'Not Found!';
   const metaDescription = 'Nothing to see here...';
-
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDescription} />
-      </Helmet>
+      </Head>
 
       <Header className={styles.header}>
         <h1>{title}</h1>

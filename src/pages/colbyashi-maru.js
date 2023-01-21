@@ -1,8 +1,7 @@
-import { Helmet } from 'react-helmet';
-import { FaShoppingCart, FaTwitch, FaCalendarCheck } from 'react-icons/fa';
+import Head from 'next/head';
+import { FaTwitch, FaCalendarCheck } from 'react-icons/fa';
 
 import { getAllCmEpisodes } from 'lib/colbyashi-maru';
-import { getRouteByName } from 'lib/routes';
 import { WebsiteJsonLd } from 'lib/json-ld';
 import { getSpaceJellyOgColbyashiMaruUrl } from 'lib/cloudinary';
 import { sortObjectsByDate, dateIsPast, dateIsFuture } from 'lib/datetime';
@@ -30,7 +29,7 @@ export default function ColbyashiMaru({ episodes }) {
 
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
@@ -41,7 +40,7 @@ export default function ColbyashiMaru({ episodes }) {
         <meta property="og:image:height" content="1012" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      </Head>
 
       <Header className={styles.header}>
         <h1>{title}</h1>

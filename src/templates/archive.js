@@ -1,12 +1,11 @@
-import { Helmet } from 'react-helmet';
-
 import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebpageJsonLd } from 'lib/json-ld';
 import useSite from 'hooks/use-site';
+import { CldOgImage } from 'next-cloudinary';
 
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
-import Content from 'components/Content';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import PostCard from 'components/PostCard';
@@ -38,18 +37,9 @@ export default function TemplateArchive({
 
   return (
     <Layout>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:secure_url" content={ogImage} />
-        <meta property="og:image:width" content="2024" />
-        <meta property="og:image:height" content="1012" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      <Head title={title} description={metaDescription} />
+
+      <CldOgImage src="assets/space-jelly-dev-og-v2" />
 
       <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
 

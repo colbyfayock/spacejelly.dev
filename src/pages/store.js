@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { FaShoppingCart, FaExternalLinkSquareAlt } from 'react-icons/fa';
 
 import { getAllProducts } from 'lib/products';
@@ -10,7 +10,6 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
-import Posts from 'components/Posts';
 import Image from 'components/Image';
 import Button from 'components/Button';
 
@@ -26,7 +25,7 @@ export default function Store({ products }) {
 
   return (
     <Layout>
-      <Helmet>
+      <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={title} />
@@ -40,7 +39,7 @@ export default function Store({ products }) {
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
         <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.css" />
-      </Helmet>
+      </Head>
 
       <Header className={styles.header}>
         <h1>{title}</h1>

@@ -880,10 +880,10 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
-next-cloudinary@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/next-cloudinary/-/next-cloudinary-1.6.0.tgz#2c895e648cbf0eba8caf3d315eebc421ade82ba6"
-  integrity sha512-6o4CScTC0yDBTuOUoKyYp0RBy//aglk8rFbyzaFV0KF0n9fTn7tafOrk3KrkE5pGAe6AYcVpB1VcRl6JxTpyig==
+next-cloudinary@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/next-cloudinary/-/next-cloudinary-1.11.0.tgz#fa350988afcd4f5ff2368c04f46b693c92d46206"
+  integrity sha512-Ax0lTFX8YpDQ3XmJvN4IWplMSVJIE5xDpYdGEpTojLKWx518efkoRy6eYyI2hqVM8Uhq4PTIrYOBPhy+zSi4Ow==
   dependencies:
     "@cloudinary/url-gen" "^1.8.6"
 
