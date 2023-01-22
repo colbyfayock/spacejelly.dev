@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FaTwitter } from 'react-icons/fa';
 import { BsDiscord } from 'react-icons/bs';
 import { gql } from '@apollo/client';
+import { CldOgImage } from 'next-cloudinary';
 
 import { getApolloClient } from 'lib/apollo-client';
 import { getRouteByName } from 'lib/routes';
@@ -12,6 +13,7 @@ import useSite from 'hooks/use-site';
 
 import { HOME_TAGS } from 'data/home';
 
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Section from 'components/Section';
 import Container from 'components/Container';
@@ -28,12 +30,23 @@ import styles from 'styles/pages/Home.module.scss';
 
 export default function Home({ page, latestPost, posts, featuredTags }) {
   const { metadata = {} } = useSite();
-  const { title } = metadata;
+  const { title: siteTitle, description: siteDescription } = metadata;
+
+  const title = `${siteTitle} - Web Development Tutorials & Resources for _This_ Universe`;
+  const metaDescription = `${siteDescription} at ${title}`;
 
   const featuredCourse = page?.featuredCourse?.featuredcourse;
 
   return (
     <Layout>
+      <Head
+        title={title}
+        description={metaDescription}
+        ogImage={{
+          layout: 'home',
+        }}
+      />
+
       <h1
         className="sr-only"
         dangerouslySetInnerHTML={{

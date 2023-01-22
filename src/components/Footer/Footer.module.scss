@@ -7,12 +7,20 @@
   z-index: 1;
   width: 100%;
   background-color: $color-brand-pink-medium;
-  padding-top: calc(5rem + 5vw);
+  padding-top: 12vw;
+
+  @include gtLarge() {
+    padding-top: 10vw;
+  }
+
+  @include gtHuge() {
+    padding-top: 8vw;
+  }
 }
 
 .footerSand {
   position: absolute;
-  top: -4vw;
+  top: -8vw;
   width: 100vw;
   height: auto;
   left: 0;
@@ -21,12 +29,18 @@
 
 .footerSandSpaceship {
   position: absolute;
-  top: -12vw;
+  top: -20vw;
   left: 0;
   right: 0;
-  width: 50vw;
+  width: 70vw;
   height: auto;
   margin: 0 auto;
+  transform: translateX(-3vw);
+
+  @include gtLarge() {
+    top: -15vw;
+    width: 50vw;
+  }
 }
 
 .footerSection {
@@ -46,16 +60,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  @include gtSmall() {
+    flex-direction: row;
+  }
 }
 
 .footerAuthorImage {
-  margin-right: 1em;
+  margin: 0;
+
+  @include gtSmall() {
+    margin-right: 1em;
+  }
 
   img {
     display: block;
     width: 8em;
     border-radius: 50%;
     border: solid 5px $color-brand-purple-medium;
+  }
+}
+
+.footerAuthorDetails {
+  text-align: center;
+  margin: 1em 0 0;
+
+  @include gtSmall() {
+    text-align: left;
+    margin: 0;
   }
 }
 
@@ -67,10 +100,15 @@
 
 .footerAuthorSocial {
   display: flex;
+  justify-content: center;
   list-style: none;
   font-size: 2em;
   padding: 0;
   margin: 0.2em -0.3em 0;
+
+  @include gtSmall() {
+    justify-content: flex-start;
+  }
 
   li {
     margin: 0;

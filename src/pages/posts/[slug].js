@@ -1,15 +1,14 @@
 import Link from 'next/link';
-import Head from 'next/head';
 import { useInView } from 'react-intersection-observer';
 
 import { getPostBySlug, getRecentPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
-import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
 import { addIdsToHeadersHtml, getHeadersAnchorsFromHtml } from 'lib/parse';
 import useSite from 'hooks/use-site';
 
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
@@ -29,6 +28,7 @@ export default function Post({ post, anchors, related }) {
 
   const {
     author,
+    cardtitle,
     categories,
     content,
     date,
@@ -38,7 +38,6 @@ export default function Post({ post, anchors, related }) {
     intro,
     isSticky = false,
     modified,
-    ogImage,
     title,
     video,
   } = post;
@@ -55,19 +54,14 @@ export default function Post({ post, anchors, related }) {
 
   return (
     <Layout>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:secure_url" content={ogImage} />
-        <meta property="og:image:width" content="2024" />
-        <meta property="og:image:height" content="1012" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content={ogImage} />
-      </Head>
+      <Head
+        title={title}
+        description={metaDescription}
+        ogImage={{
+          title: cardtitle || title,
+          layout: 'post',
+        }}
+      />
 
       <Header className={styles.postHeader} container={{ size: 'narrow' }}>
         <h1
@@ -151,14 +145,15 @@ export default function Post({ post, anchors, related }) {
           <Container>
             <h2>
               More from{' '}
-              <strong>
-                <Link href={categoryPathBySlug(related.slug)}>{related.name}</Link>
-              </strong>
+              <Link className={styles.relatedSectionLink} href={categoryPathBySlug(related.slug)}>
+                {related.name}
+              </Link>
             </h2>
             <Posts
               className={styles.relatedPosts}
               posts={related?.posts}
               postCard={{
+                className: styles.relatedPostsCard,
                 excludeMetadata: ['categories', 'date'],
               }}
             />
@@ -181,7 +176,7 @@ export async function getStaticProps({ params = {} } = {}) {
     };
   }
 
-  const { cardtitle, title, categories } = post;
+  const { title, categories } = post;
   let { content } = post;
 
   const relatedCategory = categories[0];
@@ -214,17 +209,6 @@ export async function getStaticProps({ params = {} } = {}) {
   if (intro.length > 0) {
     content = moreContent;
   }
-
-  // Build a custom OG image based on the title
-  // and the categories
-
-  const ogImage = getSpaceJellyOgPostUrl({
-    headline: cardtitle || title,
-    subtext: categories
-      .slice(0, 3)
-      .map(({ name }) => name)
-      .join('     '),
-  });
 
   if (post.video) {
     let oembed, thumbnail;
@@ -264,7 +248,6 @@ export async function getStaticProps({ params = {} } = {}) {
     props: {
       post: {
         ...post,
-        ogImage,
         content,
         intro,
       },
@@ -278,8 +261,6 @@ export async function getStaticProps({ params = {} } = {}) {
 }
 
 export async function getStaticPaths() {
-  const routes = {};
-
   const { posts } = await getRecentPosts({
     count: process.env.POSTS_PRERENDER_COUNT,
     queryIncludes: 'index',

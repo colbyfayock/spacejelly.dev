@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import { FaTwitter, FaYoutube } from 'react-icons/fa';
 
 import useSite from 'hooks/use-site';
 import useSearch from 'hooks/use-search';
@@ -195,18 +196,6 @@ const Nav = () => {
             <div className={`${styles.navBarSection} ${styles.navBarSectionLinks}`}>
               <ul className={styles.navBarLinks}>
                 <li>
-                  <a href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
-                    YouTube
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.twitter.com/colbyfayock" target="_blank" rel="noopener">
-                    Twitter
-                  </a>
-                </li>
-              </ul>
-              <ul className={styles.navBarLinks}>
-                <li>
                   <Link href={getRouteByName('courses')?.path}>Courses</Link>
                 </li>
                 <li>
@@ -214,6 +203,20 @@ const Nav = () => {
                 </li>
                 <li>
                   <Link href={getRouteByName('store')?.path}>Store</Link>
+                </li>
+              </ul>
+              <ul className={styles.navBarLinks}>
+                <li>
+                  <a href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
+                    <FaYoutube />
+                    <span className="sr-only">YouTube</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.twitter.com/colbyfayock" target="_blank" rel="noopener">
+                    <FaTwitter />
+                    <span className="sr-only">Twitter</span>
+                  </a>
                 </li>
               </ul>
             </div>

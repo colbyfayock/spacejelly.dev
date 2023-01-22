@@ -1,6 +1,5 @@
 import { getPageById, getAllPages } from 'lib/pages';
 import { WebpageJsonLd } from 'lib/json-ld';
-import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import useSite from 'hooks/use-site';
 
 import Layout from 'components/Layout';
@@ -21,25 +20,16 @@ export default function Page({ page }) {
 
   const metaDescription = `${title} on ${siteTitle}`;
 
-  const ogImage = getSpaceJellyOgPageUrl({
-    headline: title,
-  });
-
   return (
     <Layout>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:secure_url" content={ogImage} />
-        <meta property="og:image:width" content="2024" />
-        <meta property="og:image:height" content="1012" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content={ogImage} />
-      </Head>
+      <Head
+        title={title}
+        description={metaDescription}
+        ogImage={{
+          title,
+          layout: 'page',
+        }}
+      />
 
       <Header className={styles.pageHeader}>
         {featuredImage && (
@@ -59,7 +49,7 @@ export default function Page({ page }) {
 
       <Content>
         <Section className={styles.pageSection}>
-          <Container>
+          <Container size="content">
             <div
               className={styles.pageContent}
               dangerouslySetInnerHTML={{

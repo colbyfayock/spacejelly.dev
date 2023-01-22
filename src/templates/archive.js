@@ -1,7 +1,5 @@
-import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebpageJsonLd } from 'lib/json-ld';
 import useSite from 'hooks/use-site';
-import { CldOgImage } from 'next-cloudinary';
 
 import Head from 'components/Head';
 import Layout from 'components/Layout';
@@ -31,15 +29,16 @@ export default function TemplateArchive({
     metaDescription = `${metaDescription} ${description}`;
   }
 
-  const ogImage = getSpaceJellyOgPageUrl({
-    headline: title,
-  });
-
   return (
     <Layout>
-      <Head title={title} description={metaDescription} />
-
-      <CldOgImage src="assets/space-jelly-dev-og-v2" />
+      <Head
+        title={title}
+        description={metaDescription}
+        ogImage={{
+          title,
+          layout: 'page',
+        }}
+      />
 
       <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
 

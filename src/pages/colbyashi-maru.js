@@ -1,11 +1,10 @@
-import Head from 'next/head';
 import { FaTwitch, FaCalendarCheck } from 'react-icons/fa';
 
 import { getAllCmEpisodes } from 'lib/colbyashi-maru';
 import { WebsiteJsonLd } from 'lib/json-ld';
-import { getSpaceJellyOgColbyashiMaruUrl } from 'lib/cloudinary';
 import { sortObjectsByDate, dateIsPast, dateIsFuture } from 'lib/datetime';
 
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
@@ -18,8 +17,6 @@ export default function ColbyashiMaru({ episodes }) {
   const title = 'Colbyashi Maru';
   const metaDescription = 'Challenging the web dev world.';
 
-  const ogImage = getSpaceJellyOgColbyashiMaruUrl();
-
   const episodesSorted = sortObjectsByDate(episodes);
 
   const datetimeOffset = 1000 * 60 * 60 * 1.5;
@@ -29,18 +26,14 @@ export default function ColbyashiMaru({ episodes }) {
 
   return (
     <Layout>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:secure_url" content={ogImage} />
-        <meta property="og:image:width" content="2024" />
-        <meta property="og:image:height" content="1012" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content={ogImage} />
-      </Head>
+      <Head
+        title={title}
+        description={metaDescription}
+        ogImage={{
+          title,
+          layout: 'colbyashi-maru',
+        }}
+      />
 
       <Header className={styles.header}>
         <h1>{title}</h1>

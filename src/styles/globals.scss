@@ -104,6 +104,13 @@ blockquote {
   margin: 1.5em 0;
 }
 
+p,
+blockquote {
+  code {
+    line-break: anywhere;
+  }
+}
+
 .sr-only {
   display: block;
   overflow: hidden;

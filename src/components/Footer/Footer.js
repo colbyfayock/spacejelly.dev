@@ -37,7 +37,7 @@ const Footer = () => {
                 alt="Author"
               />
             </div>
-            <div>
+            <div className={styles.footerAuthorDetails}>
               <p className={styles.footerAuthorName}>{author.name}</p>
               <ul className={styles.footerAuthorSocial}>
                 <li>

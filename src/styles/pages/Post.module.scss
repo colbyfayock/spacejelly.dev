@@ -98,47 +98,38 @@
     color: white;
     text-align: center;
     margin-bottom: 1.5em;
+  }
+}
 
-    strong {
-      color: $color-brand-aqua-medium;
-      font-weight: bold;
+.relatedSectionLink {
+  @include pageLink;
+  text-transform: none;
+}
+
+.relatedPosts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  li {
+    margin: 0 0 0.8em;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
 
-.relatedPosts {
-  display: grid;
-  grid-gap: 1.5em;
-
-  @include gtLarge() {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-
-  & > li {
-    margin: 0;
-
-    & > div {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      padding: 1.5em;
-    }
-  }
-
+.relatedPostsCard {
   h3 {
-    font-size: 1.2em;
+    font-size: 1.1em;
+    @include titleLink;
+    text-transform: none;
+    font-weight: 600;
+    text-align: center;
   }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    margin: 0.5em 0 0;
-
-    li {
-      margin: 0;
-    }
+  a {
+    padding: 0.2em 0;
   }
 }

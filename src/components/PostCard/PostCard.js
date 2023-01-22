@@ -8,23 +8,29 @@ import styles from './PostCard.module.scss';
 
 const PostCard = ({ post, options = {} }) => {
   const { title, excerpt, slug, date, author, categories } = post;
-  const { excludeMetadata = [] } = options;
+  const { excludeMetadata = [], className } = options;
 
   const metadata = {};
 
-  if (!excludeMetadata.includes('author')) {
+  if (!excludeMetadata.includes('author') && author) {
     metadata.author = author;
   }
 
-  if (!excludeMetadata.includes('date')) {
+  if (!excludeMetadata.includes('date') && date) {
     metadata.date = date;
   }
 
-  if (!excludeMetadata.includes('categories')) {
+  if (!excludeMetadata.includes('categories') && categories) {
     metadata.categories = categories;
   }
 
+  const hasMetadata = Object.keys(metadata).length > 0;
+
   let postCardStyle = styles.postCard;
+
+  if (className) {
+    postCardStyle = `${postCardStyle} ${className}`;
+  }
 
   return (
     <div className={postCardStyle}>
@@ -36,7 +42,7 @@ const PostCard = ({ post, options = {} }) => {
           }}
         />
       </Link>
-      <Metadata className={styles.postCardMetadata} {...metadata} author={false} />
+      {hasMetadata && <Metadata className={styles.postCardMetadata} {...metadata} author={false} />}
       {excerpt && (
         <div
           className={styles.postCardContent}

@@ -179,7 +179,7 @@
   flex-direction: column;
   margin-top: 0.5em;
 
-  @include gtMedium() {
+  @include gtSmall() {
     flex-direction: row;
   }
 
@@ -210,7 +210,7 @@
     background-color: $color-brand-aqua-medium;
     margin: auto 2.2em auto 1.4em;
 
-    @include gtMedium() {
+    @include gtSmall() {
       display: block;
     }
 

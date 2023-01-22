@@ -23,7 +23,6 @@
   "dependencies": {
     "@apollo/client": "^3.7.2",
     "@next/font": "^13.1.1",
-    "cloudinary-transformer": "^1.0.0",
     "date-fns": "^2.29.3",
     "date-fns-timezone": "^0.1.4",
     "dotenv": "^16.0.3",
@@ -38,7 +37,6 @@
     "path": "^0.12.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-helmet": "^6.1.0",
     "react-icons": "^4.7.1",
     "react-intersection-observer": "^9.4.1",
     "rehype-parse": "^8.0.4",

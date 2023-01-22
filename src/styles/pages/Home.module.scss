@@ -143,24 +143,37 @@
 .featuredSection {
   position: relative;
   background-color: $color-brand-purple-medium;
-  padding: 2rem 0 calc(4vw + 5rem); // Additional vw to acommodate for section art
-  margin: 18vw 0 0 0;
+  padding: 0;
+  margin: 0;
 
-  @include gtSmall() {
-    padding: 5rem 0 calc(4vw + 5rem); // Additional vw to acommodate for section art
+  // Additional vw to acommodate for section art
+
+  padding-top: 10vw; // Between mountains and content
+  margin-top: 18vw; // Above mountains under hero
+
+  padding-bottom: 30vw; // Below content above rocks
+
+  @include gtLarge() {
+    padding-top: 5vw; // Between mountains and content
+    padding-bottom: 15vw; // Below content above rocks
+  }
+
+  @include gtHuge() {
+    padding-top: 5vw; // Between mountains and content
+    padding-bottom: 15vw; // Below content above rocks
   }
 }
 
 .featuredMountainRange {
   position: absolute;
-  top: -28vw;
-  width: 200vw;
+  top: -28vw; // Pull the mountain range up above the section break
+  width: 200vw; // Double the size to make it "bigger" on small screens
   height: auto;
   left: 0;
   z-index: -1;
 
   @include gtSmall() {
-    top: -14vw;
+    top: -14vw; // Pull the mountain range up above the section break
     width: 100vw;
   }
 }
@@ -199,6 +212,15 @@
     flex-shrink: 0;
     flex-grow: 0;
     margin: 0 auto;
+  }
+
+  h2,
+  h3 {
+    text-align: center;
+
+    @include gtHuge() {
+      text-align: left;
+    }
   }
 }
 
@@ -259,23 +281,43 @@
   position: relative;
   font-size: 0.8em;
   background-color: $color-brand-aqua-dark;
-  padding: calc(14vw + 5rem) 0 calc(15vw + 5rem); // Additional vw to acommodate for section art
-  margin: 4vw 0 -22vw; // Negative margin overrides global page layout for footer scene
+
+  padding: 0;
+  margin: 0;
+
+  // Additional vw to acommodate for section art
+
+  padding-top: 35vw; // Between rocks and content
+
+  padding-bottom: 46vw; // Below content above spaceship
+  margin-bottom: -35vw; // Negative margin overrides global page layout for footer scene
 
   @include gtLarge() {
+    padding-bottom: 34vw; // Below content above spaceship
+    margin-bottom: -30vw; // Negative margin overrides global page layout for footer scene
+  }
+
+  @include gtHuge() {
     font-size: 1em;
+    padding-top: 22vw; // Between rocks and content
+    padding-bottom: 30vw; // Below content above spaceship
   }
 }
 
 .morePostsShoreRocks {
   position: absolute;
-  top: -20vw;
-  width: 200vw;
+  top: -20vw; // Pull the mountain range up above the section break
+  width: 200vw; // Double the size to make it "bigger" on small screens
   height: auto;
   left: 0;
 
-  @include gtSmall() {
-    top: -10vw;
+  @include gtLarge() {
+    top: -10vw; // Pull the mountain range up above the section break
+    width: 150vw;
+  }
+
+  @include gtHuge() {
+    top: -10vw; // Pull the mountain range up above the section break
     width: 100vw;
   }
 }
