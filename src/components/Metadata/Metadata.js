@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FaMapPin } from 'react-icons/fa';
 
-import { categoryPathBySlug, DEFAULT_CATEGORY } from 'lib/categories';
+import { categoryPathBySlug, EXCLUDED_CATEGORIES } from 'lib/categories';
 import { authorPathByName } from 'lib/users';
 import { formatDate } from 'lib/datetime';
 import ClassName from 'models/classname';
@@ -42,7 +42,7 @@ const Metadata = ({ className, author, date, categories, isSticky = false }) => 
         <li className={styles.metadataCategories}>
           <ul>
             {categories
-              .filter(({ slug }) => slug !== DEFAULT_CATEGORY)
+              .filter(({ slug }) => !EXCLUDED_CATEGORIES.includes(slug))
               .map((category) => {
                 return (
                   <li key={category.slug}>
