@@ -87,6 +87,12 @@
   status = 302
   force = true
   
+[[redirects]]
+  from = "/xata"
+  to = "https://xata.io/"
+  status = 302
+  force = true
+  
 
 ## Misc
 
