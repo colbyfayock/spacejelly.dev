@@ -89,10 +89,9 @@
   
 [[redirects]]
   from = "/xata"
-  to = "https://xata.io/"
+  to = "https://xata.io/?utm_source=youtube&utm_medium=referral&utm_campaign=colby"
   status = 302
   force = true
-  
 
 ## Misc
 
