@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { FaTwitter } from 'react-icons/fa';
+import { FaTwitter, FaYoutube } from 'react-icons/fa';
 import { BsDiscord } from 'react-icons/bs';
 import { gql } from '@apollo/client';
-import { CldOgImage } from 'next-cloudinary';
+import { CldImage, CldOgImage } from 'next-cloudinary';
 
 import { getApolloClient } from 'lib/apollo-client';
 import { getRouteByName } from 'lib/routes';
@@ -80,14 +80,14 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
                 return (
                   <li key={tag.uri}>
                     <Link href={tag.uri}>
-                      <img
+                      <CldImage
                         width={tag.logo?.width}
                         height={tag.logo?.height}
                         src={tag.logo?.url}
+                        format="svg"
                         alt={tag.name}
                         style={{
                           width: tag.logo?.width,
-                          height: tag.logo?.height,
                         }}
                       />
                     </Link>
@@ -116,7 +116,7 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
                 Featured Course
               </Heading>
               <a href={featuredCourse.course.courseLink}>
-                <img
+                <CldImage
                   width={featuredCourse.featuredImage.node.mediaDetails.width}
                   height={featuredCourse.featuredImage.node.mediaDetails.height}
                   src={featuredCourse.featuredImage.node.sourceUrl}
@@ -141,13 +141,18 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
             </Heading>
             <ul>
               <li>
-                <a href="https://spacejelly.dev/discord" target="_blank" rel="noreferrer noopener">
-                  <BsDiscord /> Space Jelly
+                <a href="https://twitter.com/colbyfayock" target="_blank" rel="noreferrer noopener">
+                  <FaTwitter /> @colbyfayock
                 </a>
               </li>
               <li>
-                <a href="https://twitter.com/colbyfayock" target="_blank" rel="noreferrer noopener">
-                  <FaTwitter /> @colbyfayock
+                <a href="https://youtube.com/colbyfayock" target="_blank" rel="noreferrer noopener">
+                  <FaYoutube /> @colbyfayock
+                </a>
+              </li>
+              <li>
+                <a href="https://spacejelly.dev/discord" target="_blank" rel="noreferrer noopener">
+                  <BsDiscord /> Space Jelly
                 </a>
               </li>
             </ul>

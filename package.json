@@ -31,7 +31,7 @@
     "he": "^1.2.0",
     "loader-utils": "^3.2.1",
     "next": "13.0.6",
-    "next-cloudinary": "^1.11.0",
+    "next-cloudinary": "^3.2.0",
     "next-compose-plugins": "^2.2.1",
     "parameterize": "^1.0.0",
     "path": "^0.12.7",

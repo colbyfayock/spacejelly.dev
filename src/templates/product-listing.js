@@ -1,3 +1,5 @@
+import { CldImage } from 'next-cloudinary';
+
 import { WebsiteJsonLd } from 'lib/json-ld';
 
 import Head from 'components/Head';
@@ -49,7 +51,7 @@ export default function TemplateProductListing({
                 <li key={product.id}>
                   <a href={product.link} className={styles.product} rel="noreferrer">
                     {product.image && (
-                      <img
+                      <CldImage
                         className={styles.productImage}
                         width={product.image.width}
                         height={product.image.height}
