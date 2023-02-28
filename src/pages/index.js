@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FaTwitter, FaYoutube } from 'react-icons/fa';
 import { BsDiscord } from 'react-icons/bs';
 import { gql } from '@apollo/client';
-import { CldImage, CldOgImage } from 'next-cloudinary';
+// import { CldImage } from 'next-cloudinary';
 
 import { getApolloClient } from 'lib/apollo-client';
 import { getRouteByName } from 'lib/routes';
@@ -21,6 +21,7 @@ import Posts from 'components/Posts';
 import FormSubscribe from 'components/FormSubscribe';
 import Button from 'components/Button';
 import Heading from 'components/Heading';
+import CldImage from 'components/CldImage';
 import CosmoWave from 'components/CosmoWave';
 import GalaxyCloud from 'components/GalaxyCloud';
 import MountainRange from 'components/MountainRange';
@@ -120,7 +121,7 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
                   width={featuredCourse.featuredImage.node.mediaDetails.width}
                   height={featuredCourse.featuredImage.node.mediaDetails.height}
                   src={featuredCourse.featuredImage.node.sourceUrl}
-                  alt="Course Cover Image"
+                  alt={featuredCourse.title}
                 />
               </a>
             </div>

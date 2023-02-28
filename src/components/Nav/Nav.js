@@ -18,7 +18,7 @@ import styles from './Nav.module.scss';
 const Nav = () => {
   const formRef = useRef();
 
-  const { categories } = useSite();
+  const { categories, author = {} } = useSite();
 
   const { query, results, search, clearSearch } = useSearch({
     maxResults: 5,
@@ -207,13 +207,13 @@ const Nav = () => {
               </ul>
               <ul className={styles.navBarLinks}>
                 <li>
-                  <a href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
+                  <a href={author.seo.social.youTube} target="_blank" rel="noopener">
                     <FaYoutube />
                     <span className="sr-only">YouTube</span>
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.twitter.com/colbyfayock" target="_blank" rel="noopener">
+                  <a href={`https://twitter.com/${author.seo.social.twitter}`} target="_blank" rel="noopener">
                     <FaTwitter />
                     <span className="sr-only">Twitter</span>
                   </a>

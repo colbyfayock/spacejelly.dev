@@ -41,7 +41,7 @@ const Footer = () => {
               <p className={styles.footerAuthorName}>{author.name}</p>
               <ul className={styles.footerAuthorSocial}>
                 <li>
-                  <a href={author.seo.social.twitter}>
+                  <a href={`https://twitter.com/${author.seo.social.twitter}`}>
                     <FaTwitter />
                     <span className="sr-only">Twitter</span>
                   </a>
@@ -90,7 +90,8 @@ const Footer = () => {
       <Section className={`${styles.footerSection} ${styles.footerAnchor}`}>
         <Container>
           <p>
-            &copy; {new Date().getFullYear()} {title}, <a href="https://twitter.com/colbyfayock">Colby Fayock</a>
+            &copy; {new Date().getFullYear()} {title},{' '}
+            <a href={`https://twitter.com/${author.seo.social.twitter}`}>Colby Fayock</a>
           </p>
           <ul className={styles.footerAnchorLinks}>
             <li>
