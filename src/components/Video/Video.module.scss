@@ -13,6 +13,9 @@
 .videoContainer {
   position: relative;
   overflow: hidden;
+  border-radius: 0.2em;
+  overflow: hidden;
+  border: solid 1px lighten($color-brand-aqua-dark, 5);
 
   iframe,
   .videoPlay {

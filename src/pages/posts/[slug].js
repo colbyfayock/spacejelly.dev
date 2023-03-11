@@ -5,7 +5,7 @@ import { getPostBySlug, getRecentPosts, parseIntroFromContent, getPostsByCategor
 import { categoryPathBySlug } from 'lib/categories';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
-import { addIdsToHeadersHtml, getHeadersAnchorsFromHtml } from 'lib/parse';
+import { addIdsToHeadersHtml, applySyntaxHighlighting, getHeadersAnchorsFromHtml } from 'lib/parse';
 import useSite from 'hooks/use-site';
 
 import Head from 'components/Head';
@@ -188,7 +188,11 @@ export async function getStaticProps({ params = {} } = {}) {
   // Parse the HTML and add IDs to all of the
   // h2 headers
 
-  content = addIdsToHeadersHtml({
+  content = await addIdsToHeadersHtml({
+    html: content,
+  });
+
+  content = await applySyntaxHighlighting({
     html: content,
   });
 

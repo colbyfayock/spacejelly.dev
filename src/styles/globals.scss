@@ -66,11 +66,13 @@ input {
 pre {
   display: grid;
   color: $color-blue-100;
+  overflow: hidden;
   line-height: 1.5;
   font-size: 0.9em;
   background-color: $color-brand-aqua-dark;
-  border-radius: 2px;
+  border-radius: 0.2em;
   padding: 0;
+  border: solid 1px lighten($color-brand-aqua-dark, 5);
   margin: 1.5em 0;
 
   code {
@@ -85,8 +87,8 @@ figure {
   img {
     width: 100%;
     height: auto;
-    border: none;
-    border-radius: 2px;
+    border-radius: 0.2em;
+    border: solid 1px lighten($color-brand-aqua-dark, 5);
   }
 }
 

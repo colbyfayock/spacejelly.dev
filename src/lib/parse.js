@@ -3,6 +3,8 @@ import { unified } from 'unified';
 import parse from 'rehype-parse';
 import stringify from 'rehype-stringify';
 import parameterize from 'parameterize';
+import highlight from 'rehype-highlight';
+import prettyCode from 'rehype-pretty-code';
 
 const CLOUDINARY_HOST = 'res.cloudinary.com';
 
@@ -64,7 +66,7 @@ export function transformHtml({ html, transform, test }) {
  * })
  */
 
-export function addIdsToHeadersHtml({ html, headers = ['h1', 'h2'] }) {
+export async function addIdsToHeadersHtml({ html, headers = ['h1', 'h2'] }) {
   return transformHtml({
     html,
     transform: (node) => {
@@ -75,6 +77,26 @@ export function addIdsToHeadersHtml({ html, headers = ['h1', 'h2'] }) {
     },
     test: testNodeInHeaders(headers),
   });
+}
+
+/**
+ * applySyntaxHighlighting
+ */
+
+export async function applySyntaxHighlighting({ html }) {
+  const result = unified()
+    .use(parse, {
+      fragment: true,
+    })
+    .use(highlight, {
+      detect: true,
+      theme: 'nord',
+    })
+    .use(stringify)
+    .processSync(html)
+    .toString();
+
+  return result;
 }
 
 /**
