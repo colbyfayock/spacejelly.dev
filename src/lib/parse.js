@@ -4,7 +4,6 @@ import parse from 'rehype-parse';
 import stringify from 'rehype-stringify';
 import parameterize from 'parameterize';
 import highlight from 'rehype-highlight';
-import prettyCode from 'rehype-pretty-code';
 
 const CLOUDINARY_HOST = 'res.cloudinary.com';
 
