@@ -127,11 +127,11 @@
     justify-content: center;
     width: auto;
     height: 4em;
-    background-color: rgba($color-brand-aqua-medium, 0.25);
+    background-color: $color-brand-aqua-dark;
     padding: 0.5em 0.8em;
 
     &:hover {
-      background-color: rgba($color-brand-aqua-medium, 0.5);
+      background-color: lighten($color-brand-aqua-dark, 10);
     }
   }
 }
