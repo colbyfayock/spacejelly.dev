@@ -1,5 +1,7 @@
 import ClassName from 'models/classname';
 
+import Heading from 'components/Heading';
+
 import styles from './SidebarSectionHeader.module.scss';
 
 const SidebarSectionHeader = ({ children, className }) => {
@@ -7,7 +9,11 @@ const SidebarSectionHeader = ({ children, className }) => {
 
   cn.addIf(className, className);
 
-  return <h3 className={cn.toString()}>{children}</h3>;
+  return (
+    <Heading as="h3" className={cn.toString()}>
+      {children}
+    </Heading>
+  );
 };
 
 export default SidebarSectionHeader;

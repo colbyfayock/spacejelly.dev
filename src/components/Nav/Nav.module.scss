@@ -2,42 +2,58 @@
 @import "styles/util/__util";
 
 .nav {
+  display: grid; // Hack to force not overflowing container's width
   position: relative;
-  // overflow: hidden;
-  z-index: 1;
+  z-index: 999;
   width: 100%;
-  padding: 0 1rem;
 
   @include gtMedium() {
-    overflow: visible;
+    margin-top: 0.5em;
   }
 }
 
-.navSection {
+.navPrimary,
+.navSecondary {
+  background: rgba($color-site-background, 0.6);
+}
+
+.navBar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding-top: 0;
-  padding-bottom: 0;
+  width: 100%;
+  padding: 0;
+}
+
+.navBarSection {
+  display: flex;
+  align-items: center;
+  order: 1;
+}
+
+/**
+ * Primary Navigation
+ */
+
+.navPrimary {
+  padding: 1em 0 0;
   margin: 0;
 
-  @include gtSmall() {
-    justify-content: space-between;
-    flex-direction: row;
+  @include gtHuge() {
+    padding: 1em 0 0.5em;
+  }
+
+  .navBarLinks {
+    margin: 0 -0.8em;
   }
 }
 
-.navMasthead {
-  position: relative;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1em 0;
+.navBarSectionLogo {
+  margin: 0 0 1em 0;
 
   @include gtMedium() {
-    flex-direction: row;
-    align-items: center;
-    padding: 1em 8.2em 1em 0;
+    margin: 0 1.5em 0 0;
   }
 }
 
@@ -49,205 +65,23 @@
   flex-grow: 1;
   margin: 0;
 
-  @include gtSmall() {
-    margin-top: 0;
-  }
-
-  a {
-    color: $color-gray-400;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-bottom: solid 2px transparent;
-
-    @include gtSmall() {
-      padding: 0.5em;
-      margin-left: -0.5em;
-    }
-
-    &:hover {
-      color: $color-primary;
-    }
-  }
-
   svg {
     display: block;
   }
 }
 
-.navDiscord {
-  margin: 1em 0 0.5em;
-
-  @include gtMedium() {
-    margin: 0;
-  }
-
-  a {
-    display: block;
-    position: relative;
-    color: white;
-    font-size: 0.7em;
-    text-decoration: none;
-    background-color: $color-brand-purple;
-    padding: 0.8em 1em 0.8em 3em;
-    @include boxShadow();
-
-    @include gtMedium() {
-      font-size: 0.9em;
-      padding: 0.8em 1em 0.8em 3.5em;
-    }
-  }
-
-  svg {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0.2em;
-    color: $color-brand-deep-blue;
-    font-size: 2.2em;
-    margin: auto;
-
-    @include gtMedium() {
-      left: 0.35em;
-    }
-  }
-
-  strong,
-  span {
-    display: block;
-    line-height: 1;
-  }
-
-  strong {
-    font-weight: bold;
-    font-size: 1.2em;
-    margin-bottom: 0.2em;
-  }
-
-  span {
-    display: none;
-
-    @include gtMedium() {
-      display: block;
-    }
-  }
-}
-
-.navCosmo {
-  position: absolute;
-  top: 0.5em;
-  right: -2em;
-  z-index: -1;
-
-  @include gtMedium() {
-    z-index: 0;
-  }
-
-  svg {
-    width: 11em;
-    height: auto;
-  }
-}
-
-.navBar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.navBarSectionSearch {
   width: 100%;
-  font-size: 1.1em;
-  background-color: $color-brand-aqua;
-  padding: 0;
-  @include boxShadow();
+  flex-grow: 1;
+  margin-right: 0;
 
   @include gtMedium() {
-    flex-wrap: nowrap;
-    padding: 0 4em 0 0.6em;
-    margin-right: 4em;
-  }
-}
-
-.navBarSection {
-  display: flex;
-  align-items: center;
-  order: 1;
-
-  &[data-navbar-section-grow="true"] {
-    width: 100%;
-    order: 2;
-    flex-grow: 1;
-    padding: 0 0.5em 0.5em;
-
-    @include gtMedium() {
-      width: auto;
-      order: 1;
-      padding: 0;
-    }
+    width: auto;
+    order: 1;
   }
 
-  &[data-navbar-breakpoint="min-1024"] {
-    display: none;
-
-    @include gtHuge() {
-      display: flex;
-    }
-  }
-
-  &:last-child {
-    &:after {
-      display: none;
-    }
-  }
-
-  &:after {
-    display: none;
-    width: 3px;
-    content: "";
-    height: 2em;
-    background-color: $color-brand-blue-shadow;
-    margin: 0 0.5em;
-
-    @include gtMedium() {
-      display: block;
-    }
-  }
-}
-
-.navBarLinks {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  &,
-  li {
-    height: 100%;
-  }
-
-  a {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    white-space: nowrap;
-    padding: 0.8em;
-    outline: 0;
-
-    &:focus {
-      &:after {
-        position: absolute;
-        bottom: 6px;
-        left: 0;
-        content: "";
-        width: 100%;
-        height: 3px;
-        background-color: white;
-      }
-    }
+  @include gtHuge() {
+    margin-right: 1.5em;
   }
 }
 
@@ -257,16 +91,8 @@
   justify-content: center;
   flex-grow: 1;
   position: relative;
-  height: 2em;
+  height: 2.4em;
   margin: 0;
-
-  @include gtSmall() {
-    justify-content: flex-end;
-  }
-
-  @include gtMedium() {
-    margin: 0 0.5em;
-  }
 
   input {
     width: 100%;
@@ -304,17 +130,13 @@
   background-color: white;
   padding: 1.5em;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-  border-top: solid 5px $color-brand-purple;
+  border-top: solid 5px $color-brand-orange-medium;
   margin-right: -1rem;
   z-index: 999;
 
   @include gtSmall() {
-    // width: 30em;
+    min-width: 28em;
     margin-right: 0;
-  }
-
-  @include gtMedium() {
-    width: auto;
   }
 
   [data-search-is-active="true"] & {
@@ -338,8 +160,9 @@
     text-decoration: none;
     padding: 0.5em;
     margin: 0 -0.5em;
+
     &:focus {
-      outline: 2px solid $color-blue-500;
+      outline: 2px solid $color-brand-orange-light;
     }
 
     @include withHover() {
@@ -348,4 +171,118 @@
       }
     }
   }
+}
+
+.navBarSectionLinks {
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 0.5em;
+
+  @include gtSmall() {
+    flex-direction: row;
+  }
+
+  @include gtHuge() {
+    width: auto;
+    order: 1;
+    margin-top: 0;
+  }
+}
+
+.navBarLinks {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &:last-child {
+    &:after {
+      display: none;
+    }
+  }
+
+  &:after {
+    display: none;
+    width: 3px;
+    content: "";
+    height: 1.3em;
+    background-color: $color-brand-aqua-medium;
+    margin: auto 2.2em auto 1.4em;
+
+    @include gtSmall() {
+      display: block;
+    }
+
+    @include gtHuge() {
+      height: 2em;
+    }
+  }
+
+  &,
+  li {
+    height: 100%;
+  }
+
+  a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.5em 0.8em;
+    outline: 0;
+  }
+}
+
+/**
+ * Secondary Navigation
+ */
+
+.navSecondary {
+  display: grid; // Hack to force not overflowing container's width
+  padding: 0;
+  margin: 0;
+
+  .navBarSection {
+    display: block;
+    overflow: hidden;
+    overflow-x: scroll;
+    text-align: center;
+    padding: 0 2em;
+    margin: 0 -2em;
+
+    @include gtMedium() {
+      overflow: hidden;
+    }
+  }
+
+  .navBarLinks {
+    display: block;
+    height: 2.5em;
+    white-space: nowrap;
+    margin: 0 -0.6em;
+
+    @include gtMedium() {
+      white-space: normal;
+    }
+
+    li {
+      display: inline-block;
+    }
+  }
+
+  a {
+    @include pageLink;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+}
+
+.navSecondaryContainer {
+  display: grid; // Hack to force not overflowing container's width
 }

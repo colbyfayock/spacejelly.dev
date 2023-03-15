@@ -2,10 +2,8 @@
 @import "styles/util/__util";
 
 .sidebarSectionHeader {
-  color: white;
+  color: $color-brand-orange-light;
   font-weight: bold;
-  font-size: 1.2em;
-  background-color: $color-brand-aqua;
-  padding: 0.6em 0.8em;
-  margin: 0;
+  font-size: 1.1em;
+  margin: 0 0 1em;
 }

@@ -1,0 +1,98 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+@import "components/Button/Button.module.scss";
+
+.header {
+  margin-bottom: -3em;
+
+  @include gtSmall() {
+    margin-bottom: -1.4em;
+  }
+}
+
+.description {
+  max-width: 30em;
+  text-align: left;
+  font-size: 1.2em;
+  margin: 1em auto 0;
+
+  @include gtSmall() {
+    text-align: center;
+    margin: 1em auto;
+  }
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 -1em 0;
+
+  &[data-columns="4"] {
+    li {
+      @include gtLarge() {
+        width: 25%;
+      }
+    }
+  }
+
+  &[data-columns="2"] {
+    li {
+      @include gtLarge() {
+        width: 50%;
+      }
+    }
+  }
+
+  li {
+    width: 100%;
+    padding: 1em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.productImage {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  margin: 0 0 0.8em;
+}
+
+.productTitle {
+  @include titleLink;
+  flex-grow: 1;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @include gtSmall() {
+    font-size: 1.3em;
+  }
+}
+
+.productAction {
+  display: block;
+  font-size: 0.8em;
+  margin-top: 1.5em;
+}
+
+.productActionButton {
+  display: inline-block;
+  @extend .button;
+}

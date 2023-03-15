@@ -1,91 +1,81 @@
 import Link from 'next/link';
+import { FaTwitter, FaYoutube, FaGithub } from 'react-icons/fa';
 
 import useSite from 'hooks/use-site';
-import { postPathBySlug } from 'lib/posts';
 import { getRouteByName } from 'lib/routes';
-import { categoryPathBySlug } from 'lib/categories';
+import { authorPathByName } from 'lib/users';
 
 import Section from 'components/Section';
 import Container from 'components/Container';
 import FormSubscribe from 'components/FormSubscribe';
 import LogoWPEngine from 'components/LogoWPEngine';
+import Heading from 'components/Heading';
+import Sand from 'components/Sand';
+import SandSpaceship from 'components/SandSpaceship';
 
 import styles from './Footer.module.scss';
 
 const Footer = () => {
-  const { metadata = {}, recentPosts = [], categories = [] } = useSite();
+  const { metadata = {}, author = {} } = useSite();
   const { title } = metadata;
-
-  const hasRecentPosts = Array.isArray(recentPosts) && recentPosts.length > 0;
-  const hasRecentCategories = Array.isArray(categories) && categories.length > 0;
-  const hasMenu = hasRecentPosts || hasRecentCategories;
 
   return (
     <footer className={styles.footer}>
-      <Section className={styles.footerSignup}>
+      <Sand className={styles.footerSand} />
+      <SandSpaceship className={styles.footerSandSpaceship} />
+      <Section className={styles.footerSection}>
         <Container>
-          <h3>Get free tutorials and web dev resources straight to your inbox!</h3>
+          <Heading className={styles.heading} as="h3">
+            Who's behind the tentacles?
+          </Heading>
+          <div className={styles.footerAuthorInfo}>
+            <div className={styles.footerAuthorImage}>
+              <img
+                width={author.user.userimage.mediaDetails.width}
+                height={author.user.userimage.mediaDetails.height}
+                src={author.user.userimage.sourceUrl}
+                alt="Author"
+              />
+            </div>
+            <div className={styles.footerAuthorDetails}>
+              <p className={styles.footerAuthorName}>{author.name}</p>
+              <ul className={styles.footerAuthorSocial}>
+                <li>
+                  <a href={`https://twitter.com/${author.seo.social.twitter}`}>
+                    <FaTwitter />
+                    <span className="sr-only">Twitter</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={author.seo.social.youTube}>
+                    <FaYoutube />
+                    <span className="sr-only">YouTube</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={author.user.githuburl}>
+                    <FaGithub />
+                    <span className="sr-only">GitHub</span>
+                  </a>
+                </li>
+              </ul>
+              <p className={styles.footerAuthorMore}>
+                <a href={authorPathByName(author.name)}>More about {author.name}</a>
+              </p>
+            </div>
+          </div>
+        </Container>
+      </Section>
+      <Section className={`${styles.footerSection} ${styles.footerSignup}`}>
+        <Container>
+          <Heading className={styles.heading} as="h3">
+            Get free tutorials and web dev resources straight to your inbox!
+          </Heading>
           <FormSubscribe />
         </Container>
       </Section>
-      {hasMenu && (
-        <Section className={styles.footerMenu}>
-          <Container>
-            <ul className={styles.footerMenuColumns}>
-              {hasRecentPosts && (
-                <li>
-                  <Link href="/posts/" className={styles.footerMenuTitle}>
-                    <strong>Recent Posts</strong>
-                  </Link>
-                  <ul className={styles.footerMenuItems}>
-                    {recentPosts.map((post) => {
-                      const { id, slug, title } = post;
-                      return (
-                        <li key={id}>
-                          <Link href={postPathBySlug(slug)}>{title}</Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              )}
-              {hasRecentCategories && (
-                <li>
-                  <Link href="/categories/" className={styles.footerMenuTitle}>
-                    <strong>Categories</strong>
-                  </Link>
-                  <ul className={styles.footerMenuItems}>
-                    {categories.map((category) => {
-                      const { id, slug, name } = category;
-                      return (
-                        <li key={id}>
-                          <Link href={categoryPathBySlug(slug)}>{name}</Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              )}
 
-              <li>
-                <p className={styles.footerMenuTitle}>
-                  <strong>Space Jelly</strong>
-                </p>
-                <ul className={styles.footerMenuItems}>
-                  <li>
-                    <Link href={getRouteByName('colbyashiMaru')?.path}>Colbyashi Maru</Link>
-                  </li>
-                  <li>
-                    <a href={getRouteByName('sitemap')?.path}>Sitemap</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </Container>
-        </Section>
-      )}
-
-      <Section className={styles.footerPoweredBy}>
+      <Section className={`${styles.footerSection} ${styles.footerPoweredBy}`}>
         <Container>
           <p>
             WordPress hosting provided by
@@ -97,11 +87,26 @@ const Footer = () => {
         </Container>
       </Section>
 
-      <Section className={styles.footerLegal}>
+      <Section className={`${styles.footerSection} ${styles.footerAnchor}`}>
         <Container>
           <p>
-            &copy; {new Date().getFullYear()} {title}, <a href="https://twitter.com/colbyfayock">Colby Fayock</a>
+            &copy; {new Date().getFullYear()} {title},{' '}
+            <a href={`https://twitter.com/${author.seo.social.twitter}`}>Colby Fayock</a>
           </p>
+          <ul className={styles.footerAnchorLinks}>
+            <li>
+              <a href={getRouteByName('sitemap')?.path}>Sitemap</a>
+            </li>
+            <li>
+              <a href={getRouteByName('rss')?.path}>RSS</a>
+            </li>
+            <li>
+              <a href={getRouteByName('about')?.path}>About</a>
+            </li>
+            <li>
+              <Link href={getRouteByName('colbyashiMaru')?.path}>Colbyashi Maru</Link>
+            </li>
+          </ul>
         </Container>
       </Section>
     </footer>

@@ -5,7 +5,7 @@ import useSearch from 'hooks/use-search';
 import TemplateArchive from 'templates/archive';
 
 export default function Search() {
-  const { query, results, search } = useSearch();
+  const { results, search } = useSearch();
   const title = 'Search';
   const slug = 'search';
 

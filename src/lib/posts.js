@@ -1,7 +1,7 @@
 import { getApolloClient } from 'lib/apollo-client';
 
-import { updateUserAvatar } from 'lib/users';
 import { sortObjectsByDate } from 'lib/datetime';
+import { mapUserData } from 'lib/users';
 
 import {
   QUERY_ALL_POSTS,
@@ -11,6 +11,8 @@ import {
   getQueryPostsByAuthorSlug,
   QUERY_POSTS_BY_CATEGORY_ID_INDEX,
   QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE,
+  QUERY_POSTS_BY_TAG_SLUG_INDEX,
+  QUERY_POSTS_BY_TAG_SLUG_ARCHIVE,
 } from 'data/posts';
 
 /**
@@ -114,6 +116,34 @@ export async function getPostsByCategoryId(categoryId, options = {}) {
 }
 
 /**
+ * getPostsByTagSlug
+ */
+
+const postsByTagSlugIncludesTypes = {
+  index: QUERY_POSTS_BY_TAG_SLUG_INDEX,
+  archive: QUERY_POSTS_BY_TAG_SLUG_ARCHIVE,
+};
+
+export async function getPostsByTagSlug(tagSlug, options = {}) {
+  const { queryIncludes = 'index' } = options;
+
+  const apolloClient = getApolloClient();
+
+  const data = await apolloClient.query({
+    query: postsByTagSlugIncludesTypes[queryIncludes],
+    variables: {
+      tagSlug,
+    },
+  });
+
+  const posts = data?.data.posts.edges.map(({ node = {} }) => node);
+
+  return {
+    posts: Array.isArray(posts) && posts.map(mapPostData),
+  };
+}
+
+/**
  * getRecentPosts
  */
 
@@ -163,18 +193,7 @@ export function mapPostData(post = {}) {
   // level deeper into the node
 
   if (data.author) {
-    data.author = {
-      ...data.author.node,
-    };
-  }
-
-  // The URL by default that comes from Gravatar / WordPress is not a secure
-  // URL. This ends up redirecting to https, but it gives mixed content warnings
-  // as the HTML shows it as http. Replace the url to avoid those warnings
-  // and provide a secure URL by default
-
-  if (data.author?.avatar) {
-    data.author.avatar = updateUserAvatar(data.author.avatar);
+    data.author = mapUserData(data.author);
   }
 
   // Clean up the categories to make them more easy to access
@@ -198,7 +217,7 @@ export function mapPostData(post = {}) {
   // the excerpt produced before the Read More tag, so if it exists on the post
   // try to find it and replace the excerpt with it
 
-  const { intro, content: moreContent } = parseIntroFromContent(data.content);
+  const { intro } = parseIntroFromContent(data.content);
 
   if (intro) {
     data.excerpt = intro;

@@ -5,11 +5,6 @@ export const QUERY_ALL_USERS = gql`
     users(first: 10000) {
       edges {
         node {
-          avatar {
-            height
-            width
-            url
-          }
           description
           id
           name
@@ -19,6 +14,22 @@ export const QUERY_ALL_USERS = gql`
             }
           }
           slug
+          user {
+            userimage {
+              mediaDetails {
+                height
+                width
+              }
+              sourceUrl
+            }
+            githuburl
+          }
+          seo {
+            social {
+              twitter
+              youTube
+            }
+          }
         }
       }
     }

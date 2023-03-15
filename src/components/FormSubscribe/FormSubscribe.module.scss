@@ -3,20 +3,18 @@
 .formSubscribe {
   label {
     display: block;
+    color: rgba(white, 0.7);
     font-size: 0.9em;
-    font-weight: 600;
-    margin-bottom: 0.5em;
+    font-weight: 400;
+    margin-bottom: 1em;
   }
 
-  input,
-  button {
+  input {
     width: 100%;
   }
 
   input {
-    padding: 0.8em 0.8em;
-    border: solid 2px $color-gray-200;
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
   }
 
   button {

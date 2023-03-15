@@ -17,16 +17,16 @@ const FormSubscribe = ({ children, className, ...rest }) => {
       method="post"
       {...rest}
     >
-      <label htmlFor="subscribe-email">Email Address</label>
       <Input
         id="subscribe-email"
         className={styles.formSubscribeInput}
         name="email_address"
+        placeholder="Your email address"
         aria-label="Your email address"
         type="email"
         required
       />
-      <Button className={styles.formSubscribeButton}>Get Updates</Button>
+      <Button>Get Updates</Button>
     </form>
   );
 };

@@ -20,14 +20,6 @@
   }
 
   a {
-    color: inherit;
-    text-decoration: none;
-
-    @include withHover() {
-      &:hover {
-        color: $color-primary;
-        text-decoration: underline;
-      }
-    }
+    @include pageLink;
   }
 }

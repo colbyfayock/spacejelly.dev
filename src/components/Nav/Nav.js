@@ -1,25 +1,24 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { FaSearch, FaDiscord } from 'react-icons/fa';
+import { FaTwitter, FaYoutube } from 'react-icons/fa';
 
 import useSite from 'hooks/use-site';
 import useSearch from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
-import { pagePathBySlug } from 'lib/pages';
 import { getRouteByName } from 'lib/routes';
+import { categoryPathBySlug } from 'lib/categories';
 
 import Section from 'components/Section';
+import Container from 'components/Container';
 import Input from 'components/Input';
 import SpaceJelly from 'components/SpaceJelly';
-import CosmoWave from 'components/CosmoWave';
 
 import styles from './Nav.module.scss';
 
 const Nav = () => {
   const formRef = useRef();
 
-  const { metadata = {} } = useSite();
-  const { title } = metadata;
+  const { categories, author = {} } = useSite();
 
   const { query, results, search, clearSearch } = useSearch({
     maxResults: 5,
@@ -39,20 +38,6 @@ const Nav = () => {
       removeDocumentOnClick();
     };
   }, [hasResults]);
-
-  useEffect(() => {
-    document.addEventListener('mousemove', (event) => {
-      const eyes = document.querySelectorAll(`.${styles.squidRobotEye}`);
-      Array.from(eyes).forEach((eye) => {
-        const dimensions = eye.getBoundingClientRect();
-        const x = dimensions.left + dimensions.width / 2;
-        const y = dimensions.top + dimensions.height / 2;
-        const rad = Math.atan2(event.pageX - x, event.pageY - y);
-        const rot = rad * (180 / Math.PI) * -1 + 90;
-        eye.style.transform = `rotate(${rot}deg)`;
-      });
-    });
-  }, []);
 
   /**
    * addDocumentOnClick
@@ -159,102 +144,100 @@ const Nav = () => {
 
   return (
     <nav className={styles.nav}>
-      <Section className={`${styles.navSection} ${styles.navMasthead}`}>
-        <p className={styles.navName}>
-          <Link href={getRouteByName('home')?.path}>
-            <SpaceJelly />
-          </Link>
-        </p>
-        <p className={styles.navDiscord}>
-          <a href="https://spacejelly.dev/discord" target="_blank" rel="noopener">
-            <FaDiscord />
-            <strong>Join the Discord</strong>
-            <span>spacejelly.dev</span>
-          </a>
-        </p>
-        <div className={styles.navCosmo}>
-          <Link href={getRouteByName('about')?.path}>
-            <CosmoWave />
-          </Link>
-        </div>
+      <Section className={styles.navPrimary}>
+        <Container>
+          <div className={styles.navBar}>
+            <div className={`${styles.navBarSection} ${styles.navBarSectionLogo}`}>
+              <p className={styles.navName}>
+                <Link href={getRouteByName('home')?.path}>
+                  <SpaceJelly />
+                  <span className="sr-only">Space Jelly</span>
+                </Link>
+              </p>
+            </div>
+            <div className={`${styles.navBarSection} ${styles.navBarSectionSearch}`}>
+              <form className={styles.navSearch} ref={formRef} action="/search" data-search-is-active={!!query}>
+                <label className="sr-only" htmlFor="search-query">
+                  Search Query
+                </label>
+                <Input
+                  id="search-query"
+                  type="search"
+                  name="q"
+                  value={query || ''}
+                  onChange={handleOnSearch}
+                  autoComplete="off"
+                  aria-label="Enter your search query"
+                  placeholder="Search..."
+                  required
+                />
+                <div className={styles.navSearchResults}>
+                  {results.length > 0 && (
+                    <ul>
+                      {results.map(({ slug, title }, index) => {
+                        return (
+                          <li key={slug}>
+                            <Link tabIndex={index} href={postPathBySlug(slug)}>
+                              {title}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                  {results.length === 0 && (
+                    <p>
+                      Sorry, not finding anything for <strong>{query}</strong>
+                    </p>
+                  )}
+                </div>
+              </form>
+            </div>
+            <div className={`${styles.navBarSection} ${styles.navBarSectionLinks}`}>
+              <ul className={styles.navBarLinks}>
+                <li>
+                  <Link href={getRouteByName('courses')?.path}>Courses</Link>
+                </li>
+                <li>
+                  <Link href={getRouteByName('books')?.path}>Books</Link>
+                </li>
+                <li>
+                  <Link href={getRouteByName('store')?.path}>Store</Link>
+                </li>
+              </ul>
+              <ul className={styles.navBarLinks}>
+                <li>
+                  <a href={author.seo.social.youTube} target="_blank" rel="noopener">
+                    <FaYoutube />
+                    <span className="sr-only">YouTube</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={`https://twitter.com/${author.seo.social.twitter}`} target="_blank" rel="noopener">
+                    <FaTwitter />
+                    <span className="sr-only">Twitter</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Container>
       </Section>
 
-      <Section className={styles.navSection}>
-        <div className={styles.navBar}>
+      <Section className={styles.navSecondary}>
+        <Container className={styles.navSecondaryContainer}>
           <div className={styles.navBarSection}>
             <ul className={styles.navBarLinks}>
-              <li>
-                <Link href={getRouteByName('home')?.path}>Articles</Link>
-              </li>
-              <li>
-                <a className="link-external" href="https://www.youtube.com/colbyfayock" target="_blank" rel="noopener">
-                  Videos
-                </a>
-              </li>
+              {categories.map(({ name, slug }) => {
+                return (
+                  <li key={name}>
+                    <Link href={categoryPathBySlug(slug)}>{name}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
-          <div className={styles.navBarSection} data-navbar-breakpoint="min-1024">
-            <ul className={styles.navBarLinks}>
-              <li>
-                <Link href={getRouteByName('categoryNextjs')?.path}>Next.js</Link>
-              </li>
-              <li>
-                <Link href={getRouteByName('categoryMedia')?.path}>Images & Video</Link>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.navBarSection} data-navbar-section-grow="true">
-            <form className={styles.navSearch} ref={formRef} action="/search" data-search-is-active={!!query}>
-              <label className="sr-only" htmlFor="search-query">
-                Search Query
-              </label>
-              <Input
-                id="search-query"
-                type="search"
-                name="q"
-                value={query || ''}
-                onChange={handleOnSearch}
-                autoComplete="off"
-                aria-label="Enter your search query"
-                placeholder="Search..."
-                required
-              />
-              <div className={styles.navSearchResults}>
-                {results.length > 0 && (
-                  <ul>
-                    {results.map(({ slug, title }, index) => {
-                      return (
-                        <li key={slug}>
-                          <Link tabIndex={index} href={postPathBySlug(slug)}>
-                            {title}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-                {results.length === 0 && (
-                  <p>
-                    Sorry, not finding anything for <strong>{query}</strong>
-                  </p>
-                )}
-              </div>
-            </form>
-          </div>
-          <div className={styles.navBarSection}>
-            <ul className={styles.navBarLinks}>
-              <li>
-                <Link href={getRouteByName('courses')?.path}>Courses</Link>
-              </li>
-              <li>
-                <Link href={getRouteByName('books')?.path}>Books</Link>
-              </li>
-              <li>
-                <Link href={getRouteByName('store')?.path}>Store</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+        </Container>
       </Section>
     </nav>
   );

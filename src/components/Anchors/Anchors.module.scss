@@ -1,4 +1,9 @@
+@import "styles/util/__util";
+
 .anchors {
+  a {
+    @include titleLink;
+  }
 }
 
 .anchorsHeadline {

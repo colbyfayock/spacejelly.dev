@@ -14,6 +14,10 @@ export const QUERY_ALL_COURSES = gql`
             node {
               altText
               caption
+              mediaDetails {
+                height
+                width
+              }
               sourceUrl
               srcSet
               sizes

@@ -2,9 +2,7 @@
 @import "styles/util/__util";
 
 .sidebarSection {
-  background-color: white;
-  @include boxShadow();
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 
   &:last-child {
     margin-bottom: 0;

@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { getAllPosts } from 'lib/posts';
 
 import TemplateArchive from 'templates/archive';

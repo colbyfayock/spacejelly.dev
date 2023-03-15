@@ -2,18 +2,142 @@
 @import "styles/util/__util";
 
 .footer {
+  display: grid;
+  position: relative;
+  z-index: 1;
   width: 100%;
+  background-color: $color-brand-pink-medium;
+  padding-top: 12vw;
+
+  @include gtLarge() {
+    padding-top: 10vw;
+  }
+
+  @include gtHuge() {
+    padding-top: 8vw;
+  }
+}
+
+.footerSand {
+  position: absolute;
+  top: -8vw;
+  width: 100vw;
+  height: auto;
+  left: 0;
+  z-index: -1;
+}
+
+.footerSandSpaceship {
+  position: absolute;
+  top: -20vw;
+  left: 0;
+  right: 0;
+  width: 70vw;
+  height: auto;
+  margin: 0 auto;
+  transform: translateX(-3vw);
+
+  @include gtLarge() {
+    top: -15vw;
+    width: 50vw;
+  }
+}
+
+.footerSection {
+  padding: 0;
+}
+
+.heading {
+  font-size: 1.6em;
+  margin-bottom: 1em;
+
+  h3 {
+    text-align: center;
+  }
+}
+
+.footerAuthorInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include gtSmall() {
+    flex-direction: row;
+  }
+}
+
+.footerAuthorImage {
+  margin: 0;
+
+  @include gtSmall() {
+    margin-right: 1em;
+  }
+
+  img {
+    display: block;
+    width: 8em;
+    border-radius: 50%;
+    border: solid 5px $color-brand-purple-medium;
+  }
+}
+
+.footerAuthorDetails {
+  text-align: center;
+  margin: 1em 0 0;
+
+  @include gtSmall() {
+    text-align: left;
+    margin: 0;
+  }
+}
+
+.footerAuthorName {
+  font-size: 1.6em;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footerAuthorSocial {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  font-size: 2em;
+  padding: 0;
+  margin: 0.2em -0.3em 0;
+
+  @include gtSmall() {
+    justify-content: flex-start;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    padding: 0 0.3em;
+  }
+
+  svg {
+    color: $color-brand-purple-dark;
+  }
+}
+
+.footerAuthorMore {
+  margin: 0;
+
+  a {
+    @include pageLink;
+  }
 }
 
 .footerSignup {
   text-align: center;
 
-  h3 {
+  .heading {
     max-width: 20em;
-    font-size: 2em;
-    font-weight: bold;
-    color: white;
-    margin: 0 auto 1em;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   form {
@@ -26,90 +150,7 @@
   }
 }
 
-.footerMenu {
-  margin: 0;
-
-  @include gtMedium() {
-    margin: 2rem 0;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-}
-
-.footerMenuColumns {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin: 0;
-
-  @include gtSmall() {
-    justify-content: center;
-  }
-
-  @include gtMedium() {
-    flex-direction: row;
-  }
-
-  & > li {
-    width: 100%;
-    padding: 0 1em;
-    margin-bottom: 2em;
-
-    @include gtMedium() {
-      max-width: 20em;
-      width: auto;
-      margin: 2em;
-    }
-  }
-}
-
-.footerMenuTitle {
-  display: inline-block;
-  color: $color-gray-50;
-  text-decoration: none;
-  margin: 0 0 1.4em;
-}
-
-a.footerMenuTitle {
-  @include withHover() {
-    &:hover {
-      color: $color-brand-purple;
-      text-decoration: underline;
-    }
-  }
-}
-
-.footerMenuItems {
-  li {
-    margin-bottom: 1em;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    display: block;
-    overflow: hidden;
-    color: $color-gray-100;
-    text-decoration: none;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    @include withHover() {
-      &:hover {
-        color: $color-brand-purple;
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
-.footerLegal,
+.footerAnchor,
 .footerPoweredBy {
   padding: 0.8rem 0;
 
@@ -119,19 +160,35 @@ a.footerMenuTitle {
   }
 
   p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 0.9em;
     text-align: center;
     margin: 0;
   }
 }
 
+.footerPoweredBy {
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    @include gtSmall() {
+      flex-direction: row;
+    }
+  }
+}
+
 .footerWPEngine {
   display: flex;
   align-items: center;
-  margin-left: 0.5em;
+  justify-content: center;
+  margin: 0.5em 0 0;
+
+  @include gtSmall() {
+    margin: 0 0 0 0.8em;
+  }
 
   svg {
     width: auto;
@@ -139,18 +196,27 @@ a.footerMenuTitle {
   }
 }
 
-.footerLegal {
+.footerAnchor {
+  text-transform: uppercase;
   margin: 0;
 
   a {
-    text-decoration: none;
-    margin: 0 0.25em;
+    display: inline-block;
+    @include pageLink;
+    padding: 0 0.4em;
+  }
+}
 
-    @include withHover() {
-      &:hover {
-        color: $color-brand-purple;
-        text-decoration: underline;
-      }
-    }
+.footerAnchorLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0.4em 0 0;
+
+  a {
+    padding: 0.4em 0.6em;
   }
 }

@@ -1,99 +1,33 @@
-@mixin boxShadow() {
-  box-shadow: 5px 5px 0 $component-shadow-box-color;
-  // 5px 5px 25px $component-shadow-box-color,
-  // 5px 5px 30px rgba($component-shadow-box-color, .3);
-}
-
-/**
- * Media Queries
- */
-
-@mixin gtTiny() {
-  @media (min-width: $breakpoint-tiny) {
-    @content;
-  }
-}
-
-@mixin gtSmall() {
-  @media (min-width: $breakpoint-small) {
-    @content;
-  }
-}
-
-@mixin gtMedium() {
-  @media (min-width: $breakpoint-medium) {
-    @content;
-  }
-}
-
-@mixin gtLarge() {
-  @media (min-width: $breakpoint-large) {
-    @content;
-  }
-}
-
-@mixin gtXlarge() {
-  @media (min-width: $breakpoint-xlarge) {
-    @content;
-  }
-}
-
-@mixin gtHuge() {
-  @media (min-width: $breakpoint-huge) {
-    @content;
-  }
-}
-
-@mixin gtMax() {
-  @media (min-width: $breakpoint-max) {
-    @content;
-  }
-}
-
-@mixin ltTiny() {
-  @media (max-width: ( $breakpoint-tiny - 1)) {
-    @content;
-  }
-}
-
-@mixin ltSmall() {
-  @media (max-width: ( $breakpoint-small - 1)) {
-    @content;
-  }
-}
-
-@mixin ltMedium() {
-  @media (max-width: ( $breakpoint-medium - 1)) {
-    @content;
-  }
-}
-
-@mixin ltLarge() {
-  @media (max-width: ( $breakpoint-large - 1)) {
-    @content;
-  }
-}
-
-@mixin ltXlarge() {
-  @media (max-width: ( $breakpoint-xlarge - 1)) {
-    @content;
-  }
-}
-
-@mixin ltHuge() {
-  @media (max-width: ( $breakpoint-huge - 1)) {
-    @content;
-  }
-}
-
-@mixin ltMax() {
-  @media (max-width: ( $breakpoint-max - 1)) {
-    @content;
-  }
-}
+@import "styles/settings/__settings";
+@import "mixins-display";
 
 @mixin withHover() {
   @media (hover: hover) {
     @content;
+  }
+}
+
+@mixin pageLink {
+  color: $color-brand-yellow-medium;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  @include withHover() {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@mixin titleLink {
+  color: white;
+  text-decoration: none;
+
+  @include withHover() {
+    &:hover {
+      color: $color-brand-yellow-medium;
+      text-decoration: underline;
+    }
   }
 }

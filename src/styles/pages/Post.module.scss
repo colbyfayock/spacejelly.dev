@@ -1,3 +1,5 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css";
+
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
@@ -9,50 +11,23 @@
   }
 }
 
-.postSection {
-  padding-top: 0;
-  margin-top: 0;
-}
-
-.postContainer {
-  display: flex;
-  flex-direction: column;
-
-  @include gtMax() {
-    flex-direction: row;
-  }
-
-  aside {
-    @include ltMax() {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-      margin-top: 3em;
-      margin-left: 0;
-    }
-
-    & > div {
-      @include ltMax() {
-        margin: 0 1em;
-      }
-    }
-  }
-}
-
 .postIntro {
-  font-size: 1.3em;
+  font-size: 1.2em;
   margin-bottom: 1.5em;
 }
 
 .postAnchors {
+  p {
+    color: $color-brand-orange-light;
+  }
+
   ul {
     list-style: none;
-    border-left: solid 5px $color-brand-aqua;
+    border-left: solid 4px $color-brand-yellow-medium;
   }
 
   li {
-    margin: 0.25em 0;
+    margin: 0.4em 0;
 
     &:first-child {
       margin-top: 0;
@@ -64,93 +39,99 @@
   }
 }
 
+.postResources {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.9em;
+  padding: 0;
+  margin: 3em 0;
+
+  li {
+    padding: 0.4em 0.6em;
+  }
+
+  a {
+    white-space: nowrap;
+  }
+}
+
 .postVideo {
   max-width: 50rem;
 }
 
-.postContent {
-  background-color: white;
-  padding: 1em;
-  @include boxShadow();
-
-  @include gtMedium() {
-    padding: 2.5em;
-  }
-
-  h2 {
-    font-size: 2em;
-    margin-top: 2.6rem;
-  }
-
-  figure {
-    margin: 4rem auto;
-  }
+.contentSection {
+  background-color: $color-brand-aqua-dark;
+  padding: 4em 0 5em;
+  margin-bottom: 0;
 }
 
 .postMetadata {
   color: $color-gray-100;
   text-align: center;
+  align-items: flex-start;
   justify-content: center;
+
+  @include gtSmall() {
+    align-items: center;
+  }
 }
 
 .postFooter {
   text-align: center;
   margin-top: 3em;
-  border-top: solid 1px $color-gray-200;
+  border-top: solid 4px $color-brand-aqua-light;
   padding-top: 2em;
 }
 
 .postModified {
-  color: $color-gray-400;
+  color: $color-brand-aqua-light;
   font-style: italic;
 }
 
-.postRelated {
+.relatedSection {
+  background-color: $color-brand-purple-medium;
+  padding: 5em 0 calc(15vw + 2rem); // Additional vw to acommodate for section art
+  margin: 0;
+
   h2 {
     color: white;
     text-align: center;
     margin-bottom: 1.5em;
+  }
+}
 
-    strong {
-      color: $color-brand-aqua;
-      font-weight: bold;
+.relatedSectionLink {
+  @include pageLink;
+  text-transform: none;
+}
+
+.relatedPosts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  li {
+    margin: 0 0 0.8em;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
 
-.postRelatedPosts {
-  display: grid;
-  grid-gap: 1.5em;
-
-  @include gtLarge() {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-
-  & > li {
-    margin: 0;
-
-    & > div {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      padding: 1.5em;
-    }
-  }
-
+.relatedPostsCard {
   h3 {
-    font-size: 1.2em;
+    font-size: 1.1em;
+    @include titleLink;
+    text-transform: none;
+    font-weight: 600;
+    text-align: center;
   }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    margin: 0.5em 0 0;
-
-    li {
-      margin: 0;
-    }
+  a {
+    padding: 0.2em 0;
   }
 }

@@ -2,18 +2,23 @@
 @import "styles/util/__util";
 
 .header {
-  margin: 3rem 0;
+  margin: 2rem 0 -4rem;
+
+  @include gtSmall() {
+    margin: 3rem 0 -3rem;
+  }
 
   h1 {
     color: white;
     margin: 0;
     line-height: 1.15;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
 
     @include gtSmall() {
-      font-size: 4rem;
+      font-size: 3rem;
+      text-align: center;
     }
 
     a {
@@ -28,7 +33,11 @@
     }
 
     & + ul {
-      margin-top: 1.5em;
+      margin-top: 1em;
+
+      @include gtSmall() {
+        margin-top: 1.5em;
+      }
     }
   }
 

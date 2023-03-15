@@ -1,43 +1,358 @@
 @import "styles/settings/__settings";
 @import "styles/util/__util";
 
-@import "components/Button/Button.module.scss";
-
-.contentHeader {
-  color: white;
-  font-weight: bold;
+.heading {
   font-size: 1.2em;
-  background-color: $color-brand-blue-medium;
-  padding: 0.6em 0.8em;
-  margin: 0 0 3em;
-  @include boxShadow();
+  margin-bottom: 2em;
 }
 
-.postsSection {
-  margin: 1rem 0;
+/**
+ * Hero
+ */
+
+.heroSection {
+  position: relative;
+  margin: 3rem 0 8rem;
+
+  @include gtSmall() {
+    margin: 3rem 0;
+  }
 }
 
-.postsContainer {
+.heroGalaxyCloud {
+  position: absolute;
+  top: 10em;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+}
+
+.heroFeature {
   display: flex;
   flex-direction: column;
 
-  @include gtLarge() {
+  @include gtMedium() {
     flex-direction: row;
   }
 }
 
-.postsAllPosts {
-  margin: 3.5em 0 0;
+.heroFeatureLatest {
+  font-size: 0.8em;
+  width: 100%;
+  flex-shrink: 0;
+  order: 2;
+
+  @include gtMedium() {
+    order: 1;
+    width: 65%;
+  }
+
+  @include gtLarge() {
+    font-size: 1em;
+  }
+
+  @include gtXlarge() {
+    width: 60%;
+  }
+}
+
+.heroFeatureLatestLink {
+  margin-bottom: 0;
+}
+
+.heroFeatureCosmo {
+  display: flex;
+  order: 1;
+  align-items: flex-start;
+  overflow: hidden;
+  height: 50vw;
+  border-bottom: solid 2px $color-brand-aqua-dark;
+  padding: 0 8vw;
+  margin: -3em 0 2em;
+
+  @include gtMedium() {
+    overflow: visible;
+    align-items: center;
+    order: 2;
+    height: auto;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  svg {
+    width: 80%;
+    height: auto;
+    transform: scale(1) translateX(0);
+    margin: 0 auto;
+
+    @include gtMedium() {
+      width: 100%;
+      transform: scale(1.3) translateX(2em);
+    }
+
+    @include gtXlarge() {
+      transform: scale(1.2) translateX(2em);
+    }
+  }
+}
+
+.heroTech {
+  margin-top: 5em;
+
+  .heading {
+    h2 {
+      text-align: center;
+    }
+  }
+}
+
+.heroFeaturedTags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 0.5em;
+  }
 
   a {
-    @extend .button;
-    display: inline-block;
-    width: 100%;
-    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 4em;
+    background-color: $color-brand-aqua-dark;
+    padding: 0.5em 0.8em;
+
+    &:hover {
+      background-color: lighten($color-brand-aqua-dark, 10);
+    }
+  }
+}
+
+/**
+ * Features
+ */
+
+.featuredSection {
+  position: relative;
+  background-color: $color-brand-purple-medium;
+  padding: 0;
+  margin: 0;
+
+  // Additional vw to acommodate for section art
+
+  padding-top: 10vw; // Between mountains and content
+  margin-top: 18vw; // Above mountains under hero
+
+  padding-bottom: 30vw; // Below content above rocks
+
+  @include gtLarge() {
+    padding-top: 5vw; // Between mountains and content
+    padding-bottom: 15vw; // Below content above rocks
+  }
+
+  @include gtHuge() {
+    padding-top: 5vw; // Between mountains and content
+    padding-bottom: 15vw; // Below content above rocks
+  }
+}
+
+.featuredMountainRange {
+  position: absolute;
+  top: -28vw; // Pull the mountain range up above the section break
+  width: 200vw; // Double the size to make it "bigger" on small screens
+  height: auto;
+  left: 0;
+  z-index: -1;
+
+  @include gtSmall() {
+    top: -14vw; // Pull the mountain range up above the section break
+    width: 100vw;
+  }
+}
+
+.featuredFeatures {
+  display: flex;
+  flex-direction: column;
+
+  @include gtXlarge() {
+    flex-direction: row;
+  }
+
+  .heading {
+    margin-bottom: 1em;
+  }
+}
+
+.featuredTitle {
+  font-size: 1.6em;
+}
+
+.featuredCourse {
+  width: 100%;
+  flex-grow: 1;
+  margin-right: 4em;
+}
+
+.featuredNewsletter {
+  width: 100%;
+  max-width: 24em;
+  text-align: center;
+  margin: 3em auto 0;
+
+  @include gtXlarge() {
+    text-align: left;
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: 0 auto;
+  }
+
+  h2,
+  h3 {
     text-align: center;
 
-    @include gtLarge() {
-      width: auto;
+    @include gtHuge() {
+      text-align: left;
     }
+  }
+}
+
+.featuredCommunity {
+  margin-top: 4em;
+
+  .heading {
+    h2 {
+      text-align: center;
+    }
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    // margin: 0 1.4em;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.4em;
+    text-decoration: none;
+    padding: 0.5em 0.8em;
+
+    svg {
+      color: $color-brand-yellow-medium;
+      font-size: 1.3em;
+      margin-right: 0.3em;
+      transform: translateY(0.05em);
+    }
+  }
+}
+
+/**
+ * More Posts
+ */
+
+.morePostsSection {
+  position: relative;
+  font-size: 0.8em;
+  background-color: $color-brand-aqua-dark;
+
+  padding: 0;
+  margin: 0;
+
+  // Additional vw to acommodate for section art
+
+  padding-top: 35vw; // Between rocks and content
+
+  padding-bottom: 46vw; // Below content above spaceship
+  margin-bottom: -35vw; // Negative margin overrides global page layout for footer scene
+
+  @include gtLarge() {
+    padding-bottom: 34vw; // Below content above spaceship
+    margin-bottom: -30vw; // Negative margin overrides global page layout for footer scene
+  }
+
+  @include gtHuge() {
+    font-size: 1em;
+    padding-top: 22vw; // Between rocks and content
+    padding-bottom: 30vw; // Below content above spaceship
+  }
+}
+
+.morePostsShoreRocks {
+  position: absolute;
+  top: -20vw; // Pull the mountain range up above the section break
+  width: 200vw; // Double the size to make it "bigger" on small screens
+  height: auto;
+  left: 0;
+
+  @include gtLarge() {
+    top: -10vw; // Pull the mountain range up above the section break
+    width: 150vw;
+  }
+
+  @include gtHuge() {
+    top: -10vw; // Pull the mountain range up above the section break
+    width: 100vw;
+  }
+}
+
+.morePostsContainer {
+  max-width: 50rem;
+
+  .heading {
+    margin-bottom: 2.5em;
+
+    @include gtSmall() {
+      margin-bottom: 3em;
+    }
+
+    h2 {
+      text-align: center;
+    }
+  }
+
+  h3 {
+    font-size: 1.8em;
+    margin-bottom: 0.8em;
+
+    @include gtSmall() {
+      font-size: 2.2em;
+      margin-bottom: 0.6em;
+    }
+  }
+}
+
+.morePostsLink {
+  text-align: center;
+  margin-top: 4em;
+
+  a {
+    @include pageLink;
   }
 }

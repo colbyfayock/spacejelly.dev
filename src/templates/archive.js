@@ -1,16 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-
-import { getPosts } from 'lib/posts';
-import { getSpaceJellyOgPageUrl } from 'lib/cloudinary';
 import { WebpageJsonLd } from 'lib/json-ld';
 import useSite from 'hooks/use-site';
 
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
-import SectionTitle from 'components/SectionTitle';
 import PostCard from 'components/PostCard';
 
 import styles from 'styles/templates/Archive.module.scss';
@@ -25,8 +20,6 @@ export default function TemplateArchive({
   postOptions = DEFAULT_POST_OPTIONS,
   slug,
 }) {
-  const [index, setIndex] = useState();
-
   const { metadata = {} } = useSite();
   const { title: siteTitle } = metadata;
 
@@ -36,31 +29,16 @@ export default function TemplateArchive({
     metaDescription = `${metaDescription} ${description}`;
   }
 
-  const ogImage = getSpaceJellyOgPageUrl({
-    headline: title,
-  });
-
-  useEffect(() => {
-    (async function run() {
-      const results = fetch('/wp-search.json').then((r) => r.json());
-      setIndex(results);
-    })();
-  }, []);
-
   return (
     <Layout>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:secure_url" content={ogImage} />
-        <meta property="og:image:width" content="2024" />
-        <meta property="og:image:height" content="1012" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      <Head
+        title={title}
+        description={metaDescription}
+        ogImage={{
+          title,
+          layout: 'page',
+        }}
+      />
 
       <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
 
@@ -78,8 +56,8 @@ export default function TemplateArchive({
         </Container>
       </Header>
 
-      <Section>
-        <Container>
+      <Section className={styles.postsSection}>
+        <Container size="content">
           <h2 className="sr-only">Posts</h2>
           <ul className={styles.posts}>
             {posts.map((post) => {

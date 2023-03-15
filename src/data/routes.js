@@ -73,4 +73,9 @@ routes.push({
   path: '/sitemap.xml',
 });
 
+routes.push({
+  name: 'rss',
+  path: '/feed.xml',
+});
+
 export default routes;

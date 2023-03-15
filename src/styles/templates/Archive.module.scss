@@ -1,4 +1,5 @@
 @import "styles/settings/__settings";
+@import "styles/util/__util";
 
 .archiveDescription {
   text-align: center;
@@ -9,10 +10,23 @@
   margin-right: auto;
 }
 
+.postsSection {
+  margin-top: 5em;
+
+  @include gtSmall() {
+    margin-top: 6em;
+  }
+}
+
 .posts {
+  font-size: 0.8em;
   list-style: none;
   padding-left: 0;
   margin: -1rem 0;
+
+  @include gtLarge() {
+    font-size: 1em;
+  }
 
   & > li {
     margin: 4em 0;

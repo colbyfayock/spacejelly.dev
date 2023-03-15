@@ -22,18 +22,37 @@ $color-blue-900: #001227;
 
 $color-primary: $color-blue-500;
 
-$color-brand-aqua: #25bebc;
-$color-brand-blue-light: #397dff;
-$color-brand-blue-medium: #397dff;
-$color-brand-deep-blue: #0b0535;
+$color-brand-purple-light: #8550c9;
+$color-brand-purple-medium: #512382;
+$color-brand-purple-dark: #29002e;
+
+$color-brand-pink-light: #ffc5e5;
+$color-brand-pink-medium: #cb56ac;
+// $color-brand-pink-dark: #29002e;
+
+$color-brand-aqua-light: #51add5;
+$color-brand-aqua-medium: #1f7ead;
+$color-brand-aqua-dark: #003257;
+
+$color-brand-green-light: #4fa9ac;
+$color-brand-green-medium: #007e65;
+$color-brand-green-dark: #004538;
+
+$color-brand-deepaqua-light: #012e41;
+$color-brand-deepaqua-medium: #011e30;
+$color-brand-deepaqua-dark: #001523;
+
+$color-brand-orange-light: #ff7550;
+$color-brand-orange-medium: #ea4800;
+// $color-brand-orange-dark: #001523;
+
+// $color-brand-yellow-light: #012E41;
+$color-brand-yellow-medium: #ffdb00;
+// $color-brand-yellow-dark: #001523;
+
 $color-brand-purple: #9c5bc3;
-$color-brand-blue-shadow: $color-brand-blue-medium;
 
-// $color
-
-$color-site-background-dark: $color-brand-deep-blue;
-$color-site-background-light: #0b106b;
-$color-site-background: $color-site-background-light;
+$color-site-background: $color-brand-deepaqua-dark;
 
 $component-shadow-box-color: #2e2fe2;
 $component-shadow-box-color-high: #2712a5;

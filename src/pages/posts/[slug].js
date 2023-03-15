@@ -1,33 +1,24 @@
-import path from 'path';
 import Link from 'next/link';
-import { Helmet } from 'react-helmet';
 import { useInView } from 'react-intersection-observer';
 
 import { getPostBySlug, getRecentPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
-import { getSpaceJellyOgPostUrl } from 'lib/cloudinary';
-import { addIdsToHeadersHtml, getHeadersAnchorsFromHtml } from 'lib/parse';
+import { addIdsToHeadersHtml, applySyntaxHighlighting, getHeadersAnchorsFromHtml } from 'lib/parse';
 import useSite from 'hooks/use-site';
-import useOnLoad from 'hooks/use-onload';
 
+import Head from 'components/Head';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
-import FeaturedImage from 'components/FeaturedImage';
 import Button from 'components/Button';
 import Anchors from 'components/Anchors';
 import Video from 'components/Video';
 import Posts from 'components/Posts';
-import Sidebar from 'components/Sidebar';
-import SidebarSection from 'components/SidebarSection';
-import SidebarSectionHeader from 'components/SidebarSectionHeader';
-import SidebarSectionBody from 'components/SidebarSectionBody';
-import FormSubscribe from 'components/FormSubscribe';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -37,18 +28,16 @@ export default function Post({ post, anchors, related }) {
 
   const {
     author,
+    cardtitle,
     categories,
     content,
     date,
     demorepourl,
     demostarterurl,
     demowebsiteurl,
-    excerpt,
-    featuredImage,
     intro,
     isSticky = false,
     modified,
-    ogImage,
     title,
     video,
   } = post;
@@ -59,27 +48,22 @@ export default function Post({ post, anchors, related }) {
 
   const metaDescription = `Read ${title} at ${siteTitle}.`;
 
-  const { loaded: pageIsLoaded } = useOnLoad();
-
-  const { ref: videoContainerRef, inView, entry } = useInView();
+  const { ref: videoContainerRef, inView } = useInView({
+    triggerOnce: true,
+  });
 
   return (
     <Layout>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:secure_url" content={ogImage} />
-        <meta property="og:image:width" content="2024" />
-        <meta property="og:image:height" content="1012" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content={ogImage} />
-      </Helmet>
+      <Head
+        title={title}
+        description={metaDescription}
+        ogImage={{
+          title: cardtitle || title,
+          layout: 'post',
+        }}
+      />
 
-      <Header className={styles.postHeader}>
+      <Header className={styles.postHeader} container={{ size: 'narrow' }}>
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{
@@ -97,26 +81,53 @@ export default function Post({ post, anchors, related }) {
       </Header>
 
       <Content>
-        <Section className={styles.postSection}>
-          <Container className={styles.postContainer}>
-            <div className={styles.postContent}>
-              {intro && (
-                <div
-                  className={styles.postIntro}
-                  dangerouslySetInnerHTML={{
-                    __html: intro,
-                  }}
-                />
-              )}
-              {Array.isArray(anchors) && (
-                <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside 🧐" />
-              )}
-              {video && (
-                <div ref={videoContainerRef}>
-                  <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
-                </div>
-              )}
+        <Section className={styles.introSection}>
+          <Container size="content">
+            {intro && (
+              <div
+                className={styles.postIntro}
+                dangerouslySetInnerHTML={{
+                  __html: intro,
+                }}
+              />
+            )}
+            {Array.isArray(anchors) && (
+              <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside" />
+            )}
+            {video && (
+              <div ref={videoContainerRef}>
+                <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
+              </div>
+            )}
+            <ul className={styles.postResources}>
+              <li>
+                {demowebsiteurl && (
+                  <Button href={demowebsiteurl} display="full">
+                    View Demo Website
+                  </Button>
+                )}
+              </li>
+              <li>
+                {demorepourl && (
+                  <Button href={demorepourl} display="full">
+                    See the Code
+                  </Button>
+                )}
+              </li>
+              <li>
+                {demostarterurl && (
+                  <Button href={demostarterurl} display="full">
+                    Grab the Starter
+                  </Button>
+                )}
+              </li>
+            </ul>
+          </Container>
+        </Section>
 
+        <Content>
+          <Section className={styles.contentSection}>
+            <Container size="content">
               <div
                 dangerouslySetInnerHTML={{
                   __html: content,
@@ -126,66 +137,26 @@ export default function Post({ post, anchors, related }) {
               <div className={styles.postFooter}>
                 <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
               </div>
-            </div>
-            <Sidebar>
-              {featuredImage && (
-                <FeaturedImage
-                  {...featuredImage}
-                  src={featuredImage.sourceUrl}
-                  dangerouslySetInnerHTML={featuredImage.caption}
-                />
-              )}
-              {(demowebsiteurl || demorepourl) && (
-                <SidebarSection>
-                  <SidebarSectionHeader>Demo</SidebarSectionHeader>
-                  <SidebarSectionBody>
-                    <p>
-                      {demowebsiteurl && (
-                        <Button href={demowebsiteurl} display="full">
-                          View Demo Website
-                        </Button>
-                      )}
-                      {demorepourl && (
-                        <Button href={demorepourl} display="full">
-                          See the Code
-                        </Button>
-                      )}
-                    </p>
-                  </SidebarSectionBody>
-                </SidebarSection>
-              )}
-              {demostarterurl && (
-                <SidebarSection>
-                  <SidebarSectionHeader>Starter</SidebarSectionHeader>
-                  <SidebarSectionBody>
-                    <p>
-                      <Button href={demostarterurl} display="full">
-                        Go to Repository
-                      </Button>
-                    </p>
-                  </SidebarSectionBody>
-                </SidebarSection>
-              )}
-              <SidebarSection>
-                <SidebarSectionHeader>Newsletter</SidebarSectionHeader>
-                <SidebarSectionBody>
-                  <p>Get tutorials like this right to your inbox each week!</p>
-                  <FormSubscribe />
-                </SidebarSectionBody>
-              </SidebarSection>
-            </Sidebar>
-          </Container>
-        </Section>
+            </Container>
+          </Section>
+        </Content>
 
-        <Section className={styles.postRelated}>
+        <Section className={styles.relatedSection}>
           <Container>
             <h2>
               More from{' '}
-              <strong>
-                <Link href={categoryPathBySlug(related.slug)}>{related.name}</Link>
-              </strong>
+              <Link className={styles.relatedSectionLink} href={categoryPathBySlug(related.slug)}>
+                {related.name}
+              </Link>
             </h2>
-            <Posts className={styles.postRelatedPosts} posts={related?.posts} />
+            <Posts
+              className={styles.relatedPosts}
+              posts={related?.posts}
+              postCard={{
+                className: styles.relatedPostsCard,
+                excludeMetadata: ['categories', 'date'],
+              }}
+            />
           </Container>
         </Section>
       </Content>
@@ -205,7 +176,7 @@ export async function getStaticProps({ params = {} } = {}) {
     };
   }
 
-  const { cardtitle, title, categories } = post;
+  const { title, categories } = post;
   let { content } = post;
 
   const relatedCategory = categories[0];
@@ -217,7 +188,11 @@ export async function getStaticProps({ params = {} } = {}) {
   // Parse the HTML and add IDs to all of the
   // h2 headers
 
-  content = addIdsToHeadersHtml({
+  content = await addIdsToHeadersHtml({
+    html: content,
+  });
+
+  content = await applySyntaxHighlighting({
     html: content,
   });
 
@@ -238,17 +213,6 @@ export async function getStaticProps({ params = {} } = {}) {
   if (intro.length > 0) {
     content = moreContent;
   }
-
-  // Build a custom OG image based on the title
-  // and the categories
-
-  const ogImage = getSpaceJellyOgPostUrl({
-    headline: cardtitle || title,
-    subtext: categories
-      .slice(0, 3)
-      .map(({ name }) => name)
-      .join('     '),
-  });
 
   if (post.video) {
     let oembed, thumbnail;
@@ -288,7 +252,6 @@ export async function getStaticProps({ params = {} } = {}) {
     props: {
       post: {
         ...post,
-        ogImage,
         content,
         intro,
       },
@@ -302,8 +265,6 @@ export async function getStaticProps({ params = {} } = {}) {
 }
 
 export async function getStaticPaths() {
-  const routes = {};
-
   const { posts } = await getRecentPosts({
     count: process.env.POSTS_PRERENDER_COUNT,
     queryIncludes: 'index',
