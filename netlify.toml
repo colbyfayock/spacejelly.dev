@@ -31,6 +31,13 @@
   to = "https://egghead.io/projects/create-an-ecommerce-store-with-next-js-and-stripe-checkout?af=atzgap"
   status = 302
   force = true
+  
+  
+[[redirects]]
+  from = "/giveaway"
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSfCMmkDuIOscTar9rfGKhBkTnbqsbgulrJweLa7TyUPH1EMhw/viewform?usp=sf_link"
+  status = 302
+  force = true
 
 [[redirects]]
   from = "/harperdb"
