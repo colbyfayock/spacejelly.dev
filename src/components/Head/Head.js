@@ -73,6 +73,7 @@ const Head = ({ title, description, ogImage, ...props }) => {
         <meta property="og:title" content={`${title} on ${siteTitle}`} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={`${removeLastTrailingSlash(homepage)}${asPath}`} />
+        <link rel="canonical" href={`${removeLastTrailingSlash(homepage)}${asPath}`} />
       </NextHead>
       <CldOgImage
         src={ogImage.publicId}
