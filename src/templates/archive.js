@@ -49,6 +49,7 @@ export default function TemplateArchive({
           {description && (
             <p className={styles.archiveDescription}>
               <span
+                className={styles.archiveDescriptionContent}
                 dangerouslySetInnerHTML={{
                   __html: description,
                 }}
