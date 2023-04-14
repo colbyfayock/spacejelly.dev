@@ -7,20 +7,37 @@ import { AuthorJsonLd } from 'lib/json-ld';
 
 export default function Author({ user, posts }) {
   const { name, avatar, description, slug } = user;
+  const pageSlug = userSlugByName(name);
 
   const postOptions = {
     excludeMetadata: ['author'],
   };
+
+  const archiveSettings = {};
+
+  if (pageSlug === 'cosmo-the-space-jellyfish') {
+    archiveSettings.Description = () => {
+      return (
+        <>
+          {description}
+          <br />
+          <br />
+          Generated with <a href="https://videotapit.com?via=colby">Video Tap</a>
+        </>
+      );
+    };
+  }
 
   return (
     <>
       <TemplateArchive
         title={name}
         Title={<Title title={name} thumbnail={avatar} />}
-        description={description}
         posts={posts}
+        description={description}
         postOptions={postOptions}
         slug={slug}
+        {...archiveSettings}
       />
       <AuthorJsonLd author={user} />
     </>

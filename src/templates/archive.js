@@ -16,6 +16,7 @@ export default function TemplateArchive({
   title = 'Archive',
   Title,
   description,
+  Description,
   posts,
   postOptions = DEFAULT_POST_OPTIONS,
   slug,
@@ -46,12 +47,14 @@ export default function TemplateArchive({
         <Container>
           <h1>{Title || title}</h1>
           {description && (
-            <p
-              className={styles.archiveDescription}
-              dangerouslySetInnerHTML={{
-                __html: description,
-              }}
-            />
+            <p className={styles.archiveDescription}>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: description,
+                }}
+              />
+              {Description && <Description />}
+            </p>
           )}
         </Container>
       </Header>
