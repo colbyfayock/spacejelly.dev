@@ -19,9 +19,6 @@ export default function Author({ user, posts }) {
     archiveSettings.Description = () => {
       return (
         <>
-          {description}
-          <br />
-          <br />
           Generated with <a href="https://videotapit.com?via=colby">Video Tap</a>
         </>
       );
