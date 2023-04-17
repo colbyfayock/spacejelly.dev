@@ -6,6 +6,42 @@
   status = 302
   force = true
 
+[[redirects]]
+  from = "/categories/github-actions/"
+  to = "/tag/github-actions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/categories/next-js/"
+  to = "/tag/nextjs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/categories/node-js/"
+  to = "/tag/nodejs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/categories/react/"
+  to = "/tag/react/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/categories/sass-scss/"
+  to = "/tag/sass-scss/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/categories/wordpress/"
+  to = "/tag/wordpress/"
+  status = 301
+  force = true
+
 ## Misc
 
 [[redirects]]
