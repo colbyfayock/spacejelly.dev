@@ -8,7 +8,7 @@ import ClassName from 'models/classname';
 
 import styles from './Metadata.module.scss';
 
-const Metadata = ({ className, author, date, categories, isSticky = false }) => {
+const Metadata = ({ className, author, date, categories, tags, isSticky = false }) => {
   const metadataClassName = new ClassName(styles.metadata);
 
   metadataClassName.addIf(className, className);
@@ -50,6 +50,19 @@ const Metadata = ({ className, author, date, categories, isSticky = false }) => 
                   </li>
                 );
               })}
+          </ul>
+        </li>
+      )}
+      {Array.isArray(tags) && tags[0] && (
+        <li className={styles.metadataTags}>
+          <ul>
+            {tags.map((tag) => {
+              return (
+                <li key={tag.slug}>
+                  <Link href={tag.uri}>{tag.name}</Link>
+                </li>
+              );
+            })}
           </ul>
         </li>
       )}

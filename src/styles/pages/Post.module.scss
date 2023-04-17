@@ -11,6 +11,12 @@
   }
 }
 
+.introColumns {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
 .postIntro {
   font-size: 1.2em;
   margin-bottom: 1.5em;
@@ -47,7 +53,7 @@
   flex-wrap: wrap;
   font-size: 0.9em;
   padding: 0;
-  margin: 3em 0;
+  margin: 5em 0 3em;
 
   li {
     padding: 0.4em 0.6em;
@@ -55,6 +61,14 @@
 
   a {
     white-space: nowrap;
+  }
+}
+
+.postIntroVideo {
+  min-width: 50%;
+
+  figure {
+    margin: 0;
   }
 }
 

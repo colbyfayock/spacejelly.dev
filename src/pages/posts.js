@@ -6,7 +6,16 @@ export default function Posts({ posts }) {
   const title = 'All Posts';
   const slug = 'posts';
 
-  return <TemplateArchive title={title} posts={posts} slug={slug} />;
+  return (
+    <TemplateArchive
+      title={title}
+      posts={posts}
+      slug={slug}
+      postOptions={{
+        excludeMetadata: ['tags'],
+      }}
+    />
+  );
 }
 
 export async function getStaticProps({ params = {} } = {}) {

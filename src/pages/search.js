@@ -16,5 +16,14 @@ export default function Search() {
     });
   }, []);
 
-  return <TemplateArchive title={title} posts={results} slug={slug} />;
+  return (
+    <TemplateArchive
+      title={title}
+      posts={results}
+      slug={slug}
+      postOptions={{
+        excludeMetadata: ['tags'],
+      }}
+    />
+  );
 }

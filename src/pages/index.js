@@ -63,7 +63,12 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
               <Heading className={styles.heading} as="h2" color="orange">
                 Latest
               </Heading>
-              <Posts posts={[latestPost]} />
+              <Posts
+                posts={[latestPost]}
+                postCard={{
+                  excludeMetadata: ['tags'],
+                }}
+              />
               <p className={styles.heroFeatureLatestLink}>
                 <Button href={postPathBySlug(latestPost.slug)}>Learn How</Button>
               </p>
@@ -168,7 +173,12 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
             <Heading className={styles.heading} as="h2" color="orange">
               Some More Recent Posts
             </Heading>
-            <Posts posts={posts} />
+            <Posts
+              posts={posts}
+              postCard={{
+                excludeMetadata: ['tags'],
+              }}
+            />
             <p className={styles.morePostsLink}>
               <Link href={getRouteByName('posts')?.path}>View All Posts</Link>
             </p>

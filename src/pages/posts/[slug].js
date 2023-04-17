@@ -38,6 +38,7 @@ export default function Post({ post, anchors, related }) {
     intro,
     isSticky = false,
     modified,
+    tags,
     title,
     video,
   } = post;
@@ -75,6 +76,7 @@ export default function Post({ post, anchors, related }) {
           date={date}
           author={author}
           categories={categories}
+          tags={tags}
           options={metadataOptions}
           isSticky={isSticky}
         />

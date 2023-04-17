@@ -7,7 +7,7 @@ import {
   QUERY_ALL_POSTS,
   QUERY_ALL_POSTS_ARCHIVE,
   QUERY_ALL_POSTS_INDEX,
-  getQueryPostBySlug,
+  QUERY_POST_BY_SLUG,
   getQueryPostsByAuthorSlug,
   QUERY_POSTS_BY_CATEGORY_ID_INDEX,
   QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE,
@@ -31,7 +31,10 @@ export async function getPostBySlug(slug) {
   const apolloClient = getApolloClient();
 
   const data = await apolloClient.query({
-    query: getQueryPostBySlug(slug),
+    query: QUERY_POST_BY_SLUG,
+    variables: {
+      slug,
+    },
   });
 
   const post = data?.data.postBy;
@@ -200,6 +203,14 @@ export function mapPostData(post = {}) {
 
   if (data.categories) {
     data.categories = data.categories.edges.map(({ node }) => {
+      return {
+        ...node,
+      };
+    });
+  }
+
+  if (data.tags) {
+    data.tags = data.tags.edges.map(({ node }) => {
       return {
         ...node,
       };

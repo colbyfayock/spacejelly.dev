@@ -10,7 +10,7 @@
   text-transform: uppercase;
   list-style: none;
   padding: 0;
-  margin: 0 -0.5em;
+  margin: 0 -1em;
 
   @include gtSmall() {
     flex-direction: row;
@@ -58,7 +58,8 @@
   }
 }
 
-.metadataCategories {
+.metadataCategories,
+.metadataTags {
   ul {
     display: flex;
     flex-wrap: wrap;

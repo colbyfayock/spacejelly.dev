@@ -14,6 +14,15 @@ export const POST_FIELDS = gql`
       }
     }
     date
+    tags {
+      edges {
+        node {
+          id
+          name
+          uri
+        }
+      }
+    }
     title
     postId
     slug
@@ -103,66 +112,73 @@ export const QUERY_ALL_POSTS = gql`
   }
 `;
 
-export function getQueryPostBySlug(slug) {
-  return gql`
-    query PostBySlug {
-      postBy(slug: "${slug}"){
-        author {
-          node {
-            user {
-              userimage {
-                mediaDetails {
-                  height
-                  width
-                }
-                sourceUrl
+export const QUERY_POST_BY_SLUG = gql`
+  query PostBySlug($slug: String!) {
+    postBy(slug: $slug) {
+      author {
+        node {
+          user {
+            userimage {
+              mediaDetails {
+                height
+                width
               }
+              sourceUrl
             }
+          }
+          id
+          name
+          slug
+        }
+      }
+      id
+      categories {
+        edges {
+          node {
+            categoryId
             id
             name
             slug
           }
         }
-        id
-        categories {
-          edges {
-            node {
-              categoryId
-              id
-              name
-              slug
-            }
-          }
-        }
-        content
-        date
-        excerpt
-        featuredImage {
-          node {
-            altText
-            caption
-            sourceUrl
-            srcSet
-            sizes
-            id
-          }
-        }
-        modifiedGmt
-        postId
-        post {
-          cardtitle
-          demorepourl
-          demostarterurl
-          demowebsiteurl
-          video
-        }
-        title
-        slug
-        isSticky
       }
+      content
+      date
+      excerpt
+      featuredImage {
+        node {
+          altText
+          caption
+          sourceUrl
+          srcSet
+          sizes
+          id
+        }
+      }
+      modifiedGmt
+      postId
+      post {
+        cardtitle
+        demorepourl
+        demostarterurl
+        demowebsiteurl
+        video
+      }
+      tags {
+        edges {
+          node {
+            id
+            name
+            uri
+          }
+        }
+      }
+      title
+      slug
+      isSticky
     }
-  `;
-}
+  }
+`;
 
 export const QUERY_POSTS_BY_CATEGORY_ID_INDEX = gql`
   ${POST_FIELDS}
