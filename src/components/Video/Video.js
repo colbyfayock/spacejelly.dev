@@ -4,6 +4,8 @@ import { FaPlay } from 'react-icons/fa';
 import { getUrlParamsFromString } from 'lib/parse';
 import ClassName from 'models/classname';
 
+import CldImage from 'components/CldImage';
+
 import styles from './Video.module.scss';
 
 export const Video = ({
@@ -54,7 +56,14 @@ export const Video = ({
         )}
         {!isActive && (
           <div className={styles.videoPlay}>
-            <img src={thumbnail.url} alt="" />
+            <CldImage
+              width="1800"
+              height="1016"
+              crop="limit"
+              src={thumbnail.url}
+              deliveryType="fetch"
+              alt="YouTube Preview"
+            />
             <button className={styles.videoPlayButton} onClick={handleOnActivateClick}>
               <span className={styles.videoPlayAction}>
                 <FaPlay />

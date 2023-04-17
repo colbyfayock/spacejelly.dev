@@ -1,5 +1,3 @@
-import { CldImage } from 'next-cloudinary';
-
 import { WebsiteJsonLd } from 'lib/json-ld';
 
 import Head from 'components/Head';
@@ -7,6 +5,7 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
+import CldImage from 'components/CldImage';
 
 import styles from 'styles/templates/ProductListing.module.scss';
 
@@ -53,8 +52,8 @@ export default function TemplateProductListing({
                     {product.image && (
                       <CldImage
                         className={styles.productImage}
-                        width={product.image.width}
-                        height={product.image.height}
+                        width="1400"
+                        height="700"
                         src={product.image.url}
                         alt=""
                       />

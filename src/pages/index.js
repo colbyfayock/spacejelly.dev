@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { FaTwitter, FaYoutube } from 'react-icons/fa';
 import { BsDiscord } from 'react-icons/bs';
 import { gql } from '@apollo/client';
-// import { CldImage } from 'next-cloudinary';
 
 import { getApolloClient } from 'lib/apollo-client';
 import { getRouteByName } from 'lib/routes';
@@ -123,8 +122,8 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
               </Heading>
               <a href={featuredCourse.course.courseLink}>
                 <CldImage
-                  width={featuredCourse.featuredImage.node.mediaDetails.width}
-                  height={featuredCourse.featuredImage.node.mediaDetails.height}
+                  width="1800"
+                  height="900"
                   src={featuredCourse.featuredImage.node.sourceUrl}
                   alt={featuredCourse.title}
                 />

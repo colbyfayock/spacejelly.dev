@@ -12,6 +12,7 @@ import LogoWPEngine from 'components/LogoWPEngine';
 import Heading from 'components/Heading';
 import Sand from 'components/Sand';
 import SandSpaceship from 'components/SandSpaceship';
+import CldImage from 'components/CldImage';
 
 import styles from './Footer.module.scss';
 
@@ -30,12 +31,7 @@ const Footer = () => {
           </Heading>
           <div className={styles.footerAuthorInfo}>
             <div className={styles.footerAuthorImage}>
-              <img
-                width={author.user.userimage.mediaDetails.width}
-                height={author.user.userimage.mediaDetails.height}
-                src={author.user.userimage.sourceUrl}
-                alt="Author"
-              />
+              <CldImage width="300" height="300" src={author.user.userimage.sourceUrl} alt="Author" />
             </div>
             <div className={styles.footerAuthorDetails}>
               <p className={styles.footerAuthorName}>{author.name}</p>

@@ -1,3 +1,4 @@
+import CldImage from 'components/CldImage';
 import ClassName from 'models/classname';
 
 import styles from './Title.module.scss';
@@ -9,9 +10,7 @@ const Title = ({ className, title, thumbnail }) => {
 
   return (
     <div className={titleClassName.toString()}>
-      {thumbnail && (
-        <img src={thumbnail.url} width={thumbnail.width} height={thumbnail.height} alt="" aria-hidden="true" />
-      )}
+      {thumbnail && <CldImage src={thumbnail.url} width="150" height="150" alt="" />}
       <span>{title}</span>
     </div>
   );

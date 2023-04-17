@@ -1,5 +1,4 @@
 import { format, formatISO } from 'date-fns';
-import { parseFromTimeZone } from 'date-fns-timezone';
 
 /**
  * formatDate
@@ -43,9 +42,15 @@ export function setDatetimeTimezone(date, ianatz) {
     date = new Date(date);
   }
 
-  const newDate = parseFromTimeZone(date, { timeZone: ianatz });
+  const invdate = new Date(
+    date.toLocaleString('en-US', {
+      timeZone: ianatz,
+    })
+  );
 
-  return new Date(newDate);
+  const diff = date.getTime() - invdate.getTime();
+
+  return new Date(date.getTime() - diff);
 }
 
 /**

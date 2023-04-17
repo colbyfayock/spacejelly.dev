@@ -3,7 +3,6 @@ const he = require('he');
 const { gql, ApolloClient, InMemoryCache } = require('@apollo/client');
 const RSS = require('rss');
 const prettier = require('prettier');
-const parseFromTimeZone = require('date-fns-timezone').parseFromTimeZone;
 
 const config = require('../package.json');
 
@@ -541,9 +540,15 @@ function setDatetimeTimezone(date, ianatz) {
     date = new Date(date);
   }
 
-  const newDate = parseFromTimeZone(date, { timeZone: ianatz });
+  const invdate = new Date(
+    date.toLocaleString('en-US', {
+      timeZone: ianatz,
+    })
+  );
 
-  return new Date(newDate);
+  const diff = date.getTime() - invdate.getTime();
+
+  return new Date(date.getTime() - diff);
 }
 
 module.exports = {

@@ -6,6 +6,8 @@ import { authorPathByName } from 'lib/users';
 import { formatDate } from 'lib/datetime';
 import ClassName from 'models/classname';
 
+import CldImage from 'components/CldImage';
+
 import styles from './Metadata.module.scss';
 
 const Metadata = ({ className, author, date, categories, tags, isSticky = false }) => {
@@ -18,12 +20,7 @@ const Metadata = ({ className, author, date, categories, tags, isSticky = false 
       {author && (
         <li className={styles.metadataAuthor}>
           <address>
-            <img
-              width={author.avatar.width}
-              height={author.avatar.height}
-              src={author.avatar.url}
-              alt="Author Avatar"
-            />
+            <CldImage width="50" height="50" crop="fill" src={author.avatar.url} alt="Author Avatar" />
             By{' '}
             <Link href={authorPathByName(author.name)} rel="author">
               {author.name}
