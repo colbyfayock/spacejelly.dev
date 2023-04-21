@@ -41,13 +41,18 @@ export default function Post({ post, anchors, related }) {
     tags,
     title,
     video,
+    seo,
   } = post;
 
   const metadataOptions = {
     compactCategories: false,
   };
 
-  const metaDescription = `Read ${title} at ${siteTitle}.`;
+  let metaDescription = `Read ${title} at ${siteTitle}.`;
+
+  if (seo?.metaDesc) {
+    metaDescription = seo.metaDesc;
+  }
 
   const { ref: videoContainerRef, inView } = useInView({
     triggerOnce: true,

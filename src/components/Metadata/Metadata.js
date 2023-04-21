@@ -55,7 +55,7 @@ const Metadata = ({ className, author, date, categories, tags, isSticky = false 
           <ul>
             {tags.map((tag) => {
               return (
-                <li key={tag.slug}>
+                <li key={tag.uri}>
                   <Link href={tag.uri}>{tag.name}</Link>
                 </li>
               );
