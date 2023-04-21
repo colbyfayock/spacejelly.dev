@@ -7,6 +7,10 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   trailingSlash: true,
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
 
   env: {
     POSTS_PRERENDER_COUNT: 5,

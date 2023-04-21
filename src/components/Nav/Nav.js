@@ -185,7 +185,7 @@ const Nav = () => {
                       })}
                     </ul>
                   )}
-                  {results.length === 0 && (
+                  {query && results.length === 0 && (
                     <p>
                       Sorry, not finding anything for <strong>{query}</strong>
                     </p>
