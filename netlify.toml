@@ -45,6 +45,12 @@
 ## Misc
 
 [[redirects]]
+  from = "/applitools"
+  to = "https://applitools.com"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/codux"
   to = "https://codux.hopp.to/colby"
   status = 302
