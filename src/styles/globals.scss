@@ -47,7 +47,6 @@ a {
 img,
 video,
 audio {
-  width: 100%;
   max-width: 100%;
   height: auto;
 }
@@ -85,7 +84,7 @@ figure {
   text-align: center;
   margin: 2.5em 0;
   img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     border-radius: 0.2em;
     border: solid 1px lighten($color-brand-aqua-dark, 5);

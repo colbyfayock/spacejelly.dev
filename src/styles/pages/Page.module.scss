@@ -28,9 +28,13 @@
     margin-top: 2.6rem;
   }
 
-  figure {
-    margin: 4rem 0;
+  :not(blockquote) {
+    figure {
+      margin: 4rem 0;
+    }
+  }
 
+  figure {
     iframe {
       display: block;
       margin: 0 auto;
