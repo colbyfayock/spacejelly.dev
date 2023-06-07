@@ -20,6 +20,32 @@ export default function Store({ products }) {
   const title = 'Space Jelly Store';
   const metaDescription = 'Buy the latest Cosmo gear';
 
+  const externalSites = [
+    {
+      title: 'Cotton Bureau',
+      pattern: /cottonbureau\.com/,
+    },
+    {
+      title: 'Redbubble',
+      pattern: /redbubble\.com/,
+    },
+  ];
+
+  const storeProducts = [];
+  const externalProducts = [];
+
+  products.forEach((product) => {
+    const external = externalSites.find(({ pattern }) => product.productId.match(pattern));
+    if (external) {
+      externalProducts.push({
+        ...product,
+        external,
+      });
+    } else {
+      storeProducts.push(product);
+    }
+  });
+
   return (
     <Layout>
       <Head
@@ -66,48 +92,10 @@ export default function Store({ products }) {
 
       <Section>
         <Container>
-          <h2 className="sr-only">Products</h2>
+          <h2>Products</h2>
           <ul className={styles.products}>
-            {products.map((product) => {
+            {storeProducts.map((product) => {
               const { productId, title, price, featuredImage, variation } = product;
-
-              const external = [
-                {
-                  title: 'Cotton Bureau',
-                  pattern: /cottonbureau\.com/,
-                },
-                {
-                  title: 'Redbubble',
-                  pattern: /redbubble\.com/,
-                },
-              ];
-
-              const externalProduct = external.find(({ pattern }) => productId.match(pattern));
-
-              if (externalProduct) {
-                return (
-                  <li key={productId}>
-                    <div className={styles.product}>
-                      <Image
-                        className={styles.productImage}
-                        {...featuredImage}
-                        src={featuredImage.sourceUrl}
-                        dangerouslySetInnerHTML={featuredImage.caption}
-                      />
-                      <h3 className={styles.productTitle}>{title}</h3>
-                      {variation && <p className={styles.productVariation}>{variation}</p>}
-                      <p className={styles.productAvailableOn}>Available on {externalProduct.title}</p>
-                      <p className={styles.productPrice}>${(price / 100).toFixed(2)}</p>
-                      <p className={styles.productButton}>
-                        <a href={productId} rel="noreferrer" target="_blank">
-                          Buy Now
-                          <FaExternalLinkSquareAlt />
-                        </a>
-                      </p>
-                    </div>
-                  </li>
-                );
-              }
 
               return (
                 <li key={productId}>
@@ -132,6 +120,40 @@ export default function Store({ products }) {
                       >
                         Add to Cart
                       </Button>
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <h2>Other Products</h2>
+          <ul className={styles.products}>
+            {externalProducts.map((product) => {
+              const { productId, title, price, featuredImage, variation, external } = product;
+
+              return (
+                <li key={productId}>
+                  <div className={styles.product}>
+                    <Image
+                      className={styles.productImage}
+                      {...featuredImage}
+                      src={featuredImage.sourceUrl}
+                      dangerouslySetInnerHTML={featuredImage.caption}
+                    />
+                    <h3 className={styles.productTitle}>{title}</h3>
+                    {variation && <p className={styles.productVariation}>{variation}</p>}
+                    <p className={styles.productAvailableOn}>Available on {external.title}</p>
+                    <p className={styles.productPrice}>${(price / 100).toFixed(2)}</p>
+                    <p className={styles.productButton}>
+                      <a href={productId} rel="noreferrer" target="_blank">
+                        Buy Now
+                        <FaExternalLinkSquareAlt />
+                      </a>
                     </p>
                   </div>
                 </li>
