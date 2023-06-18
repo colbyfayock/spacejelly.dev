@@ -1,0 +1,92 @@
+@import "styles/settings/__settings";
+@import "styles/util/__util";
+
+.postMetadata {
+  &,
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.metadataByline {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  margin: 0 0 0.4em;
+
+  span {
+    margin: 0 0.3em;
+  }
+
+  img {
+    display: inline-block;
+    width: 1.8em;
+    border-radius: 999px;
+    margin: 0 0.5em 0 0;
+  }
+
+  a {
+    @include titleLink;
+  }
+}
+
+.metadataBuckets {
+  justify-content: flex-start;
+  font-size: 0.7em;
+  margin: 0;
+
+  &,
+  & > span {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  & > span {
+    &:after {
+      display: block;
+      content: "/";
+      margin: 0 0.5em;
+    }
+
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+  }
+
+  li {
+    white-space: nowrap;
+  }
+
+  a {
+    @include titleLink;
+  }
+}
+
+.metadataCategories {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 0;
+
+    &:after {
+      display: inline-block;
+      content: ",";
+      margin-right: 0.3em;
+    }
+
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+  }
+}

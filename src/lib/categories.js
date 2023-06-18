@@ -2,7 +2,7 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_CATEGORIES, getQueryCategoryBySlug } from 'data/categories';
 
-export const DEFAULT_CATEGORIES = ['tutorials', 'walkthroughs'];
+export const DEFAULT_CATEGORIES = ['tutorials', 'walkthrough'];
 export const SPONSORED_CATEGORY = 'sponsored';
 export const EXCLUDED_CATEGORIES = [...DEFAULT_CATEGORIES, SPONSORED_CATEGORY];
 
