@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
+import { FaDesktop, FaCode, FaRocket } from 'react-icons/fa';
 
 import { getPostBySlug, getRecentPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
@@ -14,11 +15,12 @@ import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import Content from 'components/Content';
-import Metadata from 'components/Metadata';
-import Button from 'components/Button';
+import PostMetadata from 'components/PostMetadata';
 import Anchors from 'components/Anchors';
 import Video from 'components/Video';
 import Posts from 'components/Posts';
+import Sidebar from 'components/Sidebar';
+import SidebarSection from 'components/SidebarSection';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -69,73 +71,77 @@ export default function Post({ post, anchors, related }) {
         }}
       />
 
-      <Header className={styles.postHeader} container={{ size: 'narrow' }}>
-        <h1
-          className={styles.title}
-          dangerouslySetInnerHTML={{
-            __html: title,
-          }}
-        />
-        <Metadata
-          className={styles.postMetadata}
-          date={date}
-          author={author}
-          categories={categories}
-          tags={tags}
-          options={metadataOptions}
-          isSticky={isSticky}
-        />
-      </Header>
-
       <Content>
-        <Section className={styles.introSection}>
-          <Container size="content">
-            {intro && (
-              <div
-                className={styles.postIntro}
-                dangerouslySetInnerHTML={{
-                  __html: intro,
-                }}
-              />
-            )}
-            {Array.isArray(anchors) && (
-              <Anchors className={styles.postAnchors} anchors={anchors} headline="What's Inside" />
-            )}
-            {video && (
-              <div ref={videoContainerRef}>
-                <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
-              </div>
-            )}
-            <ul className={styles.postResources}>
-              <li>
-                {demowebsiteurl && (
-                  <Button href={demowebsiteurl} display="full">
-                    View Demo Website
-                  </Button>
-                )}
-              </li>
-              <li>
-                {demorepourl && (
-                  <Button href={demorepourl} display="full">
-                    See the Code
-                  </Button>
-                )}
-              </li>
-              <li>
-                {demostarterurl && (
-                  <Button href={demostarterurl} display="full">
-                    Grab the Starter
-                  </Button>
-                )}
-              </li>
-            </ul>
-          </Container>
-        </Section>
+        <Section className={styles.contentSection}>
+          <Container className={styles.contentContainer} size="narrow">
+            <div>
+              <header className={styles.postHeader}>
+                <h1
+                  className={styles.title}
+                  dangerouslySetInnerHTML={{
+                    __html: title,
+                  }}
+                />
 
-        <Content>
-          <Section className={styles.contentSection}>
-            <Container size="content">
+                <PostMetadata
+                  className={styles.postMetadata}
+                  date={date}
+                  author={author}
+                  categories={categories}
+                  tags={tags}
+                  options={metadataOptions}
+                />
+              </header>
+
+              {intro && (
+                <div
+                  className={styles.postIntro}
+                  dangerouslySetInnerHTML={{
+                    __html: intro,
+                  }}
+                />
+              )}
+
+              {Array.isArray(anchors) && (
+                <div className={styles.postIntroAnchors}>
+                  <Anchors className={styles.postAnchors} anchors={anchors} headline="Table of Contents" />
+                </div>
+              )}
+
+              <div className={styles.resources}>
+                <ul className={styles.resourcesLinks}>
+                  {demowebsiteurl && (
+                    <li>
+                      <a href={demowebsiteurl}>
+                        <FaDesktop /> View Demo Website
+                      </a>
+                    </li>
+                  )}
+                  {demorepourl && (
+                    <li>
+                      <a href={demorepourl}>
+                        <FaCode /> See the Code
+                      </a>
+                    </li>
+                  )}
+                  {demostarterurl && (
+                    <li>
+                      <a href={demostarterurl}>
+                        <FaRocket /> Grab the Starter
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+
+              {video && (
+                <div ref={videoContainerRef}>
+                  <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
+                </div>
+              )}
+
               <div
+                className={styles.postContent}
                 dangerouslySetInnerHTML={{
                   __html: content,
                 }}
@@ -144,11 +150,18 @@ export default function Post({ post, anchors, related }) {
               <div className={styles.postFooter}>
                 <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
               </div>
-            </Container>
-          </Section>
-        </Content>
+            </div>
+            <Sidebar className={styles.postSidebar}>
+              <SidebarSection className={styles.postSidebarToc}>
+                {Array.isArray(anchors) && (
+                  <Anchors className={styles.postAnchors} anchors={anchors} headline="Table of Contents" />
+                )}
+              </SidebarSection>
+            </Sidebar>
+          </Container>
+        </Section>
 
-        <Section className={styles.relatedSection}>
+        {/* <Section className={styles.relatedSection}>
           <Container>
             <h2>
               More from{' '}
@@ -165,7 +178,7 @@ export default function Post({ post, anchors, related }) {
               }}
             />
           </Container>
-        </Section>
+        </Section> */}
       </Content>
 
       <ArticleJsonLd post={post} siteTitle={siteTitle} />
