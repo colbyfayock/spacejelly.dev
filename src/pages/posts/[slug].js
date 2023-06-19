@@ -21,6 +21,8 @@ import Video from 'components/Video';
 import Posts from 'components/Posts';
 import Sidebar from 'components/Sidebar';
 import SidebarSection from 'components/SidebarSection';
+import Heading from 'components/Heading';
+import FormSubscribe from 'components/FormSubscribe';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -156,6 +158,13 @@ export default function Post({ post, anchors, related }) {
                 {Array.isArray(anchors) && (
                   <Anchors className={styles.postAnchors} anchors={anchors} headline="Table of Contents" />
                 )}
+              </SidebarSection>
+              <SidebarSection className={styles.postSidebarNewsletter}>
+                <Heading className={styles.postSidebarHeading} as="p">
+                  Newsletter
+                </Heading>
+                <p className={styles.postSidebarText}>More free tutorials straight to your inbox.</p>
+                <FormSubscribe className={styles.postSidebarForm} />
               </SidebarSection>
             </Sidebar>
           </Container>

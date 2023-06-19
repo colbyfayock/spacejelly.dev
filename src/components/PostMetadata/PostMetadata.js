@@ -26,7 +26,7 @@ const PostMetadata = ({ className, author, date, categories, tags }) => {
           {formatDate(date)}
         </time>
       </p>
-      <p className={styles.metadataBuckets}>
+      <div className={styles.metadataBuckets}>
         <span>
           <ul className={styles.metadataCategories}>
             {categories
@@ -51,7 +51,7 @@ const PostMetadata = ({ className, author, date, categories, tags }) => {
             })}
           </ul>
         </span>
-      </p>
+      </div>
     </div>
   );
 };

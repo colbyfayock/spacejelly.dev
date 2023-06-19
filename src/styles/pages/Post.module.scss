@@ -126,14 +126,31 @@
 
 .postSidebar {
   width: auto;
-  margin-left: 0;
+  margin: 3em 0 0 0;
 
   @include gtHuge() {
-    margin-left: 3rem;
+    margin: 0 0 0 3rem;
   }
 }
 
-.postSidebarToc {
+.postSidebarHeading {
+  color: $color-brand-orange-light;
+  font-size: 1.12em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.postSidebarText {
+  font-size: 0.8em;
+  margin-top: 0;
+}
+
+.postSidebarForm {
+  font-size: 0.7em;
+}
+
+.postSidebarToc,
+.postSidebarNewsletter {
   display: none;
 
   @include gtHuge() {
