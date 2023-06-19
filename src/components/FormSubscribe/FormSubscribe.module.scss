@@ -11,13 +11,27 @@
 
   input {
     width: 100%;
-  }
-
-  input {
+    border-radius: 2px;
     margin-bottom: 1.2em;
   }
 
   button {
     font-size: 1em;
+    border-radius: 2px;
   }
+}
+
+.formSuccessMessage,
+.formErrorMessage {
+  line-height: 1.3;
+  padding: 0.4em 0.6em;
+  border-radius: 2px;
+}
+
+.formSuccessMessage {
+  background-color: $color-green-600;
+}
+
+.formErrorMessage {
+  background-color: $color-red-600;
 }
