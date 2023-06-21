@@ -1,3 +1,5 @@
+const { withPlausibleProxy } = require('next-plausible');
+
 const indexSearch = require('./plugins/search-index');
 const feed = require('./plugins/feed');
 const sitemap = require('./plugins/sitemap');
@@ -21,6 +23,6 @@ const nextConfig = {
 };
 
 module.exports = () => {
-  const plugins = [indexSearch, feed, sitemap];
+  const plugins = [withPlausibleProxy(), indexSearch, feed, sitemap];
   return plugins.reduce((acc, plugin) => plugin(acc), nextConfig);
 };

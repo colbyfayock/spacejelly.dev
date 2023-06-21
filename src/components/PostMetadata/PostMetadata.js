@@ -44,7 +44,7 @@ const PostMetadata = ({ className, author, date, categories, tags }) => {
           <ul className={styles.metadataCategories}>
             {tags.map((tag) => {
               return (
-                <li key={tag.slug}>
+                <li key={tag.uri}>
                   <Link href={tag.uri}>{tag.name}</Link>
                 </li>
               );

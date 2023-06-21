@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Source_Sans_Pro } from '@next/font/google';
+import PlausibleProvider from 'next-plausible';
 
 import SiteContext from 'context/site-context';
 import { getSiteMetadata } from 'lib/site';
@@ -59,9 +60,11 @@ function App({ Component, pageProps = {}, metadata, author, categories }) {
         }
       `}</style>
 
-      <SiteContext.Provider value={context}>
-        <Component {...pageProps} />
-      </SiteContext.Provider>
+      <PlausibleProvider domain="spacejelly.dev" trackOutboundLinks={true}>
+        <SiteContext.Provider value={context}>
+          <Component {...pageProps} />
+        </SiteContext.Provider>
+      </PlausibleProvider>
     </>
   );
 }
