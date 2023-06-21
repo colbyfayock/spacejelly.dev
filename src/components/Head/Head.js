@@ -8,6 +8,7 @@ import useSite from 'hooks/use-site';
 
 const Head = ({ title, description, ogImage, ...props }) => {
   const { asPath } = useRouter();
+  const path = asPath.split('?')[0];
 
   const { metadata = {}, homepage } = useSite();
   const { title: siteTitle } = metadata;
@@ -72,8 +73,8 @@ const Head = ({ title, description, ogImage, ...props }) => {
         <meta name="description" content={description} />
         <meta property="og:title" content={`${title} on ${siteTitle}`} />
         <meta property="og:description" content={description} />
-        <meta property="og:url" content={`${removeLastTrailingSlash(homepage)}${asPath}`} />
-        <link rel="canonical" href={`${removeLastTrailingSlash(homepage)}${asPath}`} />
+        <meta property="og:url" content={`${removeLastTrailingSlash(homepage)}${path}`} />
+        <link rel="canonical" href={`${removeLastTrailingSlash(homepage)}${path}`} />
       </NextHead>
       <CldOgImage
         src={ogImage.publicId}
