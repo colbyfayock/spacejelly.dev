@@ -123,6 +123,12 @@
   to = "https://www.colbyfayock.com/course?utm_source=reactappwrite&utm_medium=referral&utm_campaign=reactappwrite"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/ReactAppwrite"
+  to = "https://www.colbyfayock.com/course?utm_source=reactappwrite&utm_medium=referral&utm_campaign=reactappwrite"
+  status = 302
+  force = true
   
 [[redirects]]
   from = "/renderprompts"
