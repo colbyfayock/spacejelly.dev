@@ -120,13 +120,13 @@
 
 [[redirects]]
   from = "/reactappwrite"
-  to = "https://www.colbyfayock.com/course?utm_source=reactappwrite&utm_medium=referral&utm_campaign=reactappwrite"
+  to = "https://egghead.io/courses/full-stack-with-react-and-appwrite-e1e46f61?af=atzgap"
   status = 302
   force = true
 
 [[redirects]]
   from = "/ReactAppwrite"
-  to = "https://www.colbyfayock.com/course?utm_source=reactappwrite&utm_medium=referral&utm_campaign=reactappwrite"
+  to = "https://egghead.io/courses/full-stack-with-react-and-appwrite-e1e46f61?af=atzgap"
   status = 302
   force = true
   
