@@ -17,10 +17,12 @@ const Layout = ({ children }) => {
     <div
       className={styles.layoutContainer}
       style={
-        pathname === '/' && {
-          // @halloween
-          background: '#027DC1',
-        }
+        pathname === '/'
+          ? {
+              // @halloween
+              background: '#027DC1',
+            }
+          : {}
       }
     >
       {isEmailSignupConfirm && <Banner>Thanks for signing up! Check your email inbox to confirm 📬</Banner>}
@@ -35,7 +37,7 @@ const Layout = ({ children }) => {
       {pathname !== '/' && <Stars className={styles.stars} />}
 
       {/** @halloween */}
-      <div className={styles.gradient} />
+      {pathname === '/' && <div className={styles.gradient} />}
 
       <Footer />
     </div>
