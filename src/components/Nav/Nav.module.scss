@@ -6,10 +6,6 @@
   position: relative;
   z-index: 999;
   width: 100%;
-
-  @include gtMedium() {
-    margin-top: 0.5em;
-  }
 }
 
 .navPrimary,

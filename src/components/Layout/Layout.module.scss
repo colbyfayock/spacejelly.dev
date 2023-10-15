@@ -26,3 +26,11 @@
     fill: $color-brand-aqua-light;
   }
 }
+
+// @halloween
+.gradient {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, #003857 0%, #027dc1 100%);
+}
