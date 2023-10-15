@@ -19,20 +19,6 @@ export default function Document() {
             `,
           }}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              var script = document.createElement("script");
-              script.src = "https://app.krunchdata.io/assets/js/k2.js";
-              script.dataset.api = "https://api.krunchdata.io/traffic/web/record";
-              script.dataset.id = "2UMPzzRooNRwoAuk4yuHtxTGitfJpzBW4G+jTmxq9VfPkkMbH8W1/Uelnza5XmEU";
-              script.defer = true;
-              script.type = "module";
-
-              document.head.appendChild(script);
-            `,
-          }}
-        />
       </Head>
       <body>
         <Main />
