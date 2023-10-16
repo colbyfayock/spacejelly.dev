@@ -23,6 +23,7 @@ import Heading from 'components/Heading';
 import CldImage from 'components/CldImage';
 import CosmoWave from 'components/CosmoWave';
 import GalaxyCloud from 'components/GalaxyCloud';
+import Waves from 'components/Waves';
 import MountainRange from 'components/MountainRange';
 import ShoreRocks from 'components/ShoreRocks';
 
@@ -57,6 +58,7 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
       <Section className={styles.heroSection}>
         {/** @halloween */}
         {/* <GalaxyCloud className={styles.heroGalaxyCloud} /> */}
+        <Waves className={styles.heroWaves} />
         <Container className={styles.heroContainer} size="narrow">
           <div className={styles.heroFeature}>
             <div className={styles.heroFeatureLatest}>

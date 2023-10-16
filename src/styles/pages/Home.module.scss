@@ -28,6 +28,41 @@
   height: auto;
 }
 
+.heroWaves {
+  position: absolute;
+  top: 5em;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  max-width: 100em;
+  width: 150%;
+  height: auto;
+  margin: 0 auto;
+  opacity: 0.8;
+  transform: translateX(-25%);
+
+  @include gtMedium() {
+    top: 24em;
+    width: 130%;
+    transform: translateX(-15%);
+  }
+
+  @include gtLarge() {
+    top: 28em;
+    width: 120%;
+    transform: translateX(-10%);
+  }
+
+  @include gtXlarge() {
+    width: 100%;
+    transform: translateX(0);
+  }
+
+  @include gtXlarge() {
+    top: 30em;
+  }
+}
+
 .heroFeature {
   display: flex;
   flex-direction: column;
