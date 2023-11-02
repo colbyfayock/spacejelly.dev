@@ -30,8 +30,6 @@
 .footerSandSpaceship {
   position: absolute;
   top: -20vw;
-  // @halloween
-  top: -30vw;
   left: 0;
   right: 0;
   width: 70vw;
@@ -41,8 +39,6 @@
 
   @include gtLarge() {
     top: -15vw;
-    // @halloween
-    top: -25vw;
     width: 50vw;
   }
 }

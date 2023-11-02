@@ -56,9 +56,7 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
       />
 
       <Section className={styles.heroSection}>
-        {/** @halloween */}
-        {/* <GalaxyCloud className={styles.heroGalaxyCloud} /> */}
-        <Waves className={styles.heroWaves} />
+        <GalaxyCloud className={styles.heroGalaxyCloud} />
         <Container className={styles.heroContainer} size="narrow">
           <div className={styles.heroFeature}>
             <div className={styles.heroFeatureLatest}>
