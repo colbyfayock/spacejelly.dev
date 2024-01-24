@@ -33,7 +33,7 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
   const { metadata = {} } = useSite();
   const { title: siteTitle, description: siteDescription } = metadata;
 
-  const title = `${siteTitle} - Web Development Tutorials & Resources for _This_ Universe`;
+  const title = `${siteTitle} - Web Development Tutorials for _This_ Universe`;
   const metaDescription = `${siteDescription} at ${title}`;
 
   const featuredCourse = page?.featuredCourse?.featuredcourse;

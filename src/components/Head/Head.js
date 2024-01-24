@@ -69,9 +69,19 @@ const Head = ({ title, description, ogImage, ...props }) => {
   return (
     <>
       <NextHead {...props}>
-        <title>{`${title} - ${siteTitle}`}</title>
+        {path === '/' && (
+          <>
+            <title>{title}</title>
+            <meta property="og:title" content={title} />
+          </>
+        )}
+        {path !== '/' && (
+          <>
+            <title>{`${title} - ${siteTitle}`}</title>
+            <meta property="og:title" content={`${title} on ${siteTitle}`} />
+          </>
+        )}
         <meta name="description" content={description} />
-        <meta property="og:title" content={`${title} on ${siteTitle}`} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={`${removeLastTrailingSlash(homepage)}${path}`} />
         <link rel="canonical" href={`${removeLastTrailingSlash(homepage)}${path}`} />
