@@ -8,7 +8,6 @@ const sitemap = require('./plugins/sitemap');
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
-  trailingSlash: true,
   i18n: {
     locales: ['en'],
     defaultLocale: 'en',
