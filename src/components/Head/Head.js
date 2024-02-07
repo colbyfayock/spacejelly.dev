@@ -85,6 +85,7 @@ const Head = ({ title, description, ogImage, ...props }) => {
         <meta property="og:description" content={description} />
         <meta property="og:url" content={`${removeLastTrailingSlash(homepage)}${path}`} />
         <link rel="canonical" href={`${removeLastTrailingSlash(homepage)}${path}`} />
+        <link rel="alternate" href={`${removeLastTrailingSlash(homepage)}/feed.xml`} />
       </NextHead>
       <CldOgImage
         src={ogImage.publicId}
