@@ -16,7 +16,11 @@
   font-size: 0.9em;
   margin: 0 0 0.4em;
 
-  span {
+  @include ltSmall() {
+    display: block;
+  }
+
+  span span {
     margin: 0 0.3em;
   }
 
@@ -29,6 +33,21 @@
 
   a {
     @include titleLink;
+  }
+}
+
+.metadataAuthor {
+  display: flex;
+  align-items: center;
+  gap: 2;
+  @include ltSmall() {
+    margin-bottom: 0.2em;
+  }
+}
+
+.metadataDate {
+  @include ltSmall() {
+    display: block;
   }
 }
 

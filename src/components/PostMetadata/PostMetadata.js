@@ -17,14 +17,18 @@ const PostMetadata = ({ className, author, date, categories, tags }) => {
   return (
     <div>
       <p className={styles.metadataByline}>
-        <CldImage width="50" height="50" crop="fill" src={author.avatar.url} alt="Author Avatar" />
-        <Link href={authorPathByName(author.name)} rel="author">
-          {author.name}
-        </Link>
-        <span>on</span>
-        <time pubdate="pubdate" dateTime={date}>
-          {formatDate(date)}
-        </time>
+        <span className={styles.metadataAuthor}>
+          <CldImage width="50" height="50" crop="fill" src={author.avatar.url} alt="Author Avatar" />
+          <Link href={authorPathByName(author.name)} rel="author">
+            {author.name}
+          </Link>
+        </span>
+        <span className={styles.metadataDate}>
+          <span>on</span>
+          <time pubdate="pubdate" dateTime={date}>
+            {formatDate(date)}
+          </time>
+        </span>
       </p>
       <div className={styles.metadataBuckets}>
         <span>
