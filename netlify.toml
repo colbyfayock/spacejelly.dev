@@ -42,6 +42,14 @@
   status = 301
   force = true
 
+## Posts
+
+[[redirects]]
+  from = "/posts/sitemaps-rss-feeds-with-next-js-app-router"
+  to = "/posts/how-to-add-a-sitemap-rss-feed-in-next-js-app-router"
+  status = 301
+  force = true
+
 ## Misc
 
 [[redirects]]
