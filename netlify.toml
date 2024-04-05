@@ -50,6 +50,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/posts/create-email-templates-with-react-js-using-react-email"
+  to = "/posts/how-to-send-emails-in-react-with-react-email-resend"
+  status = 301
+  force = true
+
 ## Misc
 
 [[redirects]]
