@@ -56,6 +56,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/posts/privacy-focused-google-analytics-alternative-with-plausible-and-next-js"
+  to = "/posts/how-to-add-analytics-in-next-js-with-plausible"
+  status = 301
+  force = true
+
 ## Misc
 
 [[redirects]]
