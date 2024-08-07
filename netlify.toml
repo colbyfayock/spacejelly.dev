@@ -148,6 +148,12 @@
   to = "https://github.com/colbyfayock/media-ecommerce-workshop"
   status = 302
   force = true
+  
+[[redirects]]
+  from = "/nextjs"
+  to = "https://colbyfayock.com/course"
+  status = 302
+  force = true
 
 [[redirects]]
   from = "/reactappwrite"
