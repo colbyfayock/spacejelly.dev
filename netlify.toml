@@ -94,6 +94,11 @@
   status = 302
   force = true
   
+[[redirects]]
+  from = "/frontendnation"
+  to = "https://vueschool.notion.site/7pm-CEST-Create-an-Add-to-Calendar-Button-in-React-Colby-Fayock-4d12d2635be64f4aa16e506ecd4bf178"
+  status = 302
+  force = true
   
 [[redirects]]
   from = "/giveaway"
@@ -141,6 +146,12 @@
 [[redirects]]
   from = "/mediaworkshop"
   to = "https://github.com/colbyfayock/media-ecommerce-workshop"
+  status = 302
+  force = true
+  
+[[redirects]]
+  from = "/nextjs"
+  to = "https://colbyfayock.com/course"
   status = 302
   force = true
 
