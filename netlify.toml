@@ -1,3 +1,11 @@
+## Typos
+
+[[redirects]]
+  from = "/posts/mdx-in-nex-tjs"
+  to = "/posts/mdx-in-nextjs"
+  status = 301
+  force = true
+
 ## Website
 
 [[redirects]]
