@@ -241,7 +241,7 @@
 
 [[redirects]]
   from = "/directus"
-  to = "https://directus.io/"
+  to = "https://directus.is/nextcms"
   status = 302
   force = true
  
