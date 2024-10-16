@@ -238,6 +238,12 @@
   to = "https://clerk.dev/docs/nextjs/overview?utm_source=youtube&utm_medium=influencer&utm_campaign=colby&utm_content=nextjs"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/directus"
+  to = "https://directus.io/"
+  status = 302
+  force = true
  
 ## GitHub
 
