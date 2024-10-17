@@ -244,6 +244,15 @@
   to = "https://directus.is/nextcms"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/railway"
+  to = "https://railway.app?referralCode=2XgG3W"
+  status = 302
+  force = true
+
+
+  
  
 ## GitHub
 
