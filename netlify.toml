@@ -1,3 +1,11 @@
+## Typos
+
+[[redirects]]
+  from = "/posts/mdx-in-nex-tjs"
+  to = "/posts/mdx-in-nextjs"
+  status = 301
+  force = true
+
 ## Website
 
 [[redirects]]
@@ -151,7 +159,7 @@
   
 [[redirects]]
   from = "/nextjs"
-  to = "https://colbyfayock.com/course"
+  to = "https://www.fullstacknext.dev/"
   status = 302
   force = true
 
@@ -221,7 +229,7 @@
   
 [[redirects]]
   from = "/clerk"
-  to = "https://clerk.dev/?utm_source=youtube&utm_medium=influencer&utm_campaign=colby&utm_content=home"
+  to = "https://go.clerk.com/jEuAHnP"
   status = 302
   force = true
 
@@ -230,6 +238,21 @@
   to = "https://clerk.dev/docs/nextjs/overview?utm_source=youtube&utm_medium=influencer&utm_campaign=colby&utm_content=nextjs"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/directus"
+  to = "https://directus.is/nextcms"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/railway"
+  to = "https://railway.app?referralCode=2XgG3W"
+  status = 302
+  force = true
+
+
+  
  
 ## GitHub
 
