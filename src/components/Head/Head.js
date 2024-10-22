@@ -23,7 +23,7 @@ const Head = ({ title, description, ogImage, ...props }) => {
   ogImage.overlays = [];
 
   if (ogImage.layout === 'post') {
-    ogImage.publicId = 'assets/spacejellydev-og-post-v2-2';
+    ogImage.publicId = 'spacejellydev-assets/spacejellydev-og-post-v2-2';
     ogImage.overlays.push({
       width: 1400,
       crop: 'fit',
@@ -42,7 +42,7 @@ const Head = ({ title, description, ogImage, ...props }) => {
       },
     });
   } else if (ogImage.layout === 'page') {
-    ogImage.publicId = 'assets/spacejellydev-og-page-v2-1';
+    ogImage.publicId = 'spacejellydev-assets/spacejellydev-og-page-v2-1';
     ogImage.overlays.push({
       width: 2000,
       crop: 'fit',
@@ -61,9 +61,9 @@ const Head = ({ title, description, ogImage, ...props }) => {
       },
     });
   } else if (ogImage.layout === 'home') {
-    ogImage.publicId = 'assets/spacejellydev-og-home-v2-1';
+    ogImage.publicId = 'spacejellydev-assets/spacejellydev-og-home-v2-1';
   } else if (ogImage.layout === 'colbyashi-maru') {
-    ogImage.publicId = 'assets/spacejellydev-og-colbyashi-maru-v2-1';
+    ogImage.publicId = 'spacejellydev-assets/spacejellydev-og-colbyashi-maru-v2-1';
   }
 
   return (
