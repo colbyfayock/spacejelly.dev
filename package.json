@@ -30,7 +30,7 @@
     "he": "^1.2.0",
     "loader-utils": "^3.2.1",
     "next": "13.0.6",
-    "next-cloudinary": "^3.2.0",
+    "next-cloudinary": "^6.16.0",
     "next-compose-plugins": "^2.2.1",
     "next-plausible": "^3.7.2",
     "parameterize": "^1.0.0",
