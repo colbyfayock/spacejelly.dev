@@ -1,15 +1,18 @@
-const path = require('path');
-const { getAllColbyashiMaruEpisodes, generateIndexColbyashiMaru } = require('./util');
+const path = require("path");
+const {
+  getAllColbyashiMaruEpisodes,
+  generateIndexColbyashiMaru,
+} = require("./util");
 
-const WebpackPluginCompiler = require('./plugin-compiler');
+const WebpackPluginCompiler = require("./plugin-compiler");
 
 module.exports = function indexColbyashiMaru(nextConfig = {}) {
   const { env, outputDirectory, outputName, verbose = false } = nextConfig;
 
   const plugin = {
-    name: 'SearchIndex',
-    outputDirectory: outputDirectory || './public',
-    outputName: outputName || 'colbyashi-maru.json',
+    name: "SearchIndex",
+    outputDirectory: outputDirectory || "./public",
+    outputName: outputName || "colbyashi-maru.json",
     getData: getAllColbyashiMaruEpisodes,
     generate: generateIndexColbyashiMaru,
   };
@@ -18,8 +21,12 @@ module.exports = function indexColbyashiMaru(nextConfig = {}) {
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
-      if (config.watchOptions) {
-        config.watchOptions.ignored.push(path.join('**', plugin.outputDirectory, plugin.outputName));
+      if (config.watchOptions && config.watchOptions.ignored) {
+        if (Array.isArray(config.watchOptions.ignored)) {
+          config.watchOptions.ignored.push(
+            path.join("**", plugin.outputDirectory, plugin.outputName),
+          );
+        }
       }
 
       config.plugins.push(
@@ -28,10 +35,10 @@ module.exports = function indexColbyashiMaru(nextConfig = {}) {
           url: WORDPRESS_GRAPHQL_ENDPOINT,
           plugin,
           verbose,
-        })
+        }),
       );
 
-      if (typeof nextConfig.webpack === 'function') {
+      if (typeof nextConfig.webpack === "function") {
         return nextConfig.webpack(config, options);
       }
 

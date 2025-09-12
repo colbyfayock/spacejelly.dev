@@ -1,8 +1,8 @@
-const path = require('path');
+const path = require("path");
 
-const { createApolloClient, createFile, terminalColor } = require('./util');
+const { createApolloClient, createFile, terminalColor } = require("./util");
 
-const DEFAULT_GRAPHQL_PATH = '/graphql';
+const DEFAULT_GRAPHQL_PATH = "/graphql";
 
 class WebpackPlugin {
   constructor(options = {}) {
@@ -18,16 +18,20 @@ class WebpackPlugin {
     }
 
     try {
-      plugin.outputLocation = path.join(plugin.outputDirectory, plugin.outputName);
+      plugin.outputLocation = path.join(
+        plugin.outputDirectory,
+        plugin.outputName,
+      );
 
-      verbose && console.log(`[${plugin.name}] Compiling file ${plugin.outputLocation}`);
+      verbose &&
+        console.log(`[${plugin.name}] Compiling file ${plugin.outputLocation}`);
 
-      const hasUrl = typeof url === 'string';
-      const hasHost = typeof host === 'string';
+      const hasUrl = typeof url === "string";
+      const hasHost = typeof host === "string";
 
       if (!hasUrl && !hasHost) {
         throw new Error(
-          `[${plugin.name}] Failed to compile: Please check that either WORDPRESS_GRAPHQL_ENDPOINT or WORDPRESS_HOST is set and configured properly.`
+          `[${plugin.name}] Failed to compile: Please check that either WORDPRESS_GRAPHQL_ENDPOINT or WORDPRESS_HOST is set and configured properly.`,
         );
       }
 
@@ -37,16 +41,25 @@ class WebpackPlugin {
 
       const file = plugin.generate(data, nextConfig);
 
-      await createFile(file, plugin.name, plugin.outputDirectory, plugin.outputLocation, verbose);
+      await createFile(
+        file,
+        plugin.name,
+        plugin.outputDirectory,
+        plugin.outputLocation,
+        verbose,
+      );
 
       //If there is an aditional action to perform
       if (!!plugin.postcreate) {
         plugin.postcreate(plugin);
       }
 
-      !verbose && console.log(`Successfully created: ${terminalColor(plugin.outputName, 'info')}`);
+      !verbose &&
+        console.log(
+          `Successfully created: ${terminalColor(plugin.outputName, "info")}`,
+        );
     } catch (e) {
-      console.error(`${terminalColor(e.message, 'error')}`);
+      console.error(`${terminalColor(e.message, "error")}`);
     }
   }
 
@@ -60,12 +73,19 @@ class WebpackPlugin {
     const { plugin } = this.options;
 
     compiler.hooks.run.tap(plugin.name, async (compiler) => {
-      if (!compiler.options.entry.main) return;
+      let entries = compiler.options.entry;
+      if (typeof entries === "function") {
+        entries = await entries();
+      }
+      if (!entries || !entries.main) return;
       await this.index(compiler, this.options);
     });
 
     compiler.hooks.watchRun.tap(plugin.name, async (compiler) => {
-      const entries = await compiler.options.entry();
+      let entries = compiler.options.entry;
+      if (typeof entries === "function") {
+        entries = await entries();
+      }
       if (!entries || !entries.main) return;
       await this.index(compiler, this.options);
     });

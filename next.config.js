@@ -1,20 +1,20 @@
-const { withPlausibleProxy } = require('next-plausible');
+const { withPlausibleProxy } = require("next-plausible");
 
-const indexSearch = require('./plugins/search-index');
-const feed = require('./plugins/feed');
-const sitemap = require('./plugins/sitemap');
+const indexSearch = require("./plugins/search-index");
+const feed = require("./plugins/feed");
+const sitemap = require("./plugins/sitemap");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  swcMinify: true,
+  outputFileTracingRoot: __dirname,
   i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
+    locales: ["en"],
+    defaultLocale: "en",
   },
 
   env: {
-    POSTS_PRERENDER_COUNT: 5,
+    POSTS_PRERENDER_COUNT: "5",
 
     WORDPRESS_HOST: process.env.WORDPRESS_HOST,
     WORDPRESS_GRAPHQL_ENDPOINT: process.env.WORDPRESS_GRAPHQL_ENDPOINT,
