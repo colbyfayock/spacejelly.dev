@@ -1,7 +1,8 @@
-import { getApolloClient } from 'lib/apollo-client';
+import { getApolloClient } from "lib/apollo-client";
 
-import { sortObjectsByDate } from 'lib/datetime';
-import { mapUserData } from 'lib/users';
+import { sortObjectsByDate } from "lib/datetime";
+import { mapUserData } from "lib/users";
+import { getSiteMetadata } from "lib/site";
 
 import {
   QUERY_ALL_POSTS,
@@ -13,7 +14,7 @@ import {
   QUERY_POSTS_BY_CATEGORY_ID_ARCHIVE,
   QUERY_POSTS_BY_TAG_SLUG_INDEX,
   QUERY_POSTS_BY_TAG_SLUG_ARCHIVE,
-} from 'data/posts';
+} from "data/posts";
 
 /**
  * postPathBySlug
@@ -57,7 +58,7 @@ const allPostsIncludesTypes = {
 };
 
 export async function getAllPosts(options = {}) {
-  const { queryIncludes = 'all' } = options;
+  const { queryIncludes = "all" } = options;
 
   const apolloClient = getApolloClient();
 
@@ -128,7 +129,7 @@ const postsByTagSlugIncludesTypes = {
 };
 
 export async function getPostsByTagSlug(tagSlug, options = {}) {
-  const { queryIncludes = 'index' } = options;
+  const { queryIncludes = "index" } = options;
 
   const apolloClient = getApolloClient();
 
@@ -163,14 +164,16 @@ export async function getRecentPosts({ count, ...options }) {
  */
 
 export function sanitizeExcerpt(excerpt) {
-  if (typeof excerpt !== 'string') {
-    throw new Error(`Failed to sanitize excerpt: invalid type ${typeof excerpt}`);
+  if (typeof excerpt !== "string") {
+    throw new Error(
+      `Failed to sanitize excerpt: invalid type ${typeof excerpt}`,
+    );
   }
 
   let sanitized = excerpt;
 
-  sanitized = sanitized.replace(/\s?\[\&hellip\;\]/, '...');
-  sanitized = sanitized.replace('....', '...');
+  sanitized = sanitized.replace(/\s?\[\&hellip\;\]/, "...");
+  sanitized = sanitized.replace("....", "...");
 
   return sanitized;
 }
@@ -238,17 +241,31 @@ export function mapPostData(post = {}) {
 }
 
 /**
+ * getFeedData
+ */
+
+export async function getFeedData() {
+  const metadata = await getSiteMetadata();
+  const { posts } = await getAllPosts();
+
+  return {
+    metadata,
+    posts,
+  };
+}
+
+/**
  * parseIntroFromContent
  */
 
 export function parseIntroFromContent(original) {
-  if (!original || !original.includes('<!--more-->')) {
+  if (!original || !original.includes("<!--more-->")) {
     return {
       content: original,
     };
   }
 
-  const [intro, content] = original.split('<!--more-->');
+  const [intro, content] = original.split("<!--more-->");
 
   return {
     content: content && content.trim(),

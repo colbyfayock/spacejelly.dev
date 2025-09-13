@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_ALL_PAGES = gql`
   query AllPages {
@@ -20,6 +20,8 @@ export const QUERY_ALL_PAGES = gql`
           menuOrder
           slug
           title
+          status
+          modified
         }
       }
     }

@@ -1,12 +1,13 @@
-import { getApolloClient } from 'lib/apollo-client';
+import { getApolloClient } from "lib/apollo-client";
+import { getAllPosts } from "lib/posts";
 
-import { QUERY_ALL_PAGES, getQueryPageById } from 'data/pages';
+import { QUERY_ALL_PAGES, getQueryPageById } from "data/pages";
 
 /**
  * pagePathBySlug
  */
 
-export function pagePathBySlug(slug = '') {
+export function pagePathBySlug(slug = "") {
   return `/${slug}`;
 }
 
@@ -41,7 +42,9 @@ export async function getAllPages(options) {
     query: QUERY_ALL_PAGES,
   });
 
-  const pages = data?.data.pages.edges.map(({ node = {} }) => node).map(mapPageData);
+  const pages = data?.data.pages.edges
+    .map(({ node = {} }) => node)
+    .map(mapPageData);
 
   return {
     pages,
@@ -58,6 +61,23 @@ export async function getNavigationPages() {
   const navPages = pages.filter(({ menuOrder }) => menuOrder > 0);
 
   return navPages;
+}
+
+/**
+ * getSitemapData
+ */
+
+export async function getSitemapData() {
+  const { posts } = await getAllPosts();
+  const { pages } = await getAllPages();
+
+  // Filter out pages that shouldn't be in sitemap (e.g., not published)
+  const publicPages = pages.filter((page) => page.status === "publish");
+
+  return {
+    posts,
+    pages: publicPages,
+  };
 }
 
 /**
