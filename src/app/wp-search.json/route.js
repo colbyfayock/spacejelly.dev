@@ -1,10 +1,10 @@
 import { getAllPosts } from "../../lib/posts";
-import { generateIndexSearch } from "../../lib/util";
+import { generateIndexSearch } from "../../lib/util-server";
 
 export async function GET() {
   try {
     const data = await getAllPosts();
-    const searchIndex = generateIndexSearch(data);
+    const searchIndex = await generateIndexSearch(data);
 
     const headers = {
       "Content-Type": "application/json",

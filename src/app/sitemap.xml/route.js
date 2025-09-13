@@ -1,5 +1,5 @@
 import { getSitemapData } from "../../lib/pages";
-import { generateSitemap } from "../../lib/util";
+import { generateSitemap } from "../../lib/util-server";
 
 export async function GET() {
   try {

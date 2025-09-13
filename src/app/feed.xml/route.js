@@ -1,10 +1,10 @@
 import { getFeedData } from "../../lib/posts";
-import { generateFeed } from "../../lib/util";
+import { generateFeed } from "../../lib/util-server";
 
 export async function GET() {
   try {
     const data = await getFeedData();
-    const feedXml = generateFeed(data);
+    const feedXml = await generateFeed(data);
 
     const headers = {
       "Content-Type": "application/rss+xml",
