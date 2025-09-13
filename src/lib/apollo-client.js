@@ -1,6 +1,6 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 
-import { removeLastTrailingSlash } from 'lib/util';
+import { removeLastTrailingSlash } from "lib/util";
 let client;
 
 /**
@@ -20,8 +20,9 @@ export function getApolloClient() {
 
 export function _createApolloClient() {
   return new ApolloClient({
-    link: new HttpLink({
+    link: createHttpLink({
       uri: removeLastTrailingSlash(`${process.env.WORDPRESS_HOST}/graphql`),
+      useGETForQueries: true,
     }),
     cache: new InMemoryCache({
       typePolicies: {

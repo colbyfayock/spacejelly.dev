@@ -1,16 +1,22 @@
 const { withPlausibleProxy } = require("next-plausible");
 
-const indexSearch = require("./plugins/search-index");
-const feed = require("./plugins/feed");
-const sitemap = require("./plugins/sitemap");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  outputFileTracingRoot: __dirname,
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
+  },
+
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        rss: false,
+      };
+    }
+    return config;
   },
 
   env: {
@@ -22,6 +28,6 @@ const nextConfig = {
 };
 
 module.exports = () => {
-  const plugins = [withPlausibleProxy(), indexSearch, feed, sitemap];
+  const plugins = [withPlausibleProxy()];
   return plugins.reduce((acc, plugin) => plugin(acc), nextConfig);
 };
