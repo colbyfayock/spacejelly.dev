@@ -1,30 +1,39 @@
-import Link from 'next/link';
-import { useInView } from 'react-intersection-observer';
-import { FaDesktop, FaCode, FaRocket } from 'react-icons/fa';
+import Link from "next/link";
+import { useInView } from "react-intersection-observer";
+import { FaDesktop, FaCode, FaRocket } from "react-icons/fa";
 
-import { getPostBySlug, getRecentPosts, parseIntroFromContent, getPostsByCategoryId } from 'lib/posts';
-import { categoryPathBySlug } from 'lib/categories';
-import { formatDate } from 'lib/datetime';
-import { ArticleJsonLd } from 'lib/json-ld';
-import { addIdsToHeadersHtml, applySyntaxHighlighting, getHeadersAnchorsFromHtml } from 'lib/parse';
-import useSite from 'hooks/use-site';
+import {
+  getPostBySlug,
+  getRecentPosts,
+  parseIntroFromContent,
+  getPostsByCategoryId,
+} from "lib/posts";
+import { categoryPathBySlug } from "lib/categories";
+import { formatDate } from "lib/datetime";
+import { ArticleJsonLd } from "lib/json-ld";
+import {
+  addIdsToHeadersHtml,
+  applySyntaxHighlighting,
+  getHeadersAnchorsFromHtml,
+} from "lib/parse";
+import useSite from "hooks/use-site";
 
-import Head from 'components/Head';
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import Content from 'components/Content';
-import PostMetadata from 'components/PostMetadata';
-import Anchors from 'components/Anchors';
-import Video from 'components/Video';
-import Posts from 'components/Posts';
-import Sidebar from 'components/Sidebar';
-import SidebarSection from 'components/SidebarSection';
-import Heading from 'components/Heading';
-import FormSubscribe from 'components/FormSubscribe';
+import Head from "components/Head";
+import Layout from "components/Layout";
+import Header from "components/Header";
+import Section from "components/Section";
+import Container from "components/Container";
+import Content from "components/Content";
+import PostMetadata from "components/PostMetadata";
+import Anchors from "components/Anchors";
+import Video from "components/Video";
+import Posts from "components/Posts";
+import Sidebar from "components/Sidebar";
+import SidebarSection from "components/SidebarSection";
+import Heading from "components/Heading";
+import FormSubscribe from "components/FormSubscribe";
 
-import styles from 'styles/pages/Post.module.scss';
+import styles from "styles/pages/Post.module.scss";
 
 export default function Post({ post, anchors, related }) {
   const { metadata } = useSite();
@@ -69,7 +78,7 @@ export default function Post({ post, anchors, related }) {
         description={metaDescription}
         ogImage={{
           title: cardtitle || title,
-          layout: 'post',
+          layout: "post",
         }}
       />
 
@@ -106,7 +115,11 @@ export default function Post({ post, anchors, related }) {
 
               {Array.isArray(anchors) && (
                 <div className={styles.postIntroAnchors}>
-                  <Anchors className={styles.postAnchors} anchors={anchors} headline="Table of Contents" />
+                  <Anchors
+                    className={styles.postAnchors}
+                    anchors={anchors}
+                    headline="Table of Contents"
+                  />
                 </div>
               )}
 
@@ -138,7 +151,12 @@ export default function Post({ post, anchors, related }) {
 
               {video && (
                 <div ref={videoContainerRef}>
-                  <Video className={styles.postVideo} {...video} title={`Video for ${title}`} isActive={inView} />
+                  <Video
+                    className={styles.postVideo}
+                    {...video}
+                    title={`Video for ${title}`}
+                    isActive={inView}
+                  />
                 </div>
               )}
 
@@ -150,21 +168,32 @@ export default function Post({ post, anchors, related }) {
               />
 
               <div className={styles.postFooter}>
-                <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
+                <p className={styles.postModified}>
+                  Last updated on {formatDate(modified)}.
+                </p>
               </div>
             </div>
             <Sidebar className={styles.postSidebar}>
               <SidebarSection className={styles.postSidebarToc}>
                 {Array.isArray(anchors) && (
-                  <Anchors className={styles.postAnchors} anchors={anchors} headline="Table of Contents" />
+                  <Anchors
+                    className={styles.postAnchors}
+                    anchors={anchors}
+                    headline="Table of Contents"
+                  />
                 )}
               </SidebarSection>
               <SidebarSection className={styles.postSidebarNewsletter}>
                 <Heading className={styles.postSidebarHeading} as="p">
                   Newsletter
                 </Heading>
-                <p className={styles.postSidebarText}>More free tutorials straight to your inbox.</p>
-                <FormSubscribe className={styles.postSidebarForm} />
+                <p className={styles.postSidebarText}>
+                  More free tutorials straight to your inbox.
+                </p>
+                <FormSubscribe
+                  className={styles.postSidebarForm}
+                  location="posts"
+                />
               </SidebarSection>
             </Sidebar>
           </Container>
@@ -210,9 +239,11 @@ export async function getStaticProps({ params = {} } = {}) {
 
   const relatedCategory = categories[0];
   const related = await getPostsByCategoryId(relatedCategory?.categoryId, {
-    queryIncludes: 'index',
+    queryIncludes: "index",
   });
-  const relatedPosts = related?.posts.filter(({ slug }) => slug !== params?.slug).slice(0, 3);
+  const relatedPosts = related?.posts
+    .filter(({ slug }) => slug !== params?.slug)
+    .slice(0, 3);
 
   // Parse the HTML and add IDs to all of the
   // h2 headers
@@ -237,7 +268,7 @@ export async function getStaticProps({ params = {} } = {}) {
   // for the <!--more--> tag if it exists which designates where that split
   // should occur in the content
 
-  const { intro = '', content: moreContent } = parseIntroFromContent(content);
+  const { intro = "", content: moreContent } = parseIntroFromContent(content);
 
   if (intro.length > 0) {
     content = moreContent;
@@ -246,18 +277,24 @@ export async function getStaticProps({ params = {} } = {}) {
   if (post.video) {
     let oembed, thumbnail;
 
-    if (post.video.includes('youtube.com')) {
+    if (post.video.includes("youtube.com")) {
       try {
-        oembed = await fetch(`https://www.youtube.com/oembed?url=${post.video}`).then((r) => r.json());
+        oembed = await fetch(
+          `https://www.youtube.com/oembed?url=${post.video}`,
+        ).then((r) => r.json());
       } catch (e) {
-        console.log(`Failed to fetch oembed for ${post.video} on ${title}: ${e}`);
+        console.log(
+          `Failed to fetch oembed for ${post.video} on ${title}: ${e}`,
+        );
       }
 
       if (oembed) {
         const { thumbnail_url } = oembed;
-        const maxResUrl = thumbnail_url.replace('hqdefault', 'maxresdefault');
+        const maxResUrl = thumbnail_url.replace("hqdefault", "maxresdefault");
 
-        const maxResExists = await fetch(maxResUrl, { method: 'HEAD' }).then((r) => r.ok);
+        const maxResExists = await fetch(maxResUrl, { method: "HEAD" }).then(
+          (r) => r.ok,
+        );
 
         thumbnail = maxResExists ? maxResUrl : thumbnail_url;
       }
@@ -296,7 +333,7 @@ export async function getStaticProps({ params = {} } = {}) {
 export async function getStaticPaths() {
   const { posts } = await getRecentPosts({
     count: process.env.POSTS_PRERENDER_COUNT,
-    queryIncludes: 'index',
+    queryIncludes: "index",
   });
 
   const paths = posts.map((post) => {
@@ -310,6 +347,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }

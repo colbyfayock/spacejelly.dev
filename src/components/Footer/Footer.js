@@ -1,20 +1,20 @@
-import Link from 'next/link';
-import { FaTwitter, FaYoutube, FaGithub } from 'react-icons/fa';
+import Link from "next/link";
+import { FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
 
-import useSite from 'hooks/use-site';
-import { getRouteByName } from 'lib/routes';
-import { authorPathByName } from 'lib/users';
+import useSite from "hooks/use-site";
+import { getRouteByName } from "lib/routes";
+import { authorPathByName } from "lib/users";
 
-import Section from 'components/Section';
-import Container from 'components/Container';
-import FormSubscribe from 'components/FormSubscribe';
-import LogoWPEngine from 'components/LogoWPEngine';
-import Heading from 'components/Heading';
-import Sand from 'components/Sand';
-import SandSpaceship from 'components/SandSpaceship';
-import CldImage from 'components/CldImage';
+import Section from "components/Section";
+import Container from "components/Container";
+import FormSubscribe from "components/FormSubscribe";
+import LogoWPEngine from "components/LogoWPEngine";
+import Heading from "components/Heading";
+import Sand from "components/Sand";
+import SandSpaceship from "components/SandSpaceship";
+import CldImage from "components/CldImage";
 
-import styles from './Footer.module.scss';
+import styles from "./Footer.module.scss";
 
 const Footer = () => {
   const { metadata = {}, author = {} } = useSite();
@@ -31,7 +31,12 @@ const Footer = () => {
           </Heading>
           <div className={styles.footerAuthorInfo}>
             <div className={styles.footerAuthorImage}>
-              <CldImage width="300" height="300" src={author.user.userimage.sourceUrl} alt="Author" />
+              <CldImage
+                width="300"
+                height="300"
+                src={author.user.userimage.sourceUrl}
+                alt="Author"
+              />
             </div>
             <div className={styles.footerAuthorDetails}>
               <p className={styles.footerAuthorName}>{author.name}</p>
@@ -56,7 +61,9 @@ const Footer = () => {
                 </li>
               </ul>
               <p className={styles.footerAuthorMore}>
-                <a href={authorPathByName(author.name)}>More about {author.name}</a>
+                <a href={authorPathByName(author.name)}>
+                  More about {author.name}
+                </a>
               </p>
             </div>
           </div>
@@ -67,7 +74,7 @@ const Footer = () => {
           <Heading className={styles.heading} as="h3">
             Get free tutorials and web dev resources straight to your inbox!
           </Heading>
-          <FormSubscribe />
+          <FormSubscribe location="footer" />
         </Container>
       </Section>
 
@@ -86,21 +93,25 @@ const Footer = () => {
       <Section className={`${styles.footerSection} ${styles.footerAnchor}`}>
         <Container>
           <p>
-            &copy; {new Date().getFullYear()} {title},{' '}
-            <a href={`https://twitter.com/${author.seo.social.twitter}`}>Colby Fayock</a>
+            &copy; {new Date().getFullYear()} {title},{" "}
+            <a href={`https://twitter.com/${author.seo.social.twitter}`}>
+              Colby Fayock
+            </a>
           </p>
           <ul className={styles.footerAnchorLinks}>
             <li>
-              <a href={getRouteByName('sitemap')?.path}>Sitemap</a>
+              <a href={getRouteByName("sitemap")?.path}>Sitemap</a>
             </li>
             <li>
-              <a href={getRouteByName('rss')?.path}>RSS</a>
+              <a href={getRouteByName("rss")?.path}>RSS</a>
             </li>
             <li>
-              <a href={getRouteByName('about')?.path}>About</a>
+              <a href={getRouteByName("about")?.path}>About</a>
             </li>
             <li>
-              <Link href={getRouteByName('colbyashiMaru')?.path}>Colbyashi Maru</Link>
+              <Link href={getRouteByName("colbyashiMaru")?.path}>
+                Colbyashi Maru
+              </Link>
             </li>
           </ul>
         </Container>

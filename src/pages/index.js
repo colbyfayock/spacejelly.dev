@@ -1,33 +1,33 @@
-import Link from 'next/link';
-import { FaTwitter, FaYoutube } from 'react-icons/fa';
-import { BsDiscord } from 'react-icons/bs';
-import { gql } from '@apollo/client';
+import Link from "next/link";
+import { FaTwitter, FaYoutube } from "react-icons/fa";
+import { BsDiscord } from "react-icons/bs";
+import { gql } from "@apollo/client";
 
-import { getApolloClient } from 'lib/apollo-client';
-import { getRouteByName } from 'lib/routes';
-import { getAllPosts, postPathBySlug } from 'lib/posts';
-import { getAllTags } from 'lib/tags';
-import { WebsiteJsonLd } from 'lib/json-ld';
-import useSite from 'hooks/use-site';
+import { getApolloClient } from "lib/apollo-client";
+import { getRouteByName } from "lib/routes";
+import { getAllPosts, postPathBySlug } from "lib/posts";
+import { getAllTags } from "lib/tags";
+import { WebsiteJsonLd } from "lib/json-ld";
+import useSite from "hooks/use-site";
 
-import { HOME_TAGS } from 'data/home';
+import { HOME_TAGS } from "data/home";
 
-import Head from 'components/Head';
-import Layout from 'components/Layout';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import Posts from 'components/Posts';
-import FormSubscribe from 'components/FormSubscribe';
-import Button from 'components/Button';
-import Heading from 'components/Heading';
-import CldImage from 'components/CldImage';
-import CosmoWave from 'components/CosmoWave';
-import GalaxyCloud from 'components/GalaxyCloud';
-import Waves from 'components/Waves';
-import MountainRange from 'components/MountainRange';
-import ShoreRocks from 'components/ShoreRocks';
+import Head from "components/Head";
+import Layout from "components/Layout";
+import Section from "components/Section";
+import Container from "components/Container";
+import Posts from "components/Posts";
+import FormSubscribe from "components/FormSubscribe";
+import Button from "components/Button";
+import Heading from "components/Heading";
+import CldImage from "components/CldImage";
+import CosmoWave from "components/CosmoWave";
+import GalaxyCloud from "components/GalaxyCloud";
+import Waves from "components/Waves";
+import MountainRange from "components/MountainRange";
+import ShoreRocks from "components/ShoreRocks";
 
-import styles from 'styles/pages/Home.module.scss';
+import styles from "styles/pages/Home.module.scss";
 
 export default function Home({ page, latestPost, posts, featuredTags }) {
   const { metadata = {} } = useSite();
@@ -44,7 +44,7 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
         title={title}
         description={metaDescription}
         ogImage={{
-          layout: 'home',
+          layout: "home",
         }}
       />
 
@@ -66,11 +66,13 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
               <Posts
                 posts={[latestPost]}
                 postCard={{
-                  excludeMetadata: ['tags'],
+                  excludeMetadata: ["tags"],
                 }}
               />
               <p className={styles.heroFeatureLatestLink}>
-                <Button href={postPathBySlug(latestPost.slug)}>Learn How</Button>
+                <Button href={postPathBySlug(latestPost.slug)}>
+                  Learn How
+                </Button>
               </p>
             </div>
             <div className={styles.heroFeatureCosmo}>
@@ -115,8 +117,8 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
                 as="h2"
                 color="orange"
                 action={{
-                  title: 'View All Courses',
-                  link: '/courses',
+                  title: "View All Courses",
+                  link: "/courses",
                 }}
               >
                 Featured Course
@@ -137,8 +139,11 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
               <Heading className={styles.featuredTitle} as="h3">
                 Get new web dev tutorials in your inbox!
               </Heading>
-              <p>Sign up to receive all things Space Jelly and more free content straight to your inbox!</p>
-              <FormSubscribe />
+              <p>
+                Sign up to receive all things Space Jelly and more free content
+                straight to your inbox!
+              </p>
+              <FormSubscribe location="home" />
             </div>
           </div>
           <div className={styles.featuredCommunity}>
@@ -147,17 +152,29 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
             </Heading>
             <ul>
               <li>
-                <a href="https://twitter.com/colbyfayock" target="_blank" rel="noreferrer noopener">
+                <a
+                  href="https://twitter.com/colbyfayock"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <FaTwitter /> @colbyfayock
                 </a>
               </li>
               <li>
-                <a href="https://youtube.com/colbyfayock" target="_blank" rel="noreferrer noopener">
+                <a
+                  href="https://youtube.com/colbyfayock"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <FaYoutube /> @colbyfayock
                 </a>
               </li>
               <li>
-                <a href="https://spacejelly.dev/discord" target="_blank" rel="noreferrer noopener">
+                <a
+                  href="https://spacejelly.dev/discord"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <BsDiscord /> Space Jelly
                 </a>
               </li>
@@ -176,11 +193,11 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
             <Posts
               posts={posts}
               postCard={{
-                excludeMetadata: ['tags'],
+                excludeMetadata: ["tags"],
               }}
             />
             <p className={styles.morePostsLink}>
-              <Link href={getRouteByName('posts')?.path}>View All Posts</Link>
+              <Link href={getRouteByName("posts")?.path}>View All Posts</Link>
             </p>
           </div>
         </Container>
@@ -223,12 +240,12 @@ export async function getStaticProps() {
       }
     `,
     variables: {
-      id: 'cG9zdDoxNTAz',
+      id: "cG9zdDoxNTAz",
     },
   });
 
   const { posts } = await getAllPosts({
-    queryIncludes: 'archive',
+    queryIncludes: "archive",
   });
 
   const latestPost = posts.shift();

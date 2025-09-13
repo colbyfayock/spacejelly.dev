@@ -1,5 +1,14 @@
 @import "styles/settings/__settings";
 
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .formSubscribe {
   label {
     display: block;
@@ -13,12 +22,18 @@
     width: 100%;
     border-radius: 2px;
     margin-bottom: 1.2em;
+    background-color: white;
   }
 
   button {
     font-size: 1em;
     border-radius: 2px;
   }
+
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
 }
 
 .formSuccessMessage,
