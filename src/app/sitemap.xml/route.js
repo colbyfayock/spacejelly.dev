@@ -5,9 +5,7 @@ export async function GET() {
   try {
     const data = await getSitemapData();
 
-    // Get Next.js config for trailingSlash setting
-    const nextConfig = {};
-    const sitemapXml = await generateSitemap(data, nextConfig);
+    const sitemapXml = await generateSitemap(data);
 
     const headers = {
       "Content-Type": "application/xml",

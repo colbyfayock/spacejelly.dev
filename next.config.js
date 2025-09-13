@@ -8,17 +8,6 @@ const nextConfig = {
     defaultLocale: "en",
   },
 
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        rss: false,
-      };
-    }
-    return config;
-  },
-
   env: {
     POSTS_PRERENDER_COUNT: "5",
 
