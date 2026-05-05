@@ -111,27 +111,6 @@ export default function Home({ page, latestPost, posts, featuredTags }) {
         <MountainRange className={styles.featuredMountainRange} />
         <Container className={styles.featuredContainer}>
           <div className={styles.featuredFeatures}>
-            <div className={styles.featuredCourse}>
-              <Heading
-                className={styles.heading}
-                as="h2"
-                color="orange"
-                action={{
-                  title: "View All Courses",
-                  link: "/courses",
-                }}
-              >
-                Featured Course
-              </Heading>
-              <a href={featuredCourse.course.courseLink}>
-                <CldImage
-                  width="1800"
-                  height="900"
-                  src={featuredCourse.featuredImage.node.sourceUrl}
-                  alt={featuredCourse.title}
-                />
-              </a>
-            </div>
             <div className={styles.featuredNewsletter}>
               <Heading className={styles.heading} as="h2" color="orange">
                 Newsletter
