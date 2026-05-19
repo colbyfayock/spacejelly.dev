@@ -251,6 +251,12 @@
   status = 302
   force = true
 
+[[redirects]]
+  from = "/sentry"
+  to = "https://sentry.io/"
+  status = 302
+  force = true
+
 
   
  
