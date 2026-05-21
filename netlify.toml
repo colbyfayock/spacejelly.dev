@@ -257,7 +257,11 @@
   status = 302
   force = true
 
-
+[[redirects]]
+  from = "/sentrymcp"
+  to = "https://docs.sentry.io/ai/mcp/?utm_source=colbyfayock&utm_medium=paid-community&utm_campaign=mcp-fy27q1-mcp&utm_content=partner-docs-learnmore&code=colbyfayock"
+  status = 302
+  force = true
   
  
 ## GitHub
