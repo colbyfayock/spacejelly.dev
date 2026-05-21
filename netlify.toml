@@ -253,7 +253,7 @@
 
 [[redirects]]
   from = "/sentry"
-  to = "https://sentry.io/"
+  to = "https://sentry.io/welcome/?utm_source=colbyfayock&utm_medium=paid-community&utm_campaign=general-fy27q1-evergreen&utm_content=partner-homepage-trysentry&code=colbyfayock"
   status = 302
   force = true
 
