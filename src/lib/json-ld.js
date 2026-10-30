@@ -4,8 +4,10 @@ import { pagePathBySlug } from 'lib/pages';
 
 import config from '../../package.json';
 
+const homepage = config.homepage || '';
+const faviconPath = config.faviconPath || '/favicon.ico';
+
 export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
-  const { homepage = '', faviconPath = '/favicon.ico' } = config;
   const { title, slug, excerpt, date, author, categories, modified, featuredImage } = post;
   const path = postPathBySlug(slug);
   const datePublished = !!date && new Date(date);
@@ -58,8 +60,6 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
 }
 
 export function WebsiteJsonLd({ siteTitle = '' }) {
-  const { homepage = '' } = config;
-
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -84,7 +84,6 @@ export function WebsiteJsonLd({ siteTitle = '' }) {
 }
 
 export function WebpageJsonLd({ title = '', description = '', siteTitle = '', slug = '' }) {
-  const { homepage = '' } = config;
   const path = pagePathBySlug(slug);
 
   const jsonLd = {
@@ -110,7 +109,6 @@ export function WebpageJsonLd({ title = '', description = '', siteTitle = '', sl
 }
 
 export function AuthorJsonLd({ author = {} }) {
-  const { homepage = '' } = config;
   const { name, avatar, description } = author;
   const path = authorPathByName(name);
 

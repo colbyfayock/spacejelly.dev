@@ -14,6 +14,8 @@ import { pageview } from "lib/gtag";
 import pkg from "../../package.json";
 import "styles/globals.scss";
 
+const homepage = pkg.homepage || "";
+
 const sourceSans3 = Source_Sans_3({
   weight: ["400", "600", "700", "900"],
   style: ["normal"],
@@ -22,7 +24,6 @@ const sourceSans3 = Source_Sans_3({
 
 function App({ Component, pageProps = {}, metadata, author, categories }) {
   const { asPath, events } = useRouter();
-  const { homepage = "" } = pkg;
 
   const context = {
     metadata,
